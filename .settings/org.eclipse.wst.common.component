@@ -4,6 +4,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/WEB-INF/lib" source-path="/WebContent/WEB-INF/lib/jmx"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/Resource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/file"/>
         <property name="context-root" value="sina"/>
         <property name="java-output-path" value="/sina/build/classes"/>
     </wb-module>

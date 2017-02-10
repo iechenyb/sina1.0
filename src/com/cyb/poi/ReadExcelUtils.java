@@ -171,7 +171,7 @@ public class ReadExcelUtils {
          }  
     }
     public static void main(String[] args) {      
-    	String path = System.getProperty("user.dir")+"/src/com/cyb/poi/dhqh.xls";
+    	String path = System.getProperty("user.dir")+"/src/com/cyb/poi/gnqd.xlsx";
     	displayExcel(path);
     }      
 }   
