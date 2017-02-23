@@ -1,4 +1,4 @@
-package com.cyb.poi.common;
+package com.cyb.poi;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -15,31 +15,37 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import com.cyb.poi.common.Common;
+import com.cyb.poi.common.ReadExcel;
+import com.cyb.poi.common.Student;
+import com.cyb.poi.common.Util;
+
 /**
  * @author Hongten
  * @created 2014-5-20
  */
-public class ReadExcel {
-    
+public class CommonReadExcel {
+	 public static final String OFFICE_EXCEL_2003_POSTFIX = "xls";
+	 public static final String OFFICE_EXCEL_2010_POSTFIX = "xlsx";
     /**
      * read the Excel file
      * @param path the path of the Excel file
      * @return
      * @throws IOException
      */
-    public List<Student> readExcel(String path) throws IOException {
-        if (path == null || Common.EMPTY.equals(path)) {
+    public List<?> readExcel(String path) throws IOException {
+        if (path == null || "".equals(path)) {
             return null;
         } else {
             String postfix = Util.getPostfix(path);
-            if (!Common.EMPTY.equals(postfix)) {
-                if (Common.OFFICE_EXCEL_2003_POSTFIX.equals(postfix)) {
+            if (!"".equals(postfix)) {
+                if (OFFICE_EXCEL_2003_POSTFIX.equals(postfix)) {
                     return readXls(path);
-                } else if (Common.OFFICE_EXCEL_2010_POSTFIX.equals(postfix)) {
+                } else if (OFFICE_EXCEL_2010_POSTFIX.equals(postfix)) {
                     return readXlsx(path);
                 }
             } else {
-                System.out.println(path + Common.NOT_EXCEL_FILE);
+                System.out.println(path + "不存在！");
             }
         }
         return null;
@@ -51,11 +57,9 @@ public class ReadExcel {
      * @return
      * @throws IOException
      */
-    public List<Student> readXlsx(String path) throws IOException {
-        System.out.println(Common.PROCESSING + path);
+    public List<?> readXlsx(String path) throws IOException {
         InputStream is = new FileInputStream(path);
         XSSFWorkbook xssfWorkbook = new XSSFWorkbook(is);
-        Student student = null;
         List<Student> list = new ArrayList<Student>();
         // Read the Sheet
         for (int numSheet = 0; numSheet < xssfWorkbook.getNumberOfSheets(); numSheet++) {
@@ -66,17 +70,12 @@ public class ReadExcel {
             // Read the Row
             for (int rowNum = 1; rowNum <= xssfSheet.getLastRowNum(); rowNum++) {
                 XSSFRow xssfRow = xssfSheet.getRow(rowNum);
+                int cols = xssfRow.getPhysicalNumberOfCells();
                 if (xssfRow != null) {
-                    student = new Student();
-                    XSSFCell no = xssfRow.getCell(0);
-                    XSSFCell name = xssfRow.getCell(1);
-                    XSSFCell age = xssfRow.getCell(2);
-                    XSSFCell score = xssfRow.getCell(3);
-                    student.setNo(getValue(no));
-                    student.setName(getValue(name));
-                    student.setAge(getValue(age));
-                    student.setScore(Float.valueOf(getValue(score)));
-                    list.add(student);
+               	 for(int i=0;i<cols;i++){
+                    	System.out.print("("+i+")"+xssfRow.getCell(i));
+                 }
+               	 System.out.println();
                 }
             }
         }
@@ -89,11 +88,9 @@ public class ReadExcel {
      * @return
      * @throws IOException
      */
-    public List<Student> readXls(String path) throws IOException {
-        System.out.println(Common.PROCESSING + path);
+    public List<?> readXls(String path) throws IOException {
         InputStream is = new FileInputStream(path);
         HSSFWorkbook hssfWorkbook = new HSSFWorkbook(is);
-        Student student = null;
         List<Student> list = new ArrayList<Student>();
         // Read the Sheet
         for (int numSheet = 0; numSheet < hssfWorkbook.getNumberOfSheets(); numSheet++) {
@@ -105,21 +102,11 @@ public class ReadExcel {
             for (int rowNum = 1; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {
                 HSSFRow hssfRow = hssfSheet.getRow(rowNum);
                 int cols = hssfRow.getPhysicalNumberOfCells();
-                for(int i=0;i<cols;i++){
-                	System.out.print("("+i+")"+hssfRow.getCell(i));
-                }
-                System.out.println();
                 if (hssfRow != null) {
-                    student = new Student();
-                    HSSFCell no = hssfRow.getCell(0);
-                    HSSFCell name = hssfRow.getCell(1);
-                    HSSFCell age = hssfRow.getCell(2);
-                    HSSFCell score = hssfRow.getCell(3);
-                    student.setNo(getValue(no));
-                    student.setName(getValue(name));
-                    student.setAge(getValue(age));
-                    student.setScore(Float.valueOf(getValue(score)));
-                    list.add(student);
+                	 for(int i=0;i<cols;i++){
+                     	System.out.print("("+i+")"+hssfRow.getCell(i));
+                     }
+                	 System.out.println();
                 }
             }
         }
@@ -147,4 +134,11 @@ public class ReadExcel {
             return String.valueOf(hssfCell.getStringCellValue());
         }
     }
+    
+    public static void main(String[] args) throws IOException {
+    	/*String excel2003_2007 = System.getProperty("user.dir")+"/file/student_info.xls";
+    	new CommonReadExcel().readExcel(excel2003_2007);*/
+        String excel2010 = System.getProperty("user.dir")+"/file/gnqd.xlsx";
+    	new CommonReadExcel().readExcel(excel2010);
+	}
 }
