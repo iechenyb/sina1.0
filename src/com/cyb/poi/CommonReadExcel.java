@@ -72,8 +72,9 @@ public class CommonReadExcel {
                 XSSFRow xssfRow = xssfSheet.getRow(rowNum);
                 int cols = xssfRow.getPhysicalNumberOfCells();
                 if (xssfRow != null) {
+                	System.out.print("row="+rowNum);
                	 for(int i=0;i<cols;i++){
-                    	System.out.print("("+i+")"+xssfRow.getCell(i));
+                    	System.out.print(",("+i+")"+xssfRow.getCell(i));
                  }
                	 System.out.println();
                 }
@@ -138,7 +139,7 @@ public class CommonReadExcel {
     public static void main(String[] args) throws IOException {
     	/*String excel2003_2007 = System.getProperty("user.dir")+"/file/student_info.xls";
     	new CommonReadExcel().readExcel(excel2003_2007);*/
-        String excel2010 = System.getProperty("user.dir")+"/file/gnqd.xlsx";
+        String excel2010 = System.getProperty("user.dir")+"/file/hgjjsj.xlsx";
     	new CommonReadExcel().readExcel(excel2010);
 	}
 }
