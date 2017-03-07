@@ -9,6 +9,7 @@ import java.util.Set;
 
 public class CollectionFactory {
    public static List<Integer> list = new ArrayList<Integer>();
+   public static List<Map<String,String>> listMap = new ArrayList<Map<String,String>>();
    public static List<User> users = new ArrayList<User>();
    public static Set<Integer> set = new HashSet<Integer>();
    public static Map<String,String> map = new HashMap<String,String>();
@@ -21,7 +22,8 @@ public class CollectionFactory {
 		   user.setPwd("don't tell you!"+i);
 		   list.add(i);
 		   set.add(i);
-		   map.put("k1", "val"+i);
+		   map.put("k"+i, "val"+i);
+		   listMap.add(map);
 		   users.add(user);
 	   }
 	   user.setName("iechenyb");

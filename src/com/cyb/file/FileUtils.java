@@ -16,6 +16,7 @@ import java.io.RandomAccessFile;
 import java.io.Reader;
 
 import com.cyb.frame.LoginFrame;
+import com.cyb.freemarker.FreeMarkerUtil;
 
 public class FileUtils {
     /**
@@ -411,6 +412,11 @@ public class FileUtils {
 		}
 		return content;
 	}
+    public static String getAbsolutePathAtClass(Class<?> clss){
+    	String packagePath = System.getProperty("user.dir");
+    	String packageName = clss.getPackage().getName().replaceAll("\\.", "/");
+    	return packagePath+"/src/"+packageName+"/";
+    }
     public static void main(String[] args) {
        /* String to = "d:\\file\\industry.txt";
         appendString2File1("111汉字1", to);
