@@ -4,7 +4,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
+/**
+ * 
+ * @author DHUser
+ *
+ */
 public class DateUtil {
    private static SimpleDateFormat formatter = null;
    public static String format(Date date,String model){
@@ -61,6 +65,17 @@ public class DateUtil {
 	   return dateString;
    }
    public static Calendar calendar(String yyyymmddhhmmss){
+	   if(yyyymmddhhmmss.length()!=8&&yyyymmddhhmmss.length()!=14){
+		   try {
+			throw new Exception("参数必须为8位或者12位数字");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	   }
+	   if(yyyymmddhhmmss.length()==8){
+		   yyyymmddhhmmss = yyyymmddhhmmss +"000000";
+	   }
 		Calendar cal = Calendar.getInstance();
 		int year = Integer.valueOf(yyyymmddhhmmss.substring(0, 4));
 		int month = Integer.valueOf(yyyymmddhhmmss.substring(4, 6));
@@ -73,17 +88,9 @@ public class DateUtil {
    }
    public static Calendar calendar(Date date){
 		Calendar cal = Calendar.getInstance();
-		/*String dateStr = "20151122093045";
-		int year = Integer.valueOf(yyyymmddhhmmss.substring(0, 4));
-		int month = Integer.valueOf(yyyymmddhhmmss.substring(4, 6));
-		int day = Integer.valueOf(yyyymmddhhmmss.substring(6, 8));
-		int hour = Integer.valueOf(yyyymmddhhmmss.substring(8, 10));
-		int min = Integer.valueOf(yyyymmddhhmmss.substring(10,12));
-		int sec = Integer.valueOf(yyyymmddhhmmss.substring(12, 14));
-		cal.set(year, month-1, day, hour, min, sec);*/
 		cal.setTime(date);
 		return cal;
-	   }
+   }
    
    public static boolean between(String shhmmss,String ehhmmss){
 	   String day = DateUtil.date2long8(new Date()).toString(); //20150102
@@ -145,12 +152,16 @@ public class DateUtil {
 		 c.add(Calendar.DAY_OF_MONTH, i);
 		 return c.getTime();
 	 }
+  public static String str8to10(String yyyymmdd,String split){
+	  return yyyymmdd.substring(0, 4)+split+yyyymmdd.substring(4, 6)+split+yyyymmdd.substring(6, 8);
+  }
+  
    public static void main(String[] args) {
 	   System.out.println(DateUtil.date2long10("20150603"));
 	   System.out.println(DateUtil.date2long10("20150603121212"));
-	   
-	   String str= "20150603";
+	   String str= "20150603"; 
 	   String de = str.substring(0, 4)+"-"+str.substring(4, 6)+"-"+str.substring(6, 8);
+	  
 	   System.out.println(de);
 	//System.out.println(format(new Date(), "yyyy�? MM月dd日HH时mm分ss�?"));
    }
