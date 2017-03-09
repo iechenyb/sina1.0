@@ -10,8 +10,10 @@ import java.io.StringReader;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.WhitespaceAnalyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.analysis.tokenattributes.TermAttribute;
+import org.apache.lucene.util.Version;
 import org.wltea.analyzer.core.IKSegmenter;
 import org.wltea.analyzer.core.Lexeme;
 import org.wltea.analyzer.lucene.IKAnalyzer;
@@ -31,7 +33,7 @@ stopword.dic
 public class AnalyzerDemo {
 	public static void main(String[] args) throws IOException {  
 		try {
-			analy1();
+			analy2();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -79,7 +81,8 @@ public class AnalyzerDemo {
 		String text="基于java语言开发的轻量级的中文分词工具包";  
         //创建分词对象  
         @SuppressWarnings("resource")
-		Analyzer anal=new IKAnalyzer(true);       
+		Analyzer anal1=new IKAnalyzer(true);   
+        Analyzer anal = new StandardAnalyzer(Version.LUCENE_36);
         StringReader reader=new StringReader(text);  
         //分词  
         TokenStream ts=anal.tokenStream("", reader);  

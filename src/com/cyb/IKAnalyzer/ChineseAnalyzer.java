@@ -4,7 +4,9 @@ import java.io.StringReader;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.analysis.tokenattributes.TermAttribute;
+import org.apache.lucene.util.Version;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 /**
  * 常见的中文分词有 极易分词，庖丁分词，IKAnalyzer
@@ -22,7 +24,7 @@ public class ChineseAnalyzer {
                 "而不是针对中国。美国表示，美国通过美中军事对话以及美中战略与" +  
                 "经济对话等机制，已经就该导弹防御系统的意图与中国进行了广泛的对话。";  
         strZH="你别管我是谁，我就是要注册，还得开户！";  
-        Analyzer analyzer01 = new IKAnalyzer(true); //当为true时，分词器进行智能切分  
+        Analyzer analyzer01 = new StandardAnalyzer(Version.LUCENE_36); //当为true时，分词器进行智能切分  
         //Analyzer analyzer02 = new PaodingAnalyzer();  
           
         showAnalyzerResult(analyzer01, strZH);  
