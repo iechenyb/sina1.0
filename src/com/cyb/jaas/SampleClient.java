@@ -39,17 +39,27 @@
 
 package com.cyb.jaas;
 
-import java.io.*;
-import java.util.*;
-import javax.security.auth.login.*;
-import javax.security.auth.*;
-import javax.security.auth.callback.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PushbackInputStream;
+import java.util.Arrays;
+
+import javax.security.auth.callback.Callback;
+import javax.security.auth.callback.CallbackHandler;
+import javax.security.auth.callback.NameCallback;
+import javax.security.auth.callback.PasswordCallback;
+import javax.security.auth.callback.TextOutputCallback;
+import javax.security.auth.callback.UnsupportedCallbackException;
+import javax.security.auth.login.LoginContext;
+import javax.security.auth.login.LoginException;
 
 /**
  * <p> This Sample application attempts to authenticate a user
  * and reports whether or not the authentication was successful.
  */
-public class SampleAcn {
+public class SampleClient {
 
    /**
     * Attempt to authenticate the user.
@@ -58,7 +68,8 @@ public class SampleAcn {
     *
     * @param args input arguments for this application.  These are ignored.
     */
-    public static void main(String[] args) {
+    @SuppressWarnings("static-access")
+	public static void main(String[] args) {
 
         // Obtain a LoginContext, needed for authentication. Tell it
         // to use the LoginModule implementation specified by the
@@ -108,7 +119,12 @@ public class SampleAcn {
         }
 
         System.out.println("Authentication succeeded!");
-
+        try {
+			lc.logout();
+			System.out.println("User exit success!");
+		} catch (LoginException e) {
+			System.out.println("User exit exception !");
+		}
     }
 }
 

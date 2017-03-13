@@ -181,8 +181,9 @@ public class SampleLoginModule implements LoginModule {
         // verify the username/password
         boolean usernameCorrect = false;
         boolean passwordCorrect = false;
-        if (username.equals("testUser"))
+        if (username.equals("testUser")){
             usernameCorrect = true;
+        }
         if (usernameCorrect &&
             password.length == 12 &&
             password[0] == 't' &&
@@ -333,8 +334,9 @@ public class SampleLoginModule implements LoginModule {
         succeeded = commitSucceeded;
         username = null;
         if (password != null) {
-            for (int i = 0; i < password.length; i++)
+            for (int i = 0; i < password.length; i++){
                 password[i] = ' ';
+            }
             password = null;
         }
         userPrincipal = null;
