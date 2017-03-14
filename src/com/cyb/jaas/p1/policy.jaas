@@ -1,0 +1,9 @@
+grant codeBase "file:./build" {
+   permission java.security.AllPermission;
+};
+grant codeBase "file:/${apusic.home}/lib/apusic.jar" {
+   permission java.security.AllPermission;
+};
+grant codeBase "file:./build/actions" Principal com.apusic.security.PrincipalImpl "admin" {
+   permission java.io.FilePermission "<<ALL FILES>>", "read";
+};
