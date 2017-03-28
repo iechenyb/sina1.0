@@ -1,4 +1,4 @@
-package com.cyb.url;
+package com.cyb.jmx.usecase;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -86,11 +86,9 @@ public class UrlUtils {
     public static void main(String[] args) {  
         try{  
         	String path = "d:/resource/images/diaodiao/country/1";
-        	//FileUtils.genFile(path);
         	String url = "http://www.7879123.com/gw_getplandata.html?r=0.1945637173485011";
         	url ="http://www.7879123.com/cqssc/cqssc.html?r=0.32960804319009185";
-            downLoadFromUrl(url,  
-                    "百度.jpg",path);  
+            downLoadFromUrl(url, "百度.jpg",path);  
         }catch (Exception e) {
         	log.info(e.toString());
         	log.info(e.getMessage());
