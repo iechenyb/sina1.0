@@ -37,6 +37,9 @@ public static void main(String[] args) {
 	al.add("4ha");
 	al.add("6");
 	System.out.println(al.indexOf("4ha"));//返回第一个value所在的索引值	
+	System.out.println("before remove:"+al);
+	System.out.println("remove 4ha:"+al.remove("4ha"));//移除第一个
+	System.out.println("after 4ha:"+al);//移除后需要重新调整list
 	//创建list的方法
 	List<String> strList = new ArrayList<String>();  
 	Collections.addAll(strList, "1", "2", "3"); 

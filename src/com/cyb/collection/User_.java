@@ -1,6 +1,6 @@
 package com.cyb.collection;
 
-public class User_ {
+public class User_ implements Comparable<User_>{
 	private String name;
 	private String pwd;
     public User_(String name,String pwd){
@@ -31,5 +31,9 @@ public class User_ {
 	
 	public String toString(){
 		return this.name+"#"+this.pwd;
+	}
+	@Override
+	public int compareTo(User_ o) {
+		return -this.name.compareTo(o.name);
 	}
 }

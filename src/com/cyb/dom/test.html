@@ -17,6 +17,15 @@
   <td>c1</td>  <td>c2</td>  <td>ttc3</td>    
 </tr>    
 </table>    
+<div class="paging" id="page"  record_count="500" page_count="50"  page_index="0" page_name="index" page_ext="html">
+    <div class="newsright3">
+        <a data-bind="attr:{href:preHref}" href="#" class="paging_other_a paging_move_a"><</a>
+        <!-- ko  foreach:page-->
+        <a href="#" class="other_a" data-bind="text:numb,attr:{href:href}"></a>
+        <!-- /ko -->
+        <a data-bind="attr:{href:nextHref}" href="#"  class="other_a paging_other_a">> </a>
+    </div>
+</div>
     
 <!-- Link -->    
 <a href="http://www.aaa.com/">aaa</a>    

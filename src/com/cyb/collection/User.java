@@ -86,4 +86,7 @@ public class User extends 原型模式 implements Comparable<User>   {
 		    return 1 ;  
 		return 0;
 	}
+	public String toString(){
+		return "#"+this.name+","+this.pwd+"#";
+	}
 }

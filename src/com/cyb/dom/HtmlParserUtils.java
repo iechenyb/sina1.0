@@ -62,7 +62,7 @@ public class HtmlParserUtils {
 	 public static void test(){
 		 try{
 	            //Parser parser = new Parser( (HttpURLConnection) (new URL("src/com/cyb/dom/test.html")).openConnection() );
-			    Parser parser = new Parser ("src/com/cyb/dom/test.html");
+			    Parser parser = new Parser ("src/com/cyb/dom/tmp.html");
 			    //因为我设置的 recurseChildren和recurseSelf都是false，所以Visitor没有访问子节点也没有访问根节点的内容
 			    NodeVisitor visitor = new NodeVisitor( true, true ) {
 	                public void visitTag(Tag tag) {

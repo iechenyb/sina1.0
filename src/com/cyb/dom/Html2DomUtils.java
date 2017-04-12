@@ -16,7 +16,7 @@ public class Html2DomUtils {
 	        //创建一个解析器    
 	        DOMParser parser = new DOMParser();    
 	        //解析HTML文件  
-	        parser.parse("src/com/cyb/dom/tmp.html");  //必须有html，body标签
+	        parser.parse("src/com/cyb/dom/test.html");  //必须有html，body标签src/com/cyb/dom/tmp.html
 	        //获取解析后的DOM树    
 	        Document document = parser.getDocument();    
 	            
@@ -24,12 +24,11 @@ public class Html2DomUtils {
 	        NodeList nodeList = document.getElementsByTagName("div");
 	        for (int i = 0; i < nodeList.getLength(); i++) {    
 	            Element e = (Element)nodeList.item(i);    
-	            //System.out.print(e.getAttribute("href") + "\t");    
 	            System.out.println(e.getTextContent());    
-	        }  
-	        
-	       /* Element e = document.getElementById("tt");
-	        System.out.println(e);*/
+	        } 
+	        Element element = document.getElementById("dataForm");
+	        System.out.println(element);
+
 	    }  
 	 public static String  genStandardHtml(String dest,String content){
 		 StringBuffer html = new StringBuffer("");

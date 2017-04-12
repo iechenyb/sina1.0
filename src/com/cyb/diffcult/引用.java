@@ -10,11 +10,11 @@ import com.cyb.collection.User;
 public class 引用 {
 public static void main(String[] args) {
 	User user = new User();
-	WeakReference x = new WeakReference(user);
+	WeakReference<User> x = new WeakReference<User>(user);
 	//StrongReference y;
-	SoftReference z = new SoftReference(user);
-	ReferenceQueue  queue  =  new   ReferenceQueue();
-	PhantomReference k = new PhantomReference(user, queue);
+	SoftReference<User> z = new SoftReference<User>(user);
+	ReferenceQueue<Object>  queue  =  new   ReferenceQueue<Object>();
+	PhantomReference<User> k = new PhantomReference<User>(user, queue);
 	System.out.println(queue.poll());
 }
 }

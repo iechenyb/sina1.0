@@ -1,15 +1,17 @@
 package com.cyb.diffcult;
 
 public class 抽象类测试 extends 抽象类{
- public String y = "56";
+ public String name="我在实现类里";	
+ public String x="111";
+ public String y="222";
  public static void main(String[] args) {
 	 抽象类测试 obj = new 抽象类测试();
-	System.out.println("x="+obj.x+",y="+obj.y);
+	System.out.println("this.name="+obj.name);
 	obj.print1();
 	obj.print2();//实现方法，
  }
    public void print1(){
-	   System.out.println("print1方法被重写！");
+	   System.out.println("print1方法被重写！super.name="+super.name);
    } 
 	@Override
 	public void print2() {

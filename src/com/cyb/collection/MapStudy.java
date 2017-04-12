@@ -39,5 +39,10 @@ public class MapStudy {
 	 treeMap1.put(new User_("a"), new User(3,"",""));
 	 treeMap1.put(new User_("e"), new User(1,"",""));
 	 System.out.println(treeMap1.keySet());
+	 treeMap1.clear();
+	 System.out.println(treeMap1);
+	 treeMap1.put(new User_("e"), new User(1,"",""));
+	 System.out.println(treeMap1);
+	 
   }
 }
