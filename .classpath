@@ -127,5 +127,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jaas/aspectjrt-1.7.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jaas/spring-core-3.2.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jsoup-1.10.2.jar"/>
+	<classpathentry kind="lib" path="/comWeb/src/main/webapp/WEB-INF/lib/iechenyb.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

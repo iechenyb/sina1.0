@@ -14,6 +14,8 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.RandomAccessFile;
 import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.cyb.frame.LoginFrame;
 import com.cyb.freemarker.FreeMarkerUtil;
@@ -411,6 +413,19 @@ public class FileUtils {
 			content = content + new String(chs, 0, count);
 		}
 		return content;
+	}
+    public static List<String> readContentFromCurClsDirList(Class<?> clazz,String name) throws IOException {
+		InputStream in = clazz.getResourceAsStream(name);
+		Reader re = new InputStreamReader(in, "UTF-8");
+		List<String> lst = new ArrayList<String>();
+		char[] chs = new char[1024];
+		int count;
+		String content = "";
+		while ((count = re.read(chs)) != -1) {
+			 lst.add(new String(chs, 0, count));
+			 //System.out.println(new String(chs, 0, count));
+		}
+		return lst;
 	}
     public static String getAbsolutePathAtClass(Class<?> clss){
     	String packagePath = System.getProperty("user.dir");

@@ -2,6 +2,7 @@ package com.cyb.html;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.jsoup.Connection;
@@ -12,13 +13,57 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.cyb.file.FileUtils;
 public class JsoupUtils {
 	public static void main(String[] args) {
 		// getParByString();
 		//getHrefByNetGet("http://www.cffex.com.cn/xwgg/jysgg/index.html");
-		getHrefByNetPost("http://www.cnblogs.com/zhangfei/p/");
+		//getHrefByNetPost("http://www.cnblogs.com/zhangfei/p/");
+		/*new Thread(new JsoupUtils().new TaskProxy()).start();
+		new Thread(new JsoupUtils().new TaskProxy()).start();
+		new Thread(new JsoupUtils().new TaskProxy()).start();*/
+		try {
+			for(int type=1 ;type<=4;type++){
+				for(int i=1;i<10;i++){
+					getProxyIpGet(type,i);
+				}
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
+   class TaskProxy implements Runnable{
 
+	@Override
+	public void run() {
+		try {
+			List<String> lst = FileUtils.readContentFromCurClsDirList(JsoupUtils.class, "ips");
+			String proxys = getProxyIpGet(1,1);
+			int j=0;
+			if(proxys.equals("")){
+				for(String str:lst){
+					System.out.println("共"+lst.size()+"正在测试第"+str+"个代理...");
+					ProxyUtils.setServiceProxy(str.split(":")[0], str.split(":")[1]);
+					UrlUtils.downLoadFromUrl("http://120.26.75.28:8080/webLis/find?type=normal",str.split(":")[0], str.split(":")[1]);
+					ProxyUtils.removeServiceProxy();
+				}
+				return ;
+			}else{
+				String[] ips= proxys.split("#");
+				for(int i=0;i<ips.length;i++){
+					System.out.println("共"+ips.length+"正在测试第"+(i+1)+"个代理...");
+					ProxyUtils.setServiceProxy(ips[i].split(":")[0], ips[i].split(":")[1]);
+					UrlUtils.downLoadFromUrl("http://120.26.75.28:8080/webLis/find?type=normal",ips[i].split(":")[0], ips[i].split(":")[1]);
+					ProxyUtils.removeServiceProxy();
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	   
+   } 
 	// 直接从字符串中获取
 	public static void getParByString() {
 		// String html = "<html><head><title> 这里是字符串内容</title></head"+
@@ -60,7 +105,7 @@ public class JsoupUtils {
 		HashMap hm = new HashMap();
 		try {
 			  // 另外一种是post方式			
-			  Document doc = Jsoup.connect(url)
+			  Document doc = Jsoup.connect("http://www.ip3366.net/?stype=1&page=1")
 					  .data("page","3")
 					  .userAgent("I am jsoup")
 					  .cookie("auth","token") .timeout(10000) .post(); 
@@ -77,7 +122,43 @@ public class JsoupUtils {
 
 		return hm;
 	}
-	 public static String httpGet(String url,String cookie) throws IOException{
+	static String url = "http://www.ip3366.net/?";
+	public static String getProxyIpGet(int type,int page) throws IOException{
+		Document doc = Jsoup.connect(url+"stype="+type+"&page="+page).get();
+		String title = doc.title();
+		System.out.println("网页标题：" + title);
+		Elements links = doc.select("tbody>tr");
+		String linkText = "";
+		for (Element link : links) {
+			linkText = link.text();
+			System.out.println("type="+type+"page="+page+":"+linkText);
+			UrlUtils.downLoadFromUrl("http://120.26.75.28:8080/webLis/find?type=normal",linkText.split(" ")[0], linkText.split(" ")[1]);
+		}
+		return linkText.replaceAll(" ", "#");
+	}
+	public static void getProxyIp(){
+		String url = "http://www.66ip.cn/nmtq.php";
+		try {
+			  // 另外一种是post方式			
+			  Document doc = Jsoup.connect(url)
+					  .data("getnum","800")
+					  .data("isp","0")
+					  .data("anonymoustype","0")
+					  .data("area","0")
+					  .data("api","66ip")
+					  .data("proxytype","2")
+					  .userAgent("I am jsoup")
+					  .cookie("auth","token") .timeout(10000) .post(); 
+			  Elements  links_Post = doc.select("body"); 
+			  for(Element link:links_Post){
+				  String linkText = link.text(); 
+				  System.out.println(linkText);
+			  }
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public static String httpGet(String url,String cookie) throws IOException{
 	        //获取请求连接
 	        Connection con = Jsoup.connect(url);
 	        //请求头设置，特别是cookie设置

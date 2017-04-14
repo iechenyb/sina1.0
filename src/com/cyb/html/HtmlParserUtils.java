@@ -60,6 +60,9 @@ public class HtmlParserUtils {
 		 Parser parser = new Parser ("src/com/cyb/dom/test.html");//http://www.oschina.net/p/htmlparser
 		 NodeList  list = parser.extractAllNodesThatMatch(filter);//extractAllNodesThatMatch(f) parse(f)
 		 for(int i=0;i<list.size();i++){
+			 //http://blog.csdn.net/ricky73999/article/details/54989972
+			 /*Tag tag = (Tag)list.elementAt(i);
+			 tag.getAttribute("xxx");*/
 			 System.out.println("$$$$:"+list.elementAt(i).toHtml());
 		 }
 	 }
