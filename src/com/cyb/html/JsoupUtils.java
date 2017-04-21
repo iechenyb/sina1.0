@@ -2,7 +2,6 @@ package com.cyb.html;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.jsoup.Connection;
@@ -12,17 +11,17 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
-import com.cyb.file.FileUtils;
 public class JsoupUtils {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		String url="http://localhost:8080/demo/2";
+		httpGetHeader(url,null,null);
 		// getParByString();
 		//getHrefByNetGet("http://www.cffex.com.cn/xwgg/jysgg/index.html");
 		//getHrefByNetPost("http://www.cnblogs.com/zhangfei/p/");
-		/*new Thread(new JsoupUtils().new TaskProxy()).start();
-		new Thread(new JsoupUtils().new TaskProxy()).start();
-		new Thread(new JsoupUtils().new TaskProxy()).start();*/
-		try {
+		/*for(int i=0;i<10;i++){
+			new Thread(new JsoupUtils().new TaskProxy()).start();
+		}*/
+		/*try {
 			for(int type=1 ;type<=4;type++){
 				for(int i=1;i<10;i++){
 					getProxyIpGet(type,i);
@@ -31,31 +30,21 @@ public class JsoupUtils {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
    class TaskProxy implements Runnable{
-
+   private ThreadLocal<Integer> type = new ThreadLocal<Integer>() {  
+        @Override  
+        protected Integer initialValue() {  
+            return 1;  
+        }  
+    };  
 	@Override
 	public void run() {
 		try {
-			List<String> lst = FileUtils.readContentFromCurClsDirList(JsoupUtils.class, "ips");
-			String proxys = getProxyIpGet(1,1);
-			int j=0;
-			if(proxys.equals("")){
-				for(String str:lst){
-					System.out.println("共"+lst.size()+"正在测试第"+str+"个代理...");
-					ProxyUtils.setServiceProxy(str.split(":")[0], str.split(":")[1]);
-					UrlUtils.downLoadFromUrl("http://120.26.75.28:8080/webLis/find?type=normal",str.split(":")[0], str.split(":")[1]);
-					ProxyUtils.removeServiceProxy();
-				}
-				return ;
-			}else{
-				String[] ips= proxys.split("#");
-				for(int i=0;i<ips.length;i++){
-					System.out.println("共"+ips.length+"正在测试第"+(i+1)+"个代理...");
-					ProxyUtils.setServiceProxy(ips[i].split(":")[0], ips[i].split(":")[1]);
-					UrlUtils.downLoadFromUrl("http://120.26.75.28:8080/webLis/find?type=normal",ips[i].split(":")[0], ips[i].split(":")[1]);
-					ProxyUtils.removeServiceProxy();
+			for(int type=1 ;type<=4;type++){
+				for(int i=1;i<10;i++){
+					getProxyIpGet(type,i);
 				}
 			}
 		} catch (IOException e) {
@@ -125,14 +114,17 @@ public class JsoupUtils {
 	static String url = "http://www.ip3366.net/?";
 	public static String getProxyIpGet(int type,int page) throws IOException{
 		Document doc = Jsoup.connect(url+"stype="+type+"&page="+page).get();
-		String title = doc.title();
-		System.out.println("网页标题：" + title);
+//		String title = doc.title();
+//		System.out.println("网页标题："+"type="+type+",page="+page +":"+ title);
 		Elements links = doc.select("tbody>tr");
 		String linkText = "";
+		int num =0;
 		for (Element link : links) {
 			linkText = link.text();
-			System.out.println("type="+type+"page="+page+":"+linkText);
-			UrlUtils.downLoadFromUrl("http://120.26.75.28:8080/webLis/find?type=normal",linkText.split(" ")[0], linkText.split(" ")[1]);
+			boolean rs =UrlUtils.downLoadFromUrl("http://120.26.75.28:8080/webLis/find?type=normal",linkText.split(" ")[0], linkText.split(" ")[1]);
+			if(rs){
+				System.out.println("type="+type+",page="+page+"("+(++num)+"):"+linkText);
+			}
 		}
 		return linkText.replaceAll(" ", "#");
 	}
@@ -177,12 +169,14 @@ public class JsoupUtils {
 	        //获取请求连接
 	        Connection con = Jsoup.connect(url);
 	        //请求头设置，特别是cookie设置
-	        con.header("Accept", "text/html, application/xhtml+xml, */*"); 
+	        con.header("Accept", "text/html, application/xhtml+xml,*/*"); 
 	        con.header("Content-Type", "application/x-www-form-urlencoded");
 	        con.header("User-Agent", "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0))"); 
-	        con.header("Cookie", cook);
+	        //con.header("Cookie", cook);
+	        con.header("Authorization","Bearer 44925e47-62d2-4c7d-809e-cca8269425a0");
 	        //发送请求
-	        Response resp=con.method(Method.GET).execute();        
+	        Response resp=con.method(Method.GET).execute();   
+	        System.out.println("body:"+resp.body());
 	        //获取cookie名称为__bsi的值
 	        String cookieValue = resp.cookie("__bsi");
 	        System.out.println("cookie  __bsi值：  "+cookieValue);

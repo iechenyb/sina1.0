@@ -60,8 +60,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax/geronimo-j2ee-management_1.0_spec-1.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spider/htmllexer.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spider/htmlparser.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spider/httpclient-4.2.5.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spider/httpcore-4.2.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/cas-server/cas-server-core-3.4.10.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/cas-server/cas-server-integration-berkeleydb-3.4.10.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/cas-server/cas-server-integration-jboss-3.4.10.jar"/>
@@ -128,5 +126,10 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jaas/spring-core-3.2.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jsoup-1.10.2.jar"/>
 	<classpathentry kind="lib" path="/comWeb/src/main/webapp/WEB-INF/lib/iechenyb.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpclient4/httpclient-4.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpclient4/httpclient-cache-4.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpclient4/httpclient-win-4.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpclient4/httpcore-4.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpclient4/httpmime-4.4.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

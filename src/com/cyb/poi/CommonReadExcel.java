@@ -1,5 +1,6 @@
 package com.cyb.poi;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -139,7 +140,8 @@ public class CommonReadExcel {
     public static void main(String[] args) throws IOException {
     	/*String excel2003_2007 = System.getProperty("user.dir")+"/file/student_info.xls";
     	new CommonReadExcel().readExcel(excel2003_2007);*/
-        String excel2010 = System.getProperty("user.dir")+"/file/hgjjsj.xlsx";
+        String excel2010 = System.getProperty("user.dir")+"/file/170420.xlsx";
+        System.out.println(new File(excel2010).exists());
     	new CommonReadExcel().readExcel(excel2010);
 	}
 }

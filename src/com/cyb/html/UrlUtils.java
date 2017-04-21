@@ -22,7 +22,7 @@ public class UrlUtils {
      * @param savePath 
      * @throws IOException 
      */  
-    public static String  downLoadFromUrl(String urlStr,String host,String port){  
+    public static boolean  downLoadFromUrl(String urlStr,String host,String port){  
         //获取自己数组  
 		byte[] getData;
 		try {
@@ -36,12 +36,14 @@ public class UrlUtils {
   
 			//得到输入流  
 			InputStream inputStream = conn.getInputStream();    
-			getData = readInputStream(inputStream);      
-			System.out.println("["+host+":"+port+"]result="+new String(getData));
-			return new String(getData);
+			getData = readInputStream(inputStream);   
+			if(new String(getData).contains("I am here")){
+				System.out.println("["+host+":"+port+"]result="+new String(getData));
+			}
+			return true;
 		} catch (Exception e) {
 			//System.out.println("代理不可用："+host+":"+port);
-			return "";
+			return false;
 		} 
        
     }  

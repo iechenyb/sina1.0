@@ -1,13 +1,11 @@
-/jndi.properties
-/log4j.properties
-/test.exe
 /com
 /IKAnalyzer.cfg.xml
 /MyApplicationContext.xml
 /app.properties
 /applicationContext_studyaop.xml
 /dic
+/student_info.xlsx
+/170420.xlsx
 /gnqd.xlsx
 /hgjjsj.xlsx
 /student_info.xls
-/student_info.xlsx
