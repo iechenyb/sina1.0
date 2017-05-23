@@ -5,20 +5,11 @@ import java.text.DecimalFormat;
 
 public class DataUtils {
 	public static String e2String(double number, int precision) {
-		StringBuffer sb = new StringBuffer("#0.");
-		for (int i = 1; i <= precision; i++) {
-			sb.append("0");
-		}
-		DecimalFormat df = new DecimalFormat(sb.toString());
+		DecimalFormat df = new DecimalFormat(formatStr(precision));
 		return df.format(number);
 	}
-	
 	public static String e2String(String number, int precision) {
-		StringBuffer sb = new StringBuffer("#0.");
-		for (int i = 1; i <= precision; i++) {
-			sb.append("0");
-		}
-		DecimalFormat df = new DecimalFormat(sb.toString());
+		DecimalFormat df = new DecimalFormat(formatStr(precision));
 		return df.format(number);
 	}
 	public static Double e2Double(double number, int precision) {
@@ -28,6 +19,18 @@ public class DataUtils {
 		BigDecimal db = new BigDecimal(number);
 		String ii = db.toPlainString();
 		return e2String(new Double(ii).doubleValue(),precision);
+	}
+	public static String formatStr ( int precision){
+		StringBuffer sb = null;
+		if(precision<=0){
+			sb = new StringBuffer("#0.0");
+		}else{
+			sb = new StringBuffer("#0.");
+			for (int i = 1; i <= precision; i++) {
+				sb.append("0");
+			}
+		}
+		return sb.toString();
 	}
 	public static void main(String[] args) { 
 		   System.out.println(0.05+0.01);
@@ -45,7 +48,7 @@ public class DataUtils {
 		   System.out.println(DataUtils.e2Double(1/3.0, 20)); 
 		   System.out.println(0.0000001>0);
 		   System.out.println(0.000000000000000000000001>0);
-		   System.out.println(DataUtils.e2StringBD(1.0E-8, 9)); 
+		   System.out.println(DataUtils.e2StringBD(1.0E-2, 1)); 
 		   System.out.println(DataUtils.e2StringBD(1.0E-17, 18)); 
 		   System.out.println(DataUtils.e2StringBD(1.0E-20, 21)); 
 		} 
