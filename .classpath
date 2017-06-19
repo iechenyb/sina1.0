@@ -130,5 +130,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpclient4/httpclient-win-4.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpclient4/httpcore-4.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpclient4/httpmime-4.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/jpa/javax.persistence-2.1.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

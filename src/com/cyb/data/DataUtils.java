@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 public class DataUtils {
+	private static int precision = 8;
 	public static String e2String(double number, int precision) {
 		DecimalFormat df = new DecimalFormat(formatStr(precision));
 		return df.format(number);
@@ -12,10 +13,23 @@ public class DataUtils {
 		DecimalFormat df = new DecimalFormat(formatStr(precision));
 		return df.format(number);
 	}
-	public static Double e2Double(double number, int precision) {
-		return new Double(e2String(number,precision));
+	public static String e2String(String number) {
+		DecimalFormat df = new DecimalFormat(formatStr(precision));
+		return df.format(number);
+	}
+	public static String e2String(Double number) {
+		DecimalFormat df = new DecimalFormat(formatStr(precision));
+		return df.format(number);
+	}
+	public static BigDecimal e2Double(double number, int precision) {
+		return new BigDecimal(e2String(number,precision));
 	}
 	public static String e2StringBD(double number, int precision){
+		BigDecimal db = new BigDecimal(number);
+		String ii = db.toPlainString();
+		return e2String(new Double(ii).doubleValue(),precision);
+	}
+	public static String e2StringBD(double number){
 		BigDecimal db = new BigDecimal(number);
 		String ii = db.toPlainString();
 		return e2String(new Double(ii).doubleValue(),precision);
@@ -33,6 +47,8 @@ public class DataUtils {
 		return sb.toString();
 	}
 	public static void main(String[] args) { 
+		   
+		   System.out.println(DataUtils.e2Double(0.1522784999999996, 8)); 
 		   System.out.println(0.05+0.01);
 	       System.out.println(1.0-0.42);
 	       System.out.println(4.015*100);

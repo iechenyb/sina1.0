@@ -2,21 +2,20 @@ package com.cyb.indiator;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//http://blog.csdn.net/zdy0_2004/article/details/46822685
 public class 增量方差 {public static void main(String[] args) {	
 	List<Double> his = new ArrayList<Double>();
-	his.add(1d);his.add(2d);his.add(3d);his.add(4d);his.add(5d);	
+	his.add(1d);//his.add(2d);//his.add(3d);his.add(4d);his.add(5d);	
 	System.out.println(his.toString()+",历史平均数:"+avg(his)+"，方差："+fc(his));
 	List<Double> today = new ArrayList<Double>();
-	today.add(1d);
+	today.add(2d);
 	//today.add(2d);
-	System.out.println(today.toString()+",历史平均数:"+avg(today)+"，方差："+fc(today));
+	System.out.println(today.toString()+",今天平均数:"+avg(today)+"，方差："+fc(today));
 	List<Double> all = new ArrayList<Double>();
 	all.addAll(his);
 	all.addAll(today);
-	System.out.println(all.toString()+",历史平均数:"+avg(all)+"，方差："+fc(all));
+	System.out.println(all.toString()+",传统历史平均数:"+avg(all)+"，传统方差："+fc(all));
 	addfc(his,today);
-	
 }
 public static void addfc(List<Double> his,List<Double> today){
 	double zavg = (his.size()*avg(his)+today.size()*avg(today))/(his.size()+today.size());

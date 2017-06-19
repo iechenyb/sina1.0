@@ -44,7 +44,7 @@ public static void main(String[] args) {
 	System.out.println("=========2========");
 	int lastIdx = 1;
 	for(int tt=1;tt<21;tt++){
-		System.out.println(tt+","+lastIdx);
+		//System.out.println(tt+","+lastIdx);
 		if(tt==1){
 			lastIdx = findSection(1);
 		}else{
@@ -93,7 +93,7 @@ public static int findSection(int start){
 					rs.put("ms", maxD+"="+max+","+minD+"="+min+",回撤幅度="+(max-min)+",回撤率="+(max-min)/(1+max));
 				}
 			}
-			System.out.println(maxD+"="+max+","+minD+"="+min+",回撤幅度="+(max-min)+",回撤率="+(max-min)/(1+max));
+			System.out.println("第"+start+"天,"+maxD+"="+max+","+minD+"="+min+",回撤幅度="+(max-min)+",回撤率="+(max-min)/(1+max));
 		}
 	} catch (Exception e) {
 		System.out.println("start="+start);
@@ -101,6 +101,9 @@ public static int findSection(int start){
 	}	
 	return minD;
 }
+//http://echarts.baidu.com/echarts2/doc/example/line1.html
+//[1, 2, 3, 4, 5, 6, 7,8,9,10,11,12,13,14,15,16,17,18,19,20,21]
+//[0.1,1.9,2.2,3.9,0.2,9,12.9,10.6,10,6.5,7.8,8,9.6,9.9,8,5,7,12.3,14,15,16]
 public static void init(){
 	ljsyl.put(1, 0.1d);
 	ljsyl.put(2,1.9d);
@@ -122,7 +125,7 @@ public static void init(){
 	ljsyl.put(18,12.3d);
 	ljsyl.put(19, 14d);
 	ljsyl.put(20,15d);
-	ljsyl.put(21,16d);	
+	ljsyl.put(21,16d);
 }
 public static String findMin(){
 	Iterator<Integer> it =ljsyl.keySet().iterator();

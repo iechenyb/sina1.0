@@ -84,13 +84,14 @@ public class UrlUtils {
 		return is;
 	}
     public static void main(String[] args) {  
-        try{  
+        try{          	
         	String path = "d:/resource/images/diaodiao/country/1";
         	//FileUtils.genFile(path);
         	String url = "http://www.7879123.com/gw_getplandata.html?r=0.1945637173485011";
-        	url ="http://www.7879123.com/cqssc/cqssc.html?r=0.32960804319009185";
-            downLoadFromUrl(url,  
-                    "百度.jpg",path);  
+        	url ="http://blog.csdn.net/iechenyb/article/details/72414208";
+        	for(int i=0;i<100;i++){
+        		downLoadFromUrl(url,"百度.jpg",path);  
+            }
         }catch (Exception e) {
         	log.info(e.toString());
         	log.info(e.getMessage());

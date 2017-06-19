@@ -18,12 +18,14 @@ public class Server {
               
         }  
         try {  
-            // 创建一个服务  
-            ServiceImpl server = new ServiceImpl();  
-            // 将服务绑定命名  
-            registry.rebind("vince", server);  
-              
-            System.out.println("bind server");  
+        	for(int i=0;i<5;i++){
+	            // 创建一个服务  
+	            ServiceImpl server = new ServiceImpl();  
+	            // 将服务绑定命名  
+	            registry.rebind("vince"+i, server);  
+	              
+	            System.out.println("bind server");  
+            }
         } catch (RemoteException e) {  
               
         }  

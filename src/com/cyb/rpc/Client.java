@@ -26,7 +26,7 @@ public class Client {
         try {  
         	//服务注册管理器写在了Server里，当然也可以抽出来单独作为一个服务，在其他一些框架中，往往用Zookeeper充当注册管理角色。
             // 根据命名获取服务  
-            IService server = (IService) registry.lookup("vince");  
+            IService server = (IService) registry.lookup("vince1");  
             // 调用远程方法  
             String result = server.queryName("ha ha ha ha");  
             // 输出调用结果  
