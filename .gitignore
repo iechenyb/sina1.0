@@ -1,3 +1,5 @@
 /build
 /app/lib
 /app/classes
+/rank.out
+/config.properties

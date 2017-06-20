@@ -1,7 +1,9 @@
 package com.app.csdn;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -13,17 +15,20 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.cyb.date.DateUtil;
+import com.cyb.file.FileUtils;
 import com.cyb.url.UrlUtils;
 
 public class GetAricle {
 	// 直接从字符串中获取
 	private static String html = "http://blog.csdn.net/zzuchenyb/article/list/";
+	private static String index = "http://blog.csdn.net/zzuchenyb/";
 	private static Map<Integer, String> data = new LinkedHashMap<Integer, String>();
 	public static List<Integer> randmons;
 	public static Map<Integer, String> proxys = new LinkedHashMap<Integer, String>();
 	public static Integer proxysNums;
 	private static int nums = 1;
-
+    public static String rankFilePath = System.getProperty("user.dir")+"/rank.out";
 	public static void init() {
 		try {
 			nums = 1;
@@ -41,6 +46,14 @@ public class GetAricle {
 		visitorAricle();
 		getProxyIp();
 		initProxy();*/
+		System.out.println(rankFilePath);
+		File file = new File(rankFilePath);
+		if(!file.exists()){ 
+			file.createNewFile();
+			System.out.println("成功创建文件"+file);
+		}
+		System.out.println();
+		recordRank();
 	}
 	public static void getProxyIp(){
 		String url = "http://www.66ip.cn/nmtq.php";
@@ -110,6 +123,21 @@ public class GetAricle {
 		return hm;
 	}
 
+	public static String recordRank() {
+		String rankStr="";
+		try {
+			// 这是get方式得到的
+			Document doc = Jsoup.connect(index).get();
+			Elements links = doc.select("ul[id='blog_rank']");
+			for (Element link : links) {
+				rankStr = DateUtil.timeToMilis(new Date())+" "+link.text()+"\n";
+			}
+			FileUtils.appendString2File(rankStr, rankFilePath);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return rankStr;
+	}
 	public static List<Integer> genRandomsNum() {
 		int max = data.keySet().size();
 		int min = 1;

@@ -280,7 +280,6 @@ public class FileUtils {
   			fop.write(contentInBytes);
   			fop.flush();
   			fop.close();
-  			System.out.println("字符串内容写入到文件完成！");
   		} catch (IOException e) {
   			e.printStackTrace();
   		} finally {

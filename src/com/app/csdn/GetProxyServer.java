@@ -25,7 +25,7 @@ public class GetProxyServer {
 		String linkText = "";
 		for (Element link : links) {
 			linkText = link.text().replaceAll(" ", "#");
-			System.out.println(linkText);
+//			System.out.println(linkText);
 			proxys.put(i++,linkText);
 		}
 		return proxys;
@@ -38,7 +38,7 @@ public class GetProxyServer {
 		String linkText = "";
 		for (Element link : links) {
 			linkText = link.text().replaceAll(" ", "#");
-			System.out.println(linkText);
+//			System.out.println(linkText);
 			proxys.put(i++,linkText);
 		}
 		return proxys;
@@ -51,7 +51,7 @@ public class GetProxyServer {
 		String linkText = "";
 		for (Element link : links) {
 			linkText = link.text().replaceAll(" ", "#");
-			System.out.println(linkText);
+//			System.out.println(linkText);
 			proxys.put(i++,linkText);
 		}
 		return proxys;
