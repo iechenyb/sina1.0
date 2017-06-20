@@ -1,4 +1,4 @@
-package com.cyb.stock;
+package com.app.stock;
 
 import java.io.BufferedReader;
 import java.io.File;

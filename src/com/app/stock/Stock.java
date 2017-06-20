@@ -1,4 +1,4 @@
-package com.cyb.stock;
+package com.app.stock;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
