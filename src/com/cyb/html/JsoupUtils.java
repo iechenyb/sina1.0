@@ -14,14 +14,16 @@ import org.jsoup.select.Elements;
 public class JsoupUtils {
 	public static void main(String[] args) throws IOException {
 		String url="http://localhost:8080/demo/2";
-		httpGetHeader(url,null,null);
+		//getHrefByNetPost(null);
+		//httpGetHeader(url,null,null);
+		//getProxyIp();
 		// getParByString();
 		//getHrefByNetGet("http://www.cffex.com.cn/xwgg/jysgg/index.html");
 		//getHrefByNetPost("http://www.cnblogs.com/zhangfei/p/");
 		/*for(int i=0;i<10;i++){
 			new Thread(new JsoupUtils().new TaskProxy()).start();
 		}*/
-		/*try {
+		try {
 			for(int type=1 ;type<=4;type++){
 				for(int i=1;i<10;i++){
 					getProxyIpGet(type,i);
@@ -30,7 +32,7 @@ public class JsoupUtils {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 	}
    class TaskProxy implements Runnable{
    private ThreadLocal<Integer> type = new ThreadLocal<Integer>() {  
@@ -121,10 +123,11 @@ public class JsoupUtils {
 		int num =0;
 		for (Element link : links) {
 			linkText = link.text();
-			boolean rs =UrlUtils.downLoadFromUrl("http://120.26.75.28:8080/webLis/find?type=normal",linkText.split(" ")[0], linkText.split(" ")[1]);
+			System.out.println(linkText.split(" ")[0]+","+linkText.split(" ")[1]);
+			/*boolean rs =UrlUtils.downLoadFromUrl("http://120.26.75.28:8080/webLis/find?type=normal",linkText.split(" ")[0], linkText.split(" ")[1]);
 			if(rs){
 				System.out.println("type="+type+",page="+page+"("+(++num)+"):"+linkText);
-			}
+			}*/
 		}
 		return linkText.replaceAll(" ", "#");
 	}
@@ -142,9 +145,11 @@ public class JsoupUtils {
 					  .userAgent("I am jsoup")
 					  .cookie("auth","token") .timeout(10000) .post(); 
 			  Elements  links_Post = doc.select("body"); 
+			  int i=0;
 			  for(Element link:links_Post){
+				  i++;
 				  String linkText = link.text(); 
-				  System.out.println(linkText);
+				  System.out.println(i+","+linkText);
 			  }
 		} catch (IOException e) {
 			e.printStackTrace();

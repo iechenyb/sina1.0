@@ -92,7 +92,7 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/erweima/Qrcode_swetake.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/erweima/zxingcore-3.2.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/erweima/zxingjavase-3.2.1.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/quartz-1.8.6.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/quartz-1.8.6.jar" sourcepath="C:/Users/DHUser/.m2/repository/org/quartz-scheduler/quartz/1.8.6/quartz-1.8.6-sources.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jmx/jmxri-1.2.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jmx/jmxtools-1.2.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/DHUser/.m2/repository/jboss/jboss-j2ee/4.0.0/jboss-j2ee-4.0.0.jar">

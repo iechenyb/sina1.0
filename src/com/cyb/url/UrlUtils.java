@@ -51,7 +51,7 @@ public class UrlUtils {
 	            inputStream.close();  
 	        }  
         }
-        log.info("info:"+url+" download success，content："+new String(getData));   
+        //log.info("info:"+url+" download success，content："+new String(getData));   
         return new String(getData);
     }  
     /** 
