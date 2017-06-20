@@ -7,7 +7,7 @@ public class RunnerMain {
 	 private static Scheduler sched;
      public static void run() throws Exception{
 			JobDetail jobDetail = new JobDetail("job","mygroup",GetAricleTimeTask.class);
-            CronTrigger trigger = new CronTrigger("trigger","lzstone","*/10 * 8-20 * * ?");
+            CronTrigger trigger = new CronTrigger("trigger","lzstone","*/30 * 8-20 * * ?");
             sched = new org.quartz.impl.StdSchedulerFactory().getScheduler();
             
             /*JobDetail init = new JobDetail("xxx","xxx",InitTask.class);
