@@ -9,6 +9,7 @@ import org.quartz.JobExecutionException;
 import com.cyb.proxy.ProxyUtils;
 
 public class GetAricleTimeTask implements Job{
+	
 	public static long count = 0;
     public void execute(JobExecutionContext context) throws JobExecutionException{
     	try {
