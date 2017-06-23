@@ -37,12 +37,10 @@ public class UrlUtils {
 			//得到输入流  
 			InputStream inputStream = conn.getInputStream();    
 			getData = readInputStream(inputStream);   
-			if(new String(getData).contains("I am here")){
-				System.out.println("["+host+":"+port+"]result="+new String(getData));
-			}
+			System.out.println("["+host+":"+port+"] result="+new String(getData));
 			return true;
 		} catch (Exception e) {
-			//System.out.println("代理不可用："+host+":"+port);
+			System.out.println("代理不可用："+host+":"+port);
 			return false;
 		} 
        

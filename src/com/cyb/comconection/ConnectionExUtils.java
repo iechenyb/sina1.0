@@ -3,7 +3,6 @@ package com.cyb.comconection;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,80 +20,46 @@ import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
-import org.apache.commons.lang.StringUtils;
 
-import com.cyb.mybatis.User;
-
-public class ConnectionUtils<T> extends QueryRunner {
+import com.app.proxy.Proxy;
+import com.cyb.h2.H2DBUtil;
+/**
+	ResultSetHandler 接口提供了一个单独的方法：Object handle (java.sql.ResultSet .rs)。
+	ResultSetHandler 接口的实现类
+	ArrayHandler：把结果集中的第一行数据转成对象数组。
+	ArrayListHandler：把结果集中的每一行数据都转成一个数组，再存放到List中。
+	BeanHandler：将结果集中的第一行数据封装到一个对应的JavaBean实例中。
+	BeanListHandler：将结果集中的每一行数据都封装到一个对应的JavaBean实例中，存放到List里。
+	ColumnListHandler：将结果集中某一列的数据存放到List中。
+	KeyedHandler(name)：将结果集中的每一行数据都封装到一个Map里，再把这些map再存到一个map里，其key为指定的key。
+	MapHandler：将结果集中的第一行数据封装到一个Map里，key是列名，value就是对应的值。
+	MapListHandler：将结果集中的每一行数据都封装到一个Map里，然后再存放到List
+ * @author DHUser
+ * @param <T>
+ */
+public class ConnectionExUtils<T> extends QueryRunner {
 	public  Connection conn = null;  
 	public QueryRunner query = null;
-	public ConnectionUtils(){
-	    //String url = "jdbc:h2:tcp://localhost/~/te;AUTO_SERVER=true";  
-		String url = "jdbc:h2:tcp://localhost/~/te;AUTO_SERVER=true";  
-	    String jdbcDriver = "org.h2.Driver";  
-	    String user = "sa";  
-	    String password = "111111";  
-	    DbUtils.loadDriver(jdbcDriver); 
-	    query = new QueryRunner();
-	    try {  
-	        conn = DriverManager.getConnection(url, user, password);  
-	    } catch (Exception e) {  
-	        e.printStackTrace();  
-	    } finally {  
-	        //DbUtils.closeQuietly(conn);  
-	    }  
-	}
-	public ConnectionUtils(String path){
-		if(StringUtils.isEmpty(path)){ path = "~";}
-		String url = "jdbc:h2:tcp://localhost/"+path+""; //;AUTO_SERVER=true 
-		System.out.println(url);
-	    String jdbcDriver = "org.h2.Driver";  
-	    String user = "sa";  
-	    String password = "111111";  
-	    DbUtils.loadDriver(jdbcDriver); 
-	    query = new QueryRunner();
-	    try {  
-	        conn = DriverManager.getConnection(url, user, password);  
-	    } catch (Exception e) {  
-	        e.printStackTrace();  
-	    } finally {  
-	        //DbUtils.closeQuietly(conn);  
-	    }  
-	}
 	public  void close(){
 		DbUtils.closeQuietly(conn); 
 	}
-	public ConnectionUtils(Connection conn){
+	public ConnectionExUtils(Connection conn){
 		if(this.conn == null){
 			this.conn = conn;
 		}else{
-			new ConnectionUtils<T>();
+			new ConnectionExUtils<T>(this.conn);
 		}
 		if(query==null){
 			query = new QueryRunner();
 		}
 	}
 	public static void main(String[] args) throws SQLException {
-	     String sql = "select username,password from usr";
-	     ConnectionUtils<User> dbUtils = new ConnectionUtils<User>();
-	     List<User> users = dbUtils.queryForList(sql,User.class);
-	     for (int i = 0; i < users.size(); i++) {  
-	        	User p = users.get(i);  
-	            System.out.println("name:" + p.getUsername() + ",pwd:" + p.getPassword());  
-	      }  
-	     ConnectionUtils<Map<String,Object>> dbUtils1 = new ConnectionUtils<Map<String,Object>>();
-	     List<Map<String,Object>> maps = dbUtils1.queryForMap(sql,Map.class);
-	     System.out.println(maps);
-	     
-	     User user = dbUtils.queryForObject(sql,User.class);
-	     System.out.println(user.getUsername()+","+user.getPassword());
+	     Connection conn = H2DBUtil.getConnection("chenyb");
+	     ConnectionExUtils<Proxy> dbUtils = new ConnectionExUtils<Proxy>(conn);
+	     System.out.println(dbUtils.queryForMap("select 1+1 from dual", Map.class));
+	     System.exit(0);
 	}
-	 /*Topic newlyTopic=null;
-	 2         QueryRunner runner= new QueryRunner(JdbcUtil.getDataSource());
-	 3         String sql ="select * from topic where type_id= ? order by time desc";
-	 4         Object[] params={typeId};
-	 5         newlyTopic= runner.query(sql,new BeanHandler<Topic>(Topic.class),params);
-	 6         return newlyTopic;*/
+	
 	public  List<T> queryForList(String sql,Class<T> cls) throws SQLException{
 		List<T> results = this.query.query(conn, sql, new BeanListHandler<T>(cls));    
 		return results;
@@ -103,43 +68,9 @@ public class ConnectionUtils<T> extends QueryRunner {
 		T t = this.query.query(conn, sql, new BeanHandler<T>(cls));  
 		return t;
 	}
-	public  List<T> queryForMap(String sql,@SuppressWarnings("rawtypes") Class cls) throws SQLException{
-		@SuppressWarnings("unchecked")
-		List<T> results = (List<T>) this.query.query(conn, sql, new MapListHandler());         
-		return results;
-	}
-	
-	public  void insert(){
-        String sql ="insert into topic(name,author,content,time,type_id) values(?,?,?,?,?)";
-        Object[] params={};
-        try {
-            //事务开始
-            this.query.update(sql,params);
-            //事务提交
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-	}
-	public int update(String sql){
-		try {
-            //事务开始
-           return  this.query.update(conn,sql);
-            //事务提交
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return 0;
-        }
-	}
-	public void update(){
-        String sql ="update topic set name=? , content=? , time=? where id= ?";
-        Object[] params={};
-        try {
-            //事务开始
-            this.query.update(sql,params);
-            //事务提交
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+	public Map<String,Object> queryForMap(String sql,@SuppressWarnings("rawtypes") Class cls) throws SQLException{
+		List<Map<String,Object>> results = (List<Map<String,Object>>) this.query.query(conn, sql, new MapListHandler());         
+		return results.get(0);
 	}
 	//添加save方法
     /**
@@ -147,13 +78,9 @@ public class ConnectionUtils<T> extends QueryRunner {
      * 将t对象转成insert into users
      */
     public <T> T save(T t) throws Exception{
-        //获取类     
         Class<?> cls = t.getClass();
-        //从这个字节码上获取name值这个就是表名
         Table table = cls.getAnnotation(Table.class);
-        //获取表名 
         String tableName = table.name();
-        //组成insert into users(id,name,pwd) values('id',"name','');
         String sql = "insert into "+tableName;
         String cols="(";
         String values="values(";
@@ -446,16 +373,25 @@ public class ConnectionUtils<T> extends QueryRunner {
     @Override
     public int update(String sql, Object param){
         try {
-            return super.update(sql, param);
+            return super.update(conn,sql, param);
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage(),e);
         }
 
     }
-
-    public int update1(String sql) {
+    public int update1(String sql){
+		try {
+            //事务开始
+           return  this.query.update(conn,sql);
+            //事务提交
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+	}
+    public int update(String sql) {
         try {
-            return super.update(sql);
+            return super.update(conn,sql);
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage(),e);
         }

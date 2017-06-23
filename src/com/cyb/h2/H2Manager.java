@@ -28,7 +28,7 @@ public class H2Manager {
 		 if(server!=null){
 			try {
 				server.stop();
-				System.out.println("h2 server end!");
+				System.out.println("h2 server exit!");
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally{
