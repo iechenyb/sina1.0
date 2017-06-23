@@ -123,7 +123,9 @@ public class ConnectionExUtils<T> extends QueryRunner {
         values+=")";
         sql = sql+cols+" "+values;
         System.err.println(sql);
-        update(sql);
+        try{
+        	update(sql);
+        }catch(Exception e){}
         return t;
     }
     @Override

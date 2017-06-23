@@ -9,12 +9,12 @@ import java.net.URL;
 import com.cyb.file.FileUtils;
 
 public class ProxyUtils {
-	public static boolean  isUseable(String urlStr,String host,String port){  
+	public static boolean  isUseable(String urlStr,String host,int port){  
         //获取自己数组  
 		byte[] getData;
 		try {
 			URL url = new URL(urlStr);    
-			Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(host, Integer.valueOf(port)));  
+			Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(host, port));  
 			HttpURLConnection conn = (HttpURLConnection)url.openConnection(proxy);    
 			        //设置超时间为3秒  
 			conn.setConnectTimeout(3*1000);  
