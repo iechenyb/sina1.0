@@ -1,11 +1,11 @@
 package com.cyb.collection;
 
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
 
 public class MapStudy {
  public static void main(String[] args) {
@@ -20,7 +20,7 @@ public class MapStudy {
 	 hm.put(null, null);
 	 hm.put("null", null);
 	 System.out.println(hm);
-	 Hashtable table = new Hashtable();
+	 Hashtable<String,String> table = new Hashtable<String,String>();
 	// table.put("null", null);
 	// System.out.println(table);//Exception in thread "main" java.lang.NullPointerException
 	 //table.put(null, null);//Exception in thread "main" java.lang.NullPointerException
