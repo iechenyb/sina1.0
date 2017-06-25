@@ -160,7 +160,7 @@ public class CharsetUtils {
         System.out.println(s);  
     }
     public static void main(String[] args) throws UnsupportedEncodingException {  
-    	String str = "ÎÒÒª¿ª»§°¡";  
+    	String str = "��֤С��";  
     	test(str);
     }  
 }

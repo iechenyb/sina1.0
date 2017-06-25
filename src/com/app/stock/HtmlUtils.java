@@ -119,7 +119,7 @@ public class HtmlUtils {
 	        InputStream inputStream = conn.getInputStream();  
 	        //获取自己数组
 	        byte[] getData = readInputStream(inputStream);    
-
+    
 	        //文件保存位置
 	        File file = new File(savePath);    
 	        FileOutputStream fos = new FileOutputStream(file);     

@@ -22,15 +22,15 @@ public class H2DBUtil {
 	public static void main(String[] args) {
 		new Inner1();
 		H2Manager.start();H2Manager.start();
-		H2DBUtil.testFileConnection();
+		H2DBUtil.testFileConnection("test0");
 		H2DBUtil.testTCPConnection();
 		H2DBUtil.testMemConnection();
 		System.exit(0);
 	}
-   public static void testFileConnection(){
+   public static void testFileConnection(String dbName){
 	   try {
 		   //Class.forName("org.h2.Driver");
-		   Connection conn = DriverManager.getConnection(embedPrix+dbPath+"test0", "sa", "123454");
+		   Connection conn = DriverManager.getConnection(embedPrix+dbPath+dbName, "sa", "");
 		   Statement stmt = conn.createStatement();
 		   ResultSet rs = stmt.executeQuery("SELECT 1+1 FROM dual ");   
 		  while(rs.next()) {   
@@ -45,7 +45,8 @@ public class H2DBUtil {
    public static Connection getConnection(String dbName){
 	   try {
 		   //Class.forName("org.h2.Driver");
-		   Connection conn = DriverManager.getConnection(tcpPrix+dbPath+dbName, "sa", "123454");
+		   System.out.println(tcpPrix+dbPath+dbName);
+		   Connection conn = DriverManager.getConnection(tcpPrix+dbPath+dbName, "sa", "");
 		   return conn;
 	   } catch (Exception e) {
 			System.out.println("tcp File test err!");
@@ -56,7 +57,7 @@ public class H2DBUtil {
    public static Connection getConnection(){
 	   try {
 		   //Class.forName("org.h2.Driver");
-		   Connection conn = DriverManager.getConnection(embedPrix+dbPath+"test1", "sa", "123454");
+		   Connection conn = DriverManager.getConnection(embedPrix+dbPath+"test1", "sa", "");
 		   return conn;
 	   } catch (Exception e) {
 			System.out.println("tcp File test err!");
@@ -67,7 +68,7 @@ public class H2DBUtil {
    public static void testTCPConnection(){
 	   try {
 		   //Class.forName("org.h2.Driver");
-		   Connection conn = DriverManager.getConnection(tcpPrix+dbPath+"test2", "sa", "123455");
+		   Connection conn = DriverManager.getConnection(tcpPrix+dbPath+"test2", "sa", "");
 		   Statement stmt = conn.createStatement();
 		   ResultSet rs = stmt.executeQuery("SELECT 1+1 FROM dual ");   
 		  while(rs.next()) {   
@@ -82,7 +83,7 @@ public class H2DBUtil {
    public static void testTCPConnection(String dbName){
 	   try {
 		   //Class.forName("org.h2.Driver");
-		   Connection conn = DriverManager.getConnection(tcpPrix+dbPath+dbName, "sa", "123455");
+		   Connection conn = DriverManager.getConnection(tcpPrix+dbPath+dbName, "sa", "");
 		   Statement stmt = conn.createStatement();
 		   ResultSet rs = stmt.executeQuery("SELECT 1+1 FROM dual ");   
 		  while(rs.next()) {   
@@ -97,7 +98,7 @@ public class H2DBUtil {
    public static void testMemConnection(){
 	   try {
 		   //Class.forName("org.h2.Driver");
-		   Connection conn = DriverManager.getConnection(memPrix+dbPath+"test3", "sa", "123456");
+		   Connection conn = DriverManager.getConnection(memPrix+dbPath+"test3", "sa", "");
 		   Statement stmt = conn.createStatement();
 		   ResultSet rs = stmt.executeQuery("SELECT 1+1 FROM dual ");   
 		  while(rs.next()) {   

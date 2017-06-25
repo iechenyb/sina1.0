@@ -39,11 +39,21 @@ public class ProxyDbUtils {
 
 	public static void exeDLL() {
 		if (createTable) {
-			String proxy = " create table proxy(ip varchar(16),port int)";
+			String proxy = " create table proxy(ip varchar(16),port int,useable int)";
 			try {
 				dbUtils.update(proxy);
 			} catch (Exception e) {
 				e.printStackTrace();
+			}
+		}
+	}
+	public static void updateUseable() throws SQLException{
+		List<Proxy> proxys = dbUtils.queryForList("select * from proxy", Proxy.class);
+		for (int i = 0; i < proxys.size(); i++) {
+			Proxy proxy = proxys.get(i);
+			if (com.app.proxy.ProxyUtils.isUseable(ProxyEvil.url, proxy.getIp(),
+			proxy.getPort())) {
+				dbUtils.update("update proxy set useable=1 where ip='"+proxy.getIp()+"' and port='"+proxy.getPort()+"'");
 			}
 		}
 	}
@@ -65,15 +75,16 @@ public class ProxyDbUtils {
 					+ dbUtils.queryForMap("select * from proxy", Map.class));
 			log.info("queryForMap:"
 					+ dbUtils.update("update proxy set port=8085"));*/
-			String sql = "select ip,port from proxy";
+			/*String sql = "select ip,port from proxy";
 			List<Proxy> users = dbUtils.queryForList(sql, Proxy.class);
 			for (int i = 0; i < users.size(); i++) {
 				Proxy p = users.get(i);
 				log.info("ip:" + p.getIp() + ",port:" + p.getPort());
-			}
+			}*/
 			/*sql = "select ip,port from proxy where ip='127.0.0.1'";
 			Proxy user = dbUtils.queryForObject(sql, Proxy.class);
 			log.info("queryForObject:" + user);*/
+			updateUseable();
 			dbUtils.close();
 			H2Manager.stop();
 			System.exit(0);
@@ -82,4 +93,5 @@ public class ProxyDbUtils {
 			System.exit(0);
 		}
 	}
+	
 }

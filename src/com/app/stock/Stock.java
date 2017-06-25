@@ -3,15 +3,25 @@ package com.app.stock;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
+@Table(name="stock")
 public class Stock{
-	private static final long serialVersionUID = 1L;
+	@Column(name="id")
 	public String id;
+	@Column(name="name")
 	public String name;
+	@Column(name="code")
 	public String code;
+	@Column(name="exchange")
 	public String exchange;
+	@Column(name="classify")
 	public String classify;//分类  农业 金融等
+	@Column(name="province")
 	public String province;//省份
+	@Column(name="industry")
 	public String industry;//A股 B股等
+	@Column(name="timeofmarket")
 	public String timeOfMarket;//上市时间
 	//A股总股本,A股流通股本
 	public String getId() {
@@ -80,10 +90,10 @@ public class Stock{
 
 	public Stock mapRow(ResultSet rs, int arg1) throws SQLException {
 		    Stock userInfo = new Stock();
-	        userInfo.setId(rs.getString("ID_"));
-	        userInfo.setName(rs.getString("NAME_"));
-	        userInfo.setCode(rs.getString("CODE_"));
-	        userInfo.setExchange(rs.getString("EXCHANGE_"));
+	        userInfo.setId(rs.getString("id"));
+	        userInfo.setName(rs.getString("name"));
+	        userInfo.setCode(rs.getString("code"));
+	        userInfo.setExchange(rs.getString("exchange3"));
 	        return userInfo;
 	}
 	public String toString(){

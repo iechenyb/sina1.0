@@ -3,12 +3,14 @@ package com.app.proxy;
 import javax.persistence.Column;
 import javax.persistence.Table;
 
-@Table(name="proxy")
+@Table(name = "proxy")
 public class Proxy {
-	@Column(name="ip")
+	@Column(name = "ip")
 	private String ip;
-	@Column(name="port")
+	@Column(name = "port")
 	private int port;
+	@Column(name = "useable")
+	private int useable;
 
 	public String getIp() {
 		return ip;
@@ -25,7 +27,17 @@ public class Proxy {
 	public void setPort(int port) {
 		this.port = port;
 	}
-   public String toString(){
-	   return this.ip+","+this.port;
-   }
+
+	public String toString() {
+		return this.ip + "," + this.port;
+	}
+
+	public int getUseable() {
+		return useable;
+	}
+
+	public void setUseable(int useable) {
+		this.useable = useable;
+	}
+
 }

@@ -28,7 +28,7 @@ import com.cyb.url.HttpsClient;
 import com.cyb.url.UrlUtils;
 
 public class ProxyEvil {
-	private static String url = "http://www.iechenyb.website/baseweb/infor.php";
+	public static String url = "http://www.iechenyb.website/baseweb/infor.php";
 
 	public static void main(String[] args) throws IOException {
 		H2Manager.start();

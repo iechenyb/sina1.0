@@ -3,6 +3,8 @@ package com.cyb.base64;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
+import org.apache.tomcat.util.codec.binary.Base64;
+
 
 public class Base64Utils {
 	/*** 

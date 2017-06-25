@@ -15,6 +15,8 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.RandomAccessFile;
 import java.io.Reader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -435,6 +437,44 @@ public class FileUtils {
 			 //System.out.println(new String(chs, 0, count));
 		}
 		return lst;
+	}
+    public static String  getJsonFromNet(String urlStr,String savePath,String charset) throws IOException{
+        URL url = new URL(urlStr);  
+        HttpURLConnection conn = (HttpURLConnection)url.openConnection();  
+                //设置超时间为3秒
+        conn.setConnectTimeout(3*1000);
+        //防止屏蔽程序抓取而返回403错误
+        conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+
+        //得到输入流
+        InputStream inputStream = conn.getInputStream();  
+        //获取自己数组
+        byte[] getData = getContentByCharset(inputStream,charset);    
+       if(savePath!=null){
+        //文件保存位置
+	        File file = new File(savePath);    
+	        FileOutputStream fos = new FileOutputStream(file);     
+	        fos.write(getData); 
+	        if(fos!=null){
+	            fos.close();  
+	        }
+	        if(inputStream!=null){
+	            inputStream.close();
+	        }
+        }
+       //str = new String(str.getBytes("gbk"),"utf-8"); 
+        return new String(getData);
+    }
+    public static byte[] getContentByCharset(InputStream inputStream,String charset) throws IOException {
+		
+		Reader re = new InputStreamReader(inputStream, charset);
+		char[] chs = new char[1024];
+		int count;
+		String content = "";
+		while ((count = re.read(chs)) != -1) {
+			content = content + new String(chs, 0, count);
+		}
+		return content.getBytes();
 	}
     public static String getAbsolutePathAtClass(Class<?> clss){
     	String packagePath = System.getProperty("user.dir");

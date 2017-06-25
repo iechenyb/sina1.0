@@ -36,7 +36,7 @@ public class SinaListener implements ServletContextListener {
 
     public void contextInitialized(ServletContextEvent arg0) {
     	H2Manager.start();
-    	H2DBUtil.testFileConnection();
+    	H2DBUtil.testFileConnection("test");
 		H2DBUtil.testTCPConnection();
 		H2DBUtil.testMemConnection();
     	String url = "http://hq.sinajs.cn/list=sh600868";
