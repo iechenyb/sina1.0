@@ -21,7 +21,7 @@ public class VedioDbUtils {
 	public static ConnectionExUtils<Vedio> dbUtils = null;
 	private static boolean createTable = true;
     public VedioDbUtils(String dbName){
-    	Connection conn = H2DBUtil.getConnection(dbName);
+    	Connection conn = getConnection(dbName);
 		dbUtils = new ConnectionExUtils<Vedio>(conn);
     }
     public static void save(Vedio p){

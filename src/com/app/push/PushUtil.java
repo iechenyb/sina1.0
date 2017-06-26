@@ -10,7 +10,6 @@ import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.ConnectListener;
-import com.cyb.Contanst;
 import com.cyb.computer.ComputerUtil;
 
 public class PushUtil {
@@ -21,8 +20,8 @@ public class PushUtil {
 	public static void startPushServer() {
 		try {
 			Configuration config = new Configuration();
-			config.setHostname("101.200.63.13");
-			config.setPort(36677);
+			config.setHostname("172.17.162.26");//ComputerUtil.getRealIP();
+			config.setPort(6677);
 			server = new SocketIOServer(config);
 			PushListener listener = new PushListener(server);
 			server.addEventListener("getmsg", Object.class, listener);
