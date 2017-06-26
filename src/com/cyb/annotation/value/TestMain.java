@@ -13,7 +13,6 @@ public class TestMain {
 		for (Field f : fields) {
 			jsonObject = new JSONObject();
 			Class cls = f.getType();
-			System.out.println(f.getAnnotatedType());
 			Hidden hidden = f.getAnnotation(Hidden.class);//获取指定的注解
 			if (hidden != null) {
 				boolean isHidden = hidden.value();
