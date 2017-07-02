@@ -15,13 +15,13 @@ import com.cyb.h2.H2Manager;
 
 public class VedioDbUtils {
 	private static String tcpPrix = "jdbc:h2:tcp://localhost/";//tcp访问
-	private static String dbPath = "/chenyb/app/db/";
-//	private static String dbPath = "d:/data/";
+	private static String dbPath = "chenyb/app/db/";
+	//private static String dbPath = "d:/data/";
 	private static Log log = LogFactory.getLog(VedioDbUtils.class);
 	public static ConnectionExUtils<Vedio> dbUtils = null;
-	private static boolean createTable = true;
+	private static boolean createTable = true; 
     public VedioDbUtils(String dbName){
-    	Connection conn = getConnection(dbName);
+    	Connection conn = H2DBUtil.getConnectionByPath(tcpPrix+dbPath+dbName);
 		dbUtils = new ConnectionExUtils<Vedio>(conn);
     }
     public static void save(Vedio p){

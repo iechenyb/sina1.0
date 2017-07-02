@@ -34,6 +34,7 @@ public class RedisClient {
      * 初始化非切片池
      */
     private void initialPool() 
+    
     { 
         // 池基本配置 
         JedisPoolConfig config = new JedisPoolConfig(); 

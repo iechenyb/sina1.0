@@ -20,7 +20,7 @@ public class PushUtil {
 	public static void startPushServer() {
 		try {
 			Configuration config = new Configuration();
-			config.setHostname("172.17.162.26");//ComputerUtil.getRealIP();
+			config.setHostname(ComputerUtil.getRealIP());//ComputerUtil.getRealIP();172.17.162.26 192.168.0.151 g
 			config.setPort(6677);
 			server = new SocketIOServer(config);
 			PushListener listener = new PushListener(server);
@@ -42,6 +42,7 @@ public class PushUtil {
 		}
 	}
 	public static void main(String[] args) {
+		
 		startPushServer();
 	}
 }

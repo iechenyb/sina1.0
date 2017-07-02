@@ -1,6 +1,5 @@
 package com.app.iqiyi;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +9,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.cyb.h2.H2Manager;
-import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
 
 public class MovieUtils {
 	public static void getMovies() throws Exception{
@@ -29,7 +27,7 @@ public class MovieUtils {
 		}
 	}
 	public static void getVediosDir() throws Exception{
-		//VedioDbUtils.exeDLL();
+		
 		Document doc = Jsoup.connect("http://list.iqiyi.com/www/2/----------2---4-1-1-iqiyi--.html").get();
 		Elements links = doc.select("p[class='site-piclist_info_title'] a[data-searchpingback-elem='link']");
 		Vedio dio = null;
@@ -62,12 +60,11 @@ public class MovieUtils {
 		return data;
 	}
 	public static void main(String[] args) throws Exception {
-		
-		
 		try {
 			H2Manager.start();
 			new  VedioDbUtils("vedio");
-			//getMovies();
+			VedioDbUtils.exeDLL();
+			getMovies();
 			getVediosDir();
 		    getVedios("http://www.iqiyi.com/a_19rrh8y4al.html#vfrm=2-4-0-1");
 			H2Manager.stop();

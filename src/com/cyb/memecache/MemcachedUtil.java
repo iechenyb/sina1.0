@@ -9,72 +9,49 @@ import com.cyb.collection.User;
 import com.cyb.socket.one2one.Message;
 import com.danga.MemCached.MemCachedClient;
 import com.danga.MemCached.SockIOPool;
-
+//ç®¡ç†å‘˜è¿›å…¥   memcached -d start  http://blog.csdn.net/cn_yaojin/article/details/51943794
 public class MemcachedUtil {
-	// ´´½¨È«¾ÖµÄÎ¨Ò»ÊµÀı
 	protected static MemCachedClient mcc = new MemCachedClient();
 
 	protected static MemcachedUtil memCached = new MemcachedUtil();
 
-	// ÉèÖÃÓë»º´æ·şÎñÆ÷µÄÁ¬½Ó³Ø
 	static {
-		// ·şÎñÆ÷ÁĞ±íºÍÆäÈ¨ÖØ
 		String[] servers = { "127.0.0.1:11211" };
 		Integer[] weights = { 3 };
 
-		// »ñÈ¡sockeÁ¬½Ó³ØµÄÊµÀı¶ÔÏó
 		SockIOPool pool = SockIOPool.getInstance();
 
-		// ÉèÖÃ·şÎñÆ÷ĞÅÏ¢
 		pool.setServers(servers);
 		pool.setWeights(weights);
 
-		// ÉèÖÃ³õÊ¼Á¬½ÓÊı¡¢×îĞ¡ºÍ×î´óÁ¬½ÓÊıÒÔ¼°×î´ó´¦ÀíÊ±¼ä
 		pool.setInitConn(5);
 		pool.setMinConn(5);
 		pool.setMaxConn(250);
 		pool.setMaxIdle(1000 * 60 * 60 * 6);
 
-		// ÉèÖÃÖ÷Ïß³ÌµÄË¯ÃßÊ±¼ä
 		pool.setMaintSleep(30);
 
-		// ÉèÖÃTCPµÄ²ÎÊı£¬Á¬½Ó³¬Ê±µÈ
 		pool.setNagle(false);
 		pool.setSocketTO(3000);
 		pool.setSocketConnectTO(0);
 
-		// ³õÊ¼»¯Á¬½Ó³Ø
 		pool.initialize();
 
-		// Ñ¹ËõÉèÖÃ£¬³¬¹ıÖ¸¶¨´óĞ¡£¨µ¥Î»ÎªK£©µÄÊı¾İ¶¼»á±»Ñ¹Ëõ
 		mcc.setCompressEnable(true);
 		mcc.setCompressThreshold(64 * 1024);
 	}
 
-	/**
-	 * ±£»¤ĞÍ¹¹Ôì·½·¨£¬²»ÔÊĞíÊµÀı»¯£¡
-	 * 
-	 */
+	
 	protected MemcachedUtil() {
 
 	}
 
-	/**
-	 * »ñÈ¡Î¨Ò»ÊµÀı.
-	 * 
-	 * @return
-	 */
+	
 	public static MemcachedUtil getInstance() {
 		return memCached;
 	}
 
-	/**
-	 * Ìí¼ÓÒ»¸öÖ¸¶¨µÄÖµµ½»º´æÖĞ.
-	 * 
-	 * @param key
-	 * @param value
-	 * @return
-	 */
+	
 	public boolean add(String key, Object value) {
 		return mcc.add(key, value);
 	}
@@ -93,12 +70,7 @@ public class MemcachedUtil {
     public boolean delete(String key){
     	return mcc.delete(key);
     }
-	/**
-	 * ¸ù¾İÖ¸¶¨µÄ¹Ø¼ü×Ö»ñÈ¡¶ÔÏó.
-	 * 
-	 * @param key
-	 * @return
-	 */
+	
 	public Object get(String key) {
 		return mcc.get(key);
 	}
@@ -106,13 +78,13 @@ public class MemcachedUtil {
 	public static void main(String[] args) {
 		System.out.println("****");
 		MemcachedUtil cache = MemcachedUtil.getInstance();
-		cache.add("hello", "memcached Test");//Íù»º´æÀïÌí¼ÓÒ»¸ö±äÁ¿
+		cache.add("hello", "memcached Test");//
 		cache.delete("hello");
 		mcc.set("hello", "new values");
-		cache.add("hello", "memcached Test2");//Íù»º´æÀïÌí¼ÓÒ»¸ö±äÁ¿	
-		cache.add("hello1", "memcached Test1");//Íù»º´æÀïÌí¼ÓÒ»¸ö±äÁ¿
-		System.out.println("get value : " + cache.get("hello"));//´Ó»º´æÀï»ñÈ¡±äÁ¿µÄÖµ
-		System.out.println("get value1 : " + cache.get("hello1"));//´Ó»º´æÀï»ñÈ¡±äÁ¿µÄÖµ
+		cache.add("hello", "memcached Test2");//
+		cache.add("hello1", "memcached Test1");//
+		System.out.println("get value : " + cache.get("hello"));//Öµ
+		System.out.println("get value1 : " + cache.get("hello1"));//Öµ
 		System.out.println("****");
 		cache.add("user", CollectionFactory.getUser());
 		cache.add("map", CollectionFactory.getMap());
@@ -122,6 +94,6 @@ public class MemcachedUtil {
 		System.out.println(" test Object :"+user.getName());
 		System.out.println(" test Map :"+map.get("name"));
 	}
-	//Èç¹ûMemcached»º´æ·şÎñ²»´ò¿ª£¬mainº¯ÊıÔËĞĞ»á±¨´í
+
 
 }

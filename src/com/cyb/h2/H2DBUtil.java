@@ -54,6 +54,18 @@ public class H2DBUtil {
 		}
 	  
    }
+   public static Connection getConnectionByPath(String path){
+	   try {
+		   //Class.forName("org.h2.Driver");
+		   System.out.println(path);
+		   Connection conn = DriverManager.getConnection(path, "sa", "");
+		   return conn;
+	   } catch (Exception e) {
+			System.out.println("tcp File test err!");
+			return null;
+		}
+	  
+   }
    public static Connection getConnection(){
 	   try {
 		   //Class.forName("org.h2.Driver");
