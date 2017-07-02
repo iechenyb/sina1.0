@@ -3,8 +3,6 @@ package com.cyb.base64;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-import org.apache.tomcat.util.codec.binary.Base64;
-
 
 public class Base64Utils {
 	/*** 
@@ -27,24 +25,24 @@ public class Base64Utils {
          Object retObj=mainMethod.invoke(null, input);  
          return (byte[])retObj;  
     } 
-    /** 
+   /* *//** 
      * @param bytes 
      * @return 
-     */  
+     *//*  
     public static byte[] decode1(final byte[] bytes) {  
         return Base64.decodeBase64(bytes);  
     }  
   
-    /** 
+    *//** 
      * 二进制数据编码为BASE64字符串 
      * 
      * @param bytes 
      * @return 
      * @throws Exception 
-     */  
+     *//*  
     public static String encode1(final byte[] bytes) {  
         return new String(Base64.encodeBase64(bytes));  
-    } 
+    } */
     /**  
      * 编码  
      * @param bstr  
@@ -74,8 +72,8 @@ public class Base64Utils {
     	String str = "client:m_volunteer";String target="Y2xpZW50Om1fdm9sdW50ZWVy";
 		System.out.println(new String(encodeBase64(str.getBytes())).equals(target));
 		System.out.println(new String(decodeBase64(target)));
-		System.out.println(new String(encode1(str.getBytes())).equals(target));
-		System.out.println(new String(decode1(target.getBytes())));
+		/*System.out.println(new String(encode1(str.getBytes())).equals(target));
+		System.out.println(new String(decode1(target.getBytes())));*/
 		System.out.println(new String(encode(str.getBytes())).equals(target));
 		System.out.println(new String(decode(target)));
 	}
