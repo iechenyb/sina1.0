@@ -1,7 +1,9 @@
 package com.cyb.h2;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.slf4j.Logger;
@@ -54,11 +56,18 @@ public class H2DBUtil {
 		}
 	  
    }
+<<<<<<< HEAD
    public static Connection getConnectionByPath(String path){
 	   try {
 		   //Class.forName("org.h2.Driver");
 		   System.out.println(path);
 		   Connection conn = DriverManager.getConnection(path, "sa", "");
+=======
+   public static Connection getConnectionByPath(String db){
+	   try {
+		   //Class.forName("org.h2.Driver");
+		   Connection conn = DriverManager.getConnection(db, "sa", "");
+>>>>>>> bfd22d5b048d3b2d1ca8c714ef53c204badf405c
 		   return conn;
 	   } catch (Exception e) {
 			System.out.println("tcp File test err!");
@@ -123,5 +132,18 @@ public class H2DBUtil {
 		} 
    }
    
-   
+   public static boolean isExist(Connection conn,String tableName){
+		try {
+			DatabaseMetaData meta = conn.getMetaData();
+			ResultSet rs = meta.getTables(null, null, tableName.toUpperCase(), null);
+			if (rs.next()) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+   }
 }

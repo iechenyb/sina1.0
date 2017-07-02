@@ -29,7 +29,6 @@ import com.cyb.url.UrlUtils;
 
 public class ProxyEvil {
 	public static String url = "http://www.iechenyb.website/baseweb/infor.php";
-
 	public static void main(String[] args) throws IOException {
 		H2Manager.start();
 		new ProxyDbUtils("app");
@@ -53,15 +52,11 @@ public class ProxyEvil {
 		for (int i = 0; i < d1.size(); i++) {
 			try {
 				Proxy proxy = d1.get(i);
-				
-				/*if (com.app.proxy.ProxyUtils.isUseable(url, proxy.getIp(),
-						proxy.getPort())) {}*/
 					System.out.println((i + 1) + "-" + d1.size());
 					ProxyDbUtils.dbUtils.update("delete from proxy where ip='"
 							+ proxy.getIp() + "'" + " and port="
 							+ proxy.getPort());
 					ProxyDbUtils.dbUtils.save(proxy);
-				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -144,7 +139,6 @@ public class ProxyEvil {
 		com.cyb.html.UrlUtils.downLoadFromUrl(url, host, port);
 	}
 
-	@SuppressWarnings("null")
 	public static List<Proxy> get3366ProxyIp(int type, int page)
 			throws IOException {
 		String url1 = "http://www.ip3366.net/?";

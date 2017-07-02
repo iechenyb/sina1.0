@@ -63,7 +63,6 @@ public class MovieUtils {
 		try {
 			H2Manager.start();
 			new  VedioDbUtils("vedio");
-			VedioDbUtils.exeDLL();
 			getMovies();
 			getVediosDir();
 		    getVedios("http://www.iqiyi.com/a_19rrh8y4al.html#vfrm=2-4-0-1");
