@@ -7,6 +7,8 @@ import org.apache.commons.logging.LogFactory;
 import org.quartz.CronTrigger;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
+
+import com.app.utils.ParamsUtil;
 public class RunnerMain {
 	 static Log log = LogFactory.getLog(RunnerMain.class);
 	 private static Scheduler sched;

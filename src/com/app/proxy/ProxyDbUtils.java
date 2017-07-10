@@ -8,7 +8,7 @@ import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.app.csdn.ParamsUtil;
+import com.app.utils.ParamsUtil;
 import com.cyb.comconection.ConnectionExUtils;
 import com.cyb.h2.H2DBUtil;
 import com.cyb.h2.H2Manager;

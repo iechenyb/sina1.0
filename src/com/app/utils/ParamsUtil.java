@@ -1,4 +1,4 @@
-package com.app.csdn;
+package com.app.utils;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Properties;
@@ -36,7 +36,7 @@ public class ParamsUtil {
 			if(p==null){
 				initByPath();
 			}
-			result = p.getProperty(key);
+			result = p.getProperty(key+p.getProperty("etc"));
 			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
