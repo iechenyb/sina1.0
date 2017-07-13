@@ -14,6 +14,7 @@ import java.util.Map;
 
 import com.cyb.date.DateUtil;
 import com.cyb.file.FileUtils;
+import com.cyb.freemarker.mvc.Contants;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -40,17 +41,19 @@ public class DaoGenerator {
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
         Template temp = cfg.getTemplate("dao.ftl");  // load E:/Work/Freemarker/templates/person.ftl
         Map<String, Object> root = new HashMap<String, Object>();
-        root.put("packageName", "com.cyb.freemarker.mvc.dao");
-        root.put("modelName", "Test");
-        root.put("po", "User");
-        root.put("poPackageName", "com.cyb.freemarker.mvc.po.User");
-        root.put("varModelName", "test");
+        root.put("packageName", Contants.DaoPackagePath);
+        root.put("modelName", Contants.modelName);
+        root.put("po", Contants.poName);
+        root.put("poPackageName", Contants.PoPackagePath+"."+Contants.poName);
         root.put("author", "iechenyb");
         root.put("date", DateUtil.timeToSec(new Date()).toString());
-        File dir = new File( FileUtils.getAbsolutePathAtClass(DaoGenerator.class));
+        
+       /* File dir = new File( FileUtils.getAbsolutePathAtClass(DaoGenerator.class));
         if(!dir.exists()){
             dir.mkdirs();
-        }
+        }*/
+        String dir = System.getProperty("user.dir")+File.separator+"src"+File.separator+Contants.DaoPackagePath.replace(".", File.separator);
+        FileUtils.genFileDir(dir);
         OutputStream fos = new  FileOutputStream( new File(dir, root.get("modelName")+"Dao.java")); //java文件的生成目录   
         Writer out = new OutputStreamWriter(fos);
         temp.process(root, out);

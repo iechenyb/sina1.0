@@ -1,11 +1,13 @@
 package ${packageName};
-
-import java.util.List;
-
+import javax.annotation.Resource;
+import com.cyb.freemarker.mvc.base.BaseService;
+import ${poPackageName};
+import ${daoPackageName};
 /**
  *  @author ${author}
-  	@date ${date}
+ * 	@date ${date}
  */
-public class ${className} {
-   
+public class ${modelName}Service extends BaseService<${po}> {
+   @Resource
+   private ${modelName}Dao ${modelName?uncap_first};
 }

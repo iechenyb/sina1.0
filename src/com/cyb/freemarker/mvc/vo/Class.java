@@ -1,16 +1,18 @@
-package com.cyb.freemarker.mvc.po;
+package com.cyb.freemarker.mvc.vo;
+
 public class Class {
 	private String packagename;  
     private String classname;  
     private String[] imports;  
-    private String tableName;
-    public Class() {}  
-    public Class(String classname, String[] imports,String packagename,String tableName) {  
+   
+    public Class() {  
+    }  
+   
+    public Class(String classname, String[] imports,String packagename) {  
         super();  
         this.classname = classname;  
         this.imports = imports;  
         this.packagename=packagename;  
-        this.tableName = tableName;
     }  
    
     public String getClassname() {  
@@ -35,14 +37,5 @@ public class Class {
    
     public void setPackagename(String packagename) {  
         this.packagename = packagename;  
-    }
-
-	public String getTableName() {
-		return tableName;
-	}
-
-	public void setTableName(String tableName) {
-		this.tableName = tableName;
-	} 
-    
+    }  
 }

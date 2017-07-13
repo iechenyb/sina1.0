@@ -14,6 +14,7 @@ import java.util.Map;
 
 import com.cyb.date.DateUtil;
 import com.cyb.file.FileUtils;
+import com.cyb.freemarker.mvc.Contants;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -38,19 +39,22 @@ public class ControllerGenerator {
         cfg.setDirectoryForTemplateLoading(new File( FileUtils.getAbsolutePathAtClass(ControllerGenerator.class)));   
         cfg.setDefaultEncoding("UTF-8");
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
-        Template temp = cfg.getTemplate("controller.ftl");  // load E:/Work/Freemarker/templates/person.ftl
+        Template temp = cfg.getTemplate("controller.ftl");
         Map<String, Object> root = new HashMap<String, Object>();
-        root.put("packageName", "com.cyb.mvc.freemarker.controller");
-        root.put("modelName", "Test");
-        root.put("varModelName", "test");
-        root.put("author", "iechenyb");
-        root.put("basePath", "restfull/test");
+        root.put("packageName",Contants.ControllerPackagePath);
+        root.put("modelName", Contants.modelName);
+        root.put("servicePackageName", Contants.ServicePackagePath+"."+Contants.serviceName);
+        root.put("author", Contants.author);
+        root.put("serviceName", Contants.serviceName);
+        root.put("basePath", Contants.controllerBaseUri);
         root.put("date", DateUtil.timeToSec(new Date()).toString());
-        File dir = new File( FileUtils.getAbsolutePathAtClass(ControllerGenerator.class));
+       /* File dir = new File( FileUtils.getAbsolutePathAtClass(ControllerGenerator.class));
         if(!dir.exists()){
             dir.mkdirs();
-        }
-        OutputStream fos = new  FileOutputStream( new File(dir, root.get("modelName")+"Controller.java")); //java文件的生成目录   
+        }*/
+        String dir = System.getProperty("user.dir")+File.separator+"src"+File.separator+Contants.ControllerPackagePath.replace(".", File.separator);
+        FileUtils.genFileDir(dir);
+        OutputStream fos = new  FileOutputStream( new File(dir, root.get("modelName")+"Controller.java")); 
         Writer out = new OutputStreamWriter(fos);
         temp.process(root, out);
         fos.flush();  

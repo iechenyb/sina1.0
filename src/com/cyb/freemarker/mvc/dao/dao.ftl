@@ -1,13 +1,13 @@
 package ${packageName};
 import ${poPackageName};
-import java.util.List;
-import com.cyb.web.base.dao.HibernateBaseDao;
+import com.cyb.freemarker.mvc.base.BaseDao;
+import org.springframework.stereotype.Repository;
 
 /**
  *  @author ${author}
-    @date ${date}
+ *  @date ${date}
  */
-@Repository("${varModelName}Dao")
-public class ${modelName}Dao extends HibernateBaseDao<${po}>{
+@Repository("${modelName?uncap_first}Dao")
+public class ${modelName}Dao extends BaseDao<${po}>{
    
 }

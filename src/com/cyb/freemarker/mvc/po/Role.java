@@ -1,4 +1,4 @@
-package ${clazz.packagename};  
+package com.cyb.freemarker.mvc.po;  
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,34 +7,36 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.GenericGenerator; 
+import java.util.ArrayList;  
+import java.util.List;  
  @Entity
- @Table(name="${tableName}")
+ @Table(name="tb_role")
  @Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
- public class ${clazz.classname} {
+ public class Role {
  	@Id
 	@GenericGenerator(strategy="uuids",name="user_uuid")
 	@GeneratedValue(generator="user_uuid")
 	private String id;   
-	<#list attributes as being>
-    <#if being.len=0> 
+  	@Column(length=50)
+    private String name;  
     @Column
-	<#else> 
-  	@Column(length=${being.len})
-	</#if>    
-    private ${being.type} ${being.name};  
-	</#list>
+    private int age;  
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}  
-	<#list attributes as being>
-    public ${being.type} get${being.name?cap_first}() {  
-        return ${being.name};  
+    public String getName() {  
+        return name;  
     }  
-    public void set${being.name?cap_first}(${being.type} ${being.name}) {  
-        this.${being.name} = ${being.name};  
+    public void setName(String name) {  
+        this.name = name;  
     }  
-	</#list>
+    public int getAge() {  
+        return age;  
+    }  
+    public void setAge(int age) {  
+        this.age = age;  
+    }  
  }

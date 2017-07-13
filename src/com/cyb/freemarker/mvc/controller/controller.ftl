@@ -1,19 +1,16 @@
 package ${packageName};
-
-import java.util.List;
-import java.util.Map;
+import ${servicePackageName};
 import javax.annotation.Resource;
-import net.sf.json.JSONArray;
+import com.cyb.freemarker.mvc.base.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 /**
  *  @author ${author}
-    @date ${date}
+ *  @date ${date}
  */
 @Controller
-@RequestMapping("${basePath}"); 
+@RequestMapping("${basePath}")
 public class ${modelName}Controller extends BaseController {
-   @Resource(name="${varModelName}Service")
-   ${modelName}Service ${varModelName}Service;
+   @Resource(name="${modelName?uncap_first}Service")
+   ${modelName}Service ${modelName?uncap_first}Service;
 }

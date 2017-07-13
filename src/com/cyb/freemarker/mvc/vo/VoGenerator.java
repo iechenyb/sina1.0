@@ -1,4 +1,4 @@
-package com.cyb.freemarker.mvc.service;
+package com.cyb.freemarker.mvc.vo;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -12,22 +12,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.cyb.Contanst;
 import com.cyb.date.DateUtil;
 import com.cyb.file.FileUtils;
-import com.cyb.freemarker.mvc.Contants;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 
-public class ServiceGenerator {
+public class VoGenerator {
 
     public static void main(String[] args) {
 
         try {
-            new ServiceGenerator().gen();
+            new VoGenerator().gen();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (TemplateException e) {
@@ -37,29 +35,26 @@ public class ServiceGenerator {
 
     public void gen() throws IOException, TemplateException{
         Configuration cfg = new Configuration(Configuration.VERSION_2_3_22);
-        cfg.setDirectoryForTemplateLoading(new File( FileUtils.getAbsolutePathAtClass(ServiceGenerator.class)));   
+        cfg.setDirectoryForTemplateLoading(new File( FileUtils.getAbsolutePathAtClass(VoGenerator.class)));   
         cfg.setDefaultEncoding("UTF-8");
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
-        Template temp = cfg.getTemplate("service.ftl");
+        Template temp = cfg.getTemplate("controller.ftl");  // load E:/Work/Freemarker/templates/person.ftl
         Map<String, Object> root = new HashMap<String, Object>();
-        root.put("packageName",Contants.ServicePackagePath);
-        root.put("modelName", Contants.modelName);
-        root.put("po", Contants.poName);
-        root.put("poPackageName", Contants.PoPackagePath+"."+Contants.poName);
-        root.put("author", Contants.author);
-        root.put("daoPackageName", Contants.DaoPackagePath+"."+Contants.daoName);
+        root.put("packageName", "com.cyb.mvc.controller");
+        root.put("modelName", "Test");
+        root.put("varModelName", "test");
+        root.put("author", "iechenyb");
+        root.put("basePath", "restfull/test");
         root.put("date", DateUtil.timeToSec(new Date()).toString());
-        /*File dir = new File( FileUtils.getAbsolutePathAtClass(ServiceGenerator.class));
+        File dir = new File( FileUtils.getAbsolutePathAtClass(VoGenerator.class));
         if(!dir.exists()){
             dir.mkdirs();
-        }*/
-        String dir = System.getProperty("user.dir")+File.separator+"src"+File.separator+Contants.ServicePackagePath.replace(".", File.separator);
-        FileUtils.genFileDir(dir);
-        OutputStream fos = new  FileOutputStream( new File(dir, Contants.modelName+"Service.java")); //java文件的生成目录   
+        }
+        OutputStream fos = new  FileOutputStream( new File(dir, root.get("modelName")+"Controller.java")); //java文件的生成目录   
         Writer out = new OutputStreamWriter(fos);
         temp.process(root, out);
         fos.flush();  
         fos.close();
-        System.out.println("gen "+root.get("packageName")+"."+root.get("modelName")+"Service.java"+" code success!");
+        System.out.println("gen "+root.get("packageName")+"."+root.get("modelName")+"Controller.java"+" code success!");
     }
 }
