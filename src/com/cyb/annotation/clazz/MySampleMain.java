@@ -5,7 +5,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 @MyClassAnnotation (uri =  "com.cyb.annotation.clazz.MySample" , desc =  "The class name" )  
-public   class  MySample  
+public   class  MySampleMain  
 {  
     @MyFieldAnnotation (uri =  "com.cyb.annotation.clazz.MySample#id" , desc =  "The class field" )  
     public  String id;  
@@ -14,7 +14,7 @@ public   class  MySample
      * Description: default constructor  
      */   
     @MyConstructorAnnotation (uri =  "com.cyb.annotation.clazz.MySample#MySample" , desc =  "The default constuctor" )  
-    public  MySample()  
+    public  MySampleMain()  
     {  
     }  
   
@@ -36,15 +36,15 @@ public   class  MySample
     public   static   void  main(String[] args)  throws  SecurityException,  
             NoSuchMethodException, NoSuchFieldException  
     {  
-        MySample oMySample = new  MySample();  
+        MySampleMain oMySample = new  MySampleMain();  
         // get class annotation   
-        MyClassAnnotation oMyAnnotation = MySample.class   
+        MyClassAnnotation oMyAnnotation = MySampleMain.class   
                 .getAnnotation(MyClassAnnotation.class );  
         System.out.println("Class's uri: "  + oMyAnnotation.uri() +  "; desc: "   
                 + oMyAnnotation.desc());  
   
         // get constructor annotation   
-        Constructor<? extends MySample> oConstructor = oMySample.getClass().getConstructor();  
+        Constructor<? extends MySampleMain> oConstructor = oMySample.getClass().getConstructor();  
         MyConstructorAnnotation oMyConstructorAnnotation = (MyConstructorAnnotation) oConstructor  
                 .getAnnotation(MyConstructorAnnotation.class );  
         System.out.println("Constructor's uri: "   

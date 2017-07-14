@@ -12,7 +12,7 @@ public class TestMain {
 		Field[] fields = CompanyBean.class.getDeclaredFields();
 		for (Field f : fields) {
 			jsonObject = new JSONObject();
-			Class cls = f.getType();
+			Class<?> cls = f.getType();
 			Hidden hidden = f.getAnnotation(Hidden.class);//获取指定的注解
 			if (hidden != null) {
 				boolean isHidden = hidden.value();

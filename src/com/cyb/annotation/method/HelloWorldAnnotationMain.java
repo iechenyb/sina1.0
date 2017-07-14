@@ -2,7 +2,7 @@ package com.cyb.annotation.method;
 
 import java.lang.reflect.InvocationTargetException;
 
-public class TestHelloWorldAnnotation {
+public class HelloWorldAnnotationMain {
 	public static void main(String[] args) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, SecurityException, NoSuchMethodException, InstantiationException {
 		// 定义操作类
 		ParseAnnotationStub parse = new ParseAnnotationStub();

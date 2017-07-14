@@ -1,6 +1,6 @@
 package com.cyb.fanxing;
 
-public class Test {
+public class Main {
 	public static void main(String[] args) {
 		 ZhangsanDao zhangsanDao = new ZhangsanDao();  
 	     Zhangsan zhangsan = zhangsanDao.get(null); 
