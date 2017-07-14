@@ -18,7 +18,9 @@ import java.util.List;
 	@GeneratedValue(generator="user_uuid")
 	private String id;   
   	@Column(length=50)
-    private String name;  
+    private String name; 
+  	@Column(length=50)
+    private String username;
     @Column
     private int age;  
 	public String getId() {
@@ -38,5 +40,12 @@ import java.util.List;
     }  
     public void setAge(int age) {  
         this.age = age;  
-    }  
+    }
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}  
+    
  }

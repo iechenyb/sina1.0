@@ -47,6 +47,10 @@ public class DateUtil {
 	   String dateString = formatter.format(date);
 	   return Long.valueOf(dateString);
    }
+   public static String date2long14(){
+	   formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+	   return formatter.format(new Date());
+   }
    //date 20150202 -> 2015-02-02
    public static String date2long10(String date){
 	   if(date.length()!=8&&date.length()!=14){

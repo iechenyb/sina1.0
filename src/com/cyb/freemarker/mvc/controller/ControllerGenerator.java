@@ -45,6 +45,8 @@ public class ControllerGenerator {
         root.put("modelName", Contants.modelName);
         root.put("servicePackageName", Contants.ServicePackagePath+"."+Contants.serviceName);
         root.put("author", Contants.author);
+        root.put("po", Contants.poName);
+        root.put("poPackageName", Contants.PoPackagePath+"."+Contants.poName);
         root.put("serviceName", Contants.serviceName);
         root.put("basePath", Contants.controllerBaseUri);
         root.put("date", DateUtil.timeToSec(new Date()).toString());

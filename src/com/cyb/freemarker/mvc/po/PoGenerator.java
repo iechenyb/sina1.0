@@ -24,7 +24,7 @@ public class PoGenerator {
 	private final static String TEMPLATE_NAME="po.ftl";  
     private Configuration cfg;  
     private Properties ploader;  
-    /** 
+   /** 
      * 初始化工作 
      */  
     @SuppressWarnings("deprecation")
@@ -80,7 +80,7 @@ public class PoGenerator {
      */  
     public List<Attribute> loadAttr() {  
         List<Attribute> attributes = new ArrayList<Attribute>();  
-        String values=ploader.getProperty("attribute");  
+        String values=Contants.fields;//ploader.getProperty("attribute");  
         String[] strs=values.split(",");  
         for (String s : strs) {  
             String[] sp=s.split(":");  
