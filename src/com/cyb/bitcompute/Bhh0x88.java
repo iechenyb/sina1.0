@@ -4,7 +4,7 @@ package com.cyb.bitcompute;
  * @author DHUser
  *
  */
-public class Bhh88 {
+public class Bhh0x88 {
    static int bin_col=0x07;//0x行列
    static int bin_row=0x70;
    public static boolean isSameCol(int a,int b){
@@ -50,5 +50,15 @@ public class Bhh88 {
 	 System.out.println("a和c同行？"+isSameRow(apoint, cpoint));
 	 System.out.println("b和c对角线？"+isDiagonal(bpoint, cpoint));
 	 System.out.println("f和g对角线？"+isDiagonal(fpoint, gpoint));
+	 /**
+	  * b和d同行？true
+		e和d同列？true
+		b和d同列？false
+		e和d同行？false
+		a和c同列？false
+		a和c同行？false
+		b和c对角线？true
+		f和g对角线？true
+	  */
    }
 }

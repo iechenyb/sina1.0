@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,9 +22,12 @@ import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
+import org.springframework.aop.ThrowsAdvice;
+import org.springframework.util.StringUtils;
 
 import com.app.proxy.Proxy;
 import com.cyb.h2.H2DBUtil;
+import com.cyb.reflect.Reflector;
 /**
 	ResultSetHandler 接口提供了一个单独的方法：Object handle (java.sql.ResultSet .rs)。
 	ResultSetHandler 接口的实现类
@@ -73,14 +78,35 @@ public class ConnectionExUtils<T> extends QueryRunner {
 		return results.get(0);
 	}
 	//添加save方法
+	public Map<String,Object> object2Map(T t){
+		Map<String,Object> bean = new HashMap<String, Object>();
+        Class<? extends Object> c = t.getClass();
+        Field[] fs = c.getDeclaredFields();
+        for(Field f:fs){
+            try {
+                bean.put(f.getName(), f.get(t));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return bean;
+    }
     /**
      * 对传递的bean进行分析
-     * 将t对象转成insert into users
+     * 将t对象转成insert into users<T>
      */
-    public <T> T save(T t) throws Exception{
+    public T save(T t) throws Exception{
         Class<?> cls = t.getClass();
         Table table = cls.getAnnotation(Table.class);
         String tableName = table.name();
+        if(StringUtils.isEmpty(Reflector.getAnnotionedId(t))){
+        	throw new Exception("对象id不能为空！");
+        }
+        String hasSql="select * from "+tableName +" where id='"+Reflector.getAnnotionedId(t)+"'";
+        Object obj = this.queryForObject(hasSql, (Class<T>) cls);
+        if(obj!=null){
+        	throw new Exception("主键值["+Reflector.getAnnotionedId(t)+"]已存在！");
+        }
         String sql = "insert into "+tableName;
         String cols="(";
         String values="values(";
