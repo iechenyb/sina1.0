@@ -63,4 +63,19 @@ public class ControllerGenerator {
         fos.close();
         System.out.println("gen "+root.get("packageName")+"."+root.get("modelName")+"Controller.java"+" code success!");
     }
+    public static  void gen(Map<String, Object> root ) throws IOException, TemplateException{
+        Configuration cfg = new Configuration(Configuration.VERSION_2_3_22);
+        cfg.setDirectoryForTemplateLoading(new File( FileUtils.getAbsolutePathAtClass(ControllerGenerator.class)));   
+        cfg.setDefaultEncoding("UTF-8");
+        cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+        Template temp = cfg.getTemplate("controller.ftl");
+        String dir = System.getProperty("user.dir")+File.separator+"src"+File.separator+Contants.ControllerPackagePath.replace(".", File.separator);
+        FileUtils.genFileDir(dir);
+        OutputStream fos = new  FileOutputStream( new File(dir, root.get("modelName")+"Controller.java")); 
+        Writer out = new OutputStreamWriter(fos);
+        temp.process(root, out);
+        fos.flush();  
+        fos.close();
+        System.out.println("gen "+root.get("packageName")+"."+root.get("modelName")+"Controller.java"+" code success!");
+    }
 }

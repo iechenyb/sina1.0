@@ -62,4 +62,19 @@ public class ServiceGenerator {
         fos.close();
         System.out.println("gen "+root.get("packageName")+"."+root.get("modelName")+"Service.java"+" code success!");
     }
+    public void gen(Map<String, Object> root) throws IOException, TemplateException{
+        Configuration cfg = new Configuration(Configuration.VERSION_2_3_22);
+        cfg.setDirectoryForTemplateLoading(new File( FileUtils.getAbsolutePathAtClass(ServiceGenerator.class)));   
+        cfg.setDefaultEncoding("UTF-8");
+        cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+        Template temp = cfg.getTemplate("service.ftl");
+        String dir = System.getProperty("user.dir")+File.separator+"src"+File.separator+Contants.ServicePackagePath.replace(".", File.separator);
+        FileUtils.genFileDir(dir);
+        OutputStream fos = new  FileOutputStream( new File(dir, Contants.modelName+"Service.java")); //java文件的生成目录   
+        Writer out = new OutputStreamWriter(fos);
+        temp.process(root, out);
+        fos.flush();  
+        fos.close();
+        System.out.println("gen "+root.get("packageName")+"."+root.get("modelName")+"Service.java"+" code success!");
+    }
 }

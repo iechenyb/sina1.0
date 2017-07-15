@@ -32,6 +32,16 @@ public class DateUtil {
 	   String dateString = formatter.format(date);
 	   return dateString;
    }
+   public static String timeToSec(){
+	   formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	   String dateString = formatter.format(new Date());
+	   return dateString;
+   }
+   public static String descTimeToSec(){
+	   formatter = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
+	   String dateString = formatter.format(new Date());
+	   return dateString;
+   }
    public static Long date2long10(Date date){
 	   formatter = new SimpleDateFormat("yyyy-MM-dd");
 	   String dateString = formatter.format(date);

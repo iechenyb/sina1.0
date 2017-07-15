@@ -1,14 +1,15 @@
 package com.cyb.freemarker.mvc.po;
+
+import java.util.Map;
+
 public class Class {
-	private String packagename;  
-    private String classname;  
-    private String[] imports;  
-    private String tableName;
+	private String packagename;//com.kiiik.webmanager.user.po  
+    private String classname; //Jyfl 
+    private String tableName; //tb_name 
     public Class() {}  
-    public Class(String classname, String[] imports,String packagename,String tableName) {  
+    public Class(String classname,String packagename,String tableName) {  
         super();  
         this.classname = classname;  
-        this.imports = imports;  
         this.packagename=packagename;  
         this.tableName = tableName;
     }  
@@ -19,14 +20,6 @@ public class Class {
    
     public void setClassname(String classname) {  
         this.classname = classname;  
-    }  
-   
-    public String[] getImports() {  
-        return imports;  
-    }  
-   
-    public void setImports(String[] imports) {  
-        this.imports = imports;  
     }  
    
     public String getPackagename() {  

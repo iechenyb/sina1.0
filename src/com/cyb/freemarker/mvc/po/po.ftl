@@ -7,21 +7,27 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.GenericGenerator; 
- @Entity
- @Table(name="${tableName}")
- @Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
- public class ${clazz.classname} {
+/**
+ *作者: ${author}<br>
+ *类描述: 说点啥<br>
+ *创建时间: ${date}
+ */
+@Entity
+@Table(name="${clazz.tableName}")
+@Cache(usage=CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+public class ${clazz.classname} {
  	@Id
 	@GenericGenerator(strategy="uuids",name="user_uuid")
 	@GeneratedValue(generator="user_uuid")
+	@Column(name="id",unique=true, nullable=false,length=50)
 	private String id;   
 	<#list attributes as being>
     <#if being.len=0> 
     @Column
 	<#else> 
-  	@Column(length=${being.len})
+  	@Column(length=${being.len},nullable=${being.nullable?c},columnDefinition="${being.comment}")
 	</#if>    
-    private ${being.type} ${being.name};  
+    private ${being.type} ${being.name};
 	</#list>
 	public String getId() {
 		return id;

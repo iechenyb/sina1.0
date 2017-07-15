@@ -46,13 +46,28 @@ public class DaoGenerator {
         root.put("po", Contants.poName);
         root.put("poPackageName", Contants.PoPackagePath+"."+Contants.poName);
         root.put("author", "iechenyb");
-        root.put("date", DateUtil.timeToSec(new Date()).toString());
+        root.put("date", DateUtil.descTimeToSec());
         
        /* File dir = new File( FileUtils.getAbsolutePathAtClass(DaoGenerator.class));
         if(!dir.exists()){
             dir.mkdirs();
         }*/
-        String dir = System.getProperty("user.dir")+File.separator+"src"+File.separator+Contants.DaoPackagePath.replace(".", File.separator);
+        String dir = System.getProperty("user.dir")+File.separator+"src"+File.separator+root.get("packageName").toString().replace(".", File.separator);
+        FileUtils.genFileDir(dir);
+        OutputStream fos = new  FileOutputStream( new File(dir, root.get("modelName")+"Dao.java")); //java文件的生成目录   
+        Writer out = new OutputStreamWriter(fos);
+        temp.process(root, out);
+        fos.flush();  
+        fos.close();
+        System.out.println("gen "+root.get("packageName")+"."+root.get("modelName")+"Dao.java"+" code success!");
+    }
+    public void gen(Map<String, Object> root) throws IOException, TemplateException{
+        Configuration cfg = new Configuration(Configuration.VERSION_2_3_22);
+        cfg.setDirectoryForTemplateLoading(new File( FileUtils.getAbsolutePathAtClass(DaoGenerator.class)));   
+        cfg.setDefaultEncoding("UTF-8");
+        cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+        Template temp = cfg.getTemplate("dao.ftl");
+        String dir = System.getProperty("user.dir")+File.separator+"src"+File.separator+root.get("packageName").toString().replace(".", File.separator);
         FileUtils.genFileDir(dir);
         OutputStream fos = new  FileOutputStream( new File(dir, root.get("modelName")+"Dao.java")); //java文件的生成目录   
         Writer out = new OutputStreamWriter(fos);
