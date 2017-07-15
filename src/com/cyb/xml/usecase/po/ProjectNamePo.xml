@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pos basePackagePath="com.kiiik.webmanager">
+	    <po tablename="tb_user" name="User" packagename="user.po" update="true">
+	        <property>
+		        <name>jysmc1</name>
+		        <type>String</type>
+		        <length>24</length>
+		        <nullable>false</nullable>
+		        <comment>交易所名称</comment>
+	        </property>
+	        <property>
+		        <name>jysmc2</name>
+		        <type>String</type>
+		        <length>24</length>
+		        <nullable>false</nullable>
+		        <comment>交易所名称</comment>
+	        </property>
+	        <property>
+		        <name>jysmc3</name>
+		        <type>String</type>
+		        <length>24</length>
+		        <nullable>false</nullable>
+		        <comment>交易所名称</comment>
+	        </property>
+	    </po>
+	    <po tablename="tb_role" name="Role" packagename="role.po" update="true">
+	        <property>
+		        <name>jysmc</name>
+		        <type>String</type>
+		        <length>24</length>
+		        <nullable>false</nullable>
+		        <comment>交易所名称</comment>
+	        </property>
+	    </po>
+</pos>

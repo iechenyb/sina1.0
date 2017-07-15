@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<templates>
+<template autoinsert="false" context="methodcomment_context" deleted="false" description="Comment for non-overriding methods" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.methodcomment" name="methodcomment">
+/**
+ *作者 : iechenyb&lt;br&gt;
+ *方法描述: 说点啥&lt;br&gt;
+ *创建时间: 2017年7月15日hj12
+ *${tags}
+*/
+</template>
+</templates>

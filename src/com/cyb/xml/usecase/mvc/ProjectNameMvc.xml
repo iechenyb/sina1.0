@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 通过配置不同的basePackagePath+packagePath可以创建不同的mvc架构
+一个mvc标签代表一个功能点
+-->
+<mvcs basePackagePath="com.kiiik.webmanager">
+	 <!-- 一个功能点一个mvc层级 -->
+     <mvc packagePath="user" modelName="User" poname="User" update="true" baseuri="user"/>
+     <mvc packagePath="role" modelName="Role" poname="Role" update="true" baseuri="role"/>
+     <!-- 只有一个mvc层级 -->
+     <mvc packagePath="" modelName="User" poname="User" update="true" baseuri="user"/>
+     <mvc packagePath="" modelName="Role" poname="Role" update="true" baseuri="role"/>
+</mvcs>
