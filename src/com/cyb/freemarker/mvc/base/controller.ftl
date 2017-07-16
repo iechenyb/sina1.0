@@ -112,7 +112,8 @@ public class ${modelName}Controller extends BaseController {
 		   ${po?uncap_first}.setCzymc(user.getUsername());
 		   ${po?uncap_first}.setCzsj(DateUtil.date2long14());
 		   ${po?uncap_first}.setZt(-1);
-		   jyflService.update(${po?uncap_first});
+		   ${modelName?uncap_first}Service.update(${po?uncap_first});
+		   msgMap.put("t",  ${po?uncap_first});
 	   }catch(Exception e){
 		   e.printStackTrace();
 		   setMsgMap(FAILURE, "信息删除失败！");

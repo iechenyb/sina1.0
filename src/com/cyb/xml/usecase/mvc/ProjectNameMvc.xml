@@ -7,6 +7,6 @@
      <mvc packagePath="user" modelName="User" poname="User" update="true" baseuri="user"/>
      <mvc packagePath="role" modelName="Role" poname="Role" update="true" baseuri="role"/>
      <!-- 只有一个mvc层级 -->
-     <mvc packagePath="" modelName="User" poname="User" update="true" baseuri="user"/>
+     <mvc packagePath="model" modelName="Model" poname="Object" update="true" baseuri="model"/>
      <mvc packagePath="" modelName="Role" poname="Role" update="true" baseuri="role"/>
 </mvcs>
