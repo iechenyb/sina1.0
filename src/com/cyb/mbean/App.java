@@ -4,7 +4,7 @@ import java.lang.management.ManagementFactory;
 
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
-
+//使用javajdk底层工具查看并修改属性值
 public class App {
 	 public static void main(String[] args) throws Exception {  
 	        // 创建MBeanServer  
