@@ -51,7 +51,7 @@ import javax.security.auth.login.FailedLoginException;
 import javax.security.auth.login.LoginException;
 import javax.security.auth.spi.LoginModule;
 
-import org.jasig.cas.authentication.principal.SimplePrincipal;
+import org.jboss.security.SimplePrincipal;
 
 /**
  * <p> This sample LoginModule authenticates users with a password.
