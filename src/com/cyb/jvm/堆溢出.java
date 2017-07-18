@@ -3,7 +3,7 @@ package com.cyb.jvm;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.cyb.collection.User;
+import com.cyb.collection.po.User;
 
 public class 堆溢出 {
 	//-Xmx20m -Xms5m  “-XX:OnOutOfMemoryError=D:/tools/jdk1.7_40/bin/printstack.bat %p”  

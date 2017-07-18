@@ -1,6 +1,6 @@
 package com.cyb.youhua;
 
-import com.cyb.collection.User;
+import com.cyb.collection.po.User;
 
 public class 循环创建对象 {
 	 public static void main(String[] args) {

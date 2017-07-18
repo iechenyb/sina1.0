@@ -1,6 +1,6 @@
 package com.cyb.jvm;
 
-import com.cyb.collection.User;
+import com.cyb.collection.po.User;
 
 public class 指令测试 {
 	static int i0 = 20;

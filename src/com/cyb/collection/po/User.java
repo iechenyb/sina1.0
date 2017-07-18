@@ -1,4 +1,4 @@
-package com.cyb.collection;
+package com.cyb.collection.po;
 
 import com.cyb.shejimoshi.原型模式;
 

@@ -8,7 +8,7 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.cyb.collection.CollectionFactory;
+import com.cyb.collection.common.CollectionFactory;
 import com.cyb.file.FileUtils;
 
 import freemarker.template.Configuration;

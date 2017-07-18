@@ -1,4 +1,4 @@
-package com.cyb.collection;
+package com.cyb.collection.list;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.cyb.collection.common.CollectionFactory;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 

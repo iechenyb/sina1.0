@@ -4,7 +4,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.cyb.collection.User;
+import com.cyb.collection.po.User;
 import com.cyb.reflect.MethodUtils;
 
 //http://blog.csdn.net/qq_14996421/article/details/51598611
@@ -62,13 +62,13 @@ public class CallMethod {
 			System.out.println("return calssname: " + returnValue1.getClass());
 			System.out.println("return canonicalName: "
 					+ returnValue1.getClass().getCanonicalName());
-			if (returnValue1 instanceof com.cyb.collection.User) {
-				System.out.println(((com.cyb.collection.User) returnValue1)
+			if (returnValue1 instanceof com.cyb.collection.po.User) {
+				System.out.println(((com.cyb.collection.po.User) returnValue1)
 						.getName());
 			}
 			if (returnValue1.getClass().getCanonicalName()
 					.equals("com.cyb.collection.User")) {
-				System.out.println(((com.cyb.collection.User) returnValue1)
+				System.out.println(((com.cyb.collection.po.User) returnValue1)
 						.getName());
 			}
 

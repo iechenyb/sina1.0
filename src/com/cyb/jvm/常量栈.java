@@ -1,6 +1,6 @@
 package com.cyb.jvm;
 
-import com.cyb.collection.User;
+import com.cyb.collection.po.User;
 
 public class 常量栈 {
     

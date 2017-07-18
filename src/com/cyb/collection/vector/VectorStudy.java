@@ -1,4 +1,4 @@
-package com.cyb.collection;
+package com.cyb.collection.vector;
 
 import java.util.Vector;
 

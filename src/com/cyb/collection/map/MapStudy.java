@@ -1,10 +1,13 @@
-package com.cyb.collection;
+package com.cyb.collection.map;
 
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
+
+import com.cyb.collection.po.User;
+import com.cyb.collection.po.User_;
 
 
 public class MapStudy {

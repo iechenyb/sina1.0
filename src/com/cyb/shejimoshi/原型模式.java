@@ -7,7 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import com.cyb.collection.User;
+import com.cyb.collection.po.User;
 
 public class 原型模式 implements Cloneable, Serializable {  
 	  

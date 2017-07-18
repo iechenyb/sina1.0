@@ -1,4 +1,4 @@
-package com.cyb.collection;
+package com.cyb.collection.po;
 
 public class User_ implements Comparable<User_>{
 	private String name;

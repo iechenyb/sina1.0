@@ -1,8 +1,11 @@
-package com.cyb.collection;
+package com.cyb.collection.set;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
+
+import com.cyb.collection.po.User;
+import com.cyb.collection.po.User_;
 
 
 public class SetStudy {

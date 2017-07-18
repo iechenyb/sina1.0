@@ -1,4 +1,4 @@
-package com.cyb.collection;
+package com.cyb.collection.common;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import com.cyb.collection.po.User;
 
 public class CollectionFactory {
 	public static List<Integer> list = new ArrayList<Integer>();

@@ -2,7 +2,7 @@ package com.cyb.youhua;
 
 import java.util.List;
 
-import com.cyb.collection.CollectionFactory;
+import com.cyb.collection.common.CollectionFactory;
 
 public class 数组遍历 {
 

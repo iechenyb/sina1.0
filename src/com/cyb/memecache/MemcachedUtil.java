@@ -4,8 +4,8 @@ import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.cyb.collection.CollectionFactory;
-import com.cyb.collection.User;
+import com.cyb.collection.common.CollectionFactory;
+import com.cyb.collection.po.User;
 import com.cyb.socket.one2one.Message;
 import com.danga.MemCached.MemCachedClient;
 import com.danga.MemCached.SockIOPool;

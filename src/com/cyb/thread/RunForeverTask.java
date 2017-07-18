@@ -1,6 +1,6 @@
 package com.cyb.thread;
 
-import com.cyb.collection.User;
+import com.cyb.collection.po.User;
 
 public class RunForeverTask  implements Runnable{
 	Long total = 0l;

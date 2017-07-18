@@ -3,7 +3,7 @@ package com.cyb.jvm;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.cyb.collection.User;
+import com.cyb.collection.po.User;
 
 public class 堆和栈 {
   public static void main(String[] args) {

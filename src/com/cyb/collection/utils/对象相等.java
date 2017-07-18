@@ -1,4 +1,7 @@
-package com.cyb.collection;
+package com.cyb.collection.utils;
+
+import com.cyb.collection.po.User;
+import com.cyb.collection.po.User_;
 
 public class 对象相等 {
 	 public static void main(String[] args) {
