@@ -4,8 +4,11 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import com.cyb.collection.common.CollectionFactory;
+
 public class ReflectUtils {
 	public static void main(String[] args) throws Exception {
+	    CollectionFactory.build(10);
 		UserBean bean = new UserBean();
 		bean.setId(1000);
 		bean.setAddress("武汉");
@@ -17,6 +20,7 @@ public class ReflectUtils {
 		bean1.setAge(100);
 		bean1.setName("iechenyb");
 		printNameValueOfObject(bean);
+		printNameValueOfObject(CollectionFactory.getMap());
 		System.out.println("************************");
 		String[] arr = {"id","Address","age","name"};
 		for(int i=0;i<arr.length;i++){
@@ -41,8 +45,8 @@ public class ReflectUtils {
 	   }      
 	}    
 	   
-	public static void compareObject(Reflector bean,Reflector bean1) throws InvocationTargetException {
-		Class<? extends Reflector> userCla;
+	public static void compareObject(Object bean,Object bean1) throws InvocationTargetException {
+		Class<? extends Object> userCla;
 		try {
 			userCla = bean.getClass();
 			Field[] fs = userCla.getDeclaredFields();
@@ -84,8 +88,8 @@ public class ReflectUtils {
 			e.printStackTrace();
 		}
 	}
-	public static void printNameValueOfObject(Reflector bean) throws InvocationTargetException {
-		Class<? extends Reflector> userCla;
+	public static void printNameValueOfObject(Object bean) throws InvocationTargetException {
+		Class<? extends Object> userCla;
 		try {
 			userCla = bean.getClass();
 			Field[] fs = userCla.getDeclaredFields();
