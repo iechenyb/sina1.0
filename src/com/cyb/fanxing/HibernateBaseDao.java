@@ -2,8 +2,8 @@ package com.cyb.fanxing;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-
-public abstract class HibernateBaseDao<T,T1> implements BaseDao<T,T1> {  
+//implements BaseDao<T,T1>
+public abstract class HibernateBaseDao<T,T1>  {  
     private Class<T> entityClass;  
     private Class<T1> entityClass1;  
   
@@ -21,9 +21,9 @@ public abstract class HibernateBaseDao<T,T1> implements BaseDao<T,T1> {
         entityClass1 = (Class<T1>) params[1];
         System.out.println("entityClass="+entityClass);
         System.out.println("entityClass1="+entityClass1);
+        
     }  
   
-    @Override  
     public T get(String id) {  
         try {  
             return entityClass.newInstance();  
@@ -34,7 +34,6 @@ public abstract class HibernateBaseDao<T,T1> implements BaseDao<T,T1> {
         }  
         return null;  
     }  
-    @Override  
     public T1 getT1(String id) {  
         try {  
             return entityClass1.newInstance();  
@@ -44,6 +43,13 @@ public abstract class HibernateBaseDao<T,T1> implements BaseDao<T,T1> {
             e.printStackTrace();  
         }  
         return null;  
-    }  
+    } 
+    
+    public Class<T> getT1(){
+    	return entityClass;
+    }
+    public Class<T1> getT2(){
+    	return entityClass1;
+    }
   
 }  

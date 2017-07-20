@@ -19,7 +19,11 @@ import javax.tools.ToolProvider;
 
 import com.cyb.Person;
 import com.cyb.file.FileUtils;
-
+/**
+ * 自定义一个java.txt，通过txt生成java类文件，然后进行编译和加载、执行。
+ * @author iechenyb
+ *
+ */
 public class ClassLoaderUtils extends ClassLoader{  
 	public ClassLoaderUtils(){
 		
@@ -65,7 +69,7 @@ public class ClassLoaderUtils extends ClassLoader{
     protected Class<?> findClass(String path,String name) throws ClassNotFoundException {  
         InputStream in = getInputStream(path);  
         if(in == null){  
-            System.out.println("自定义加载失败！");  
+            System.out.println(this+"当前层级未能找到class，提交到上一层及加载！");  //委托代理查询
             return super.loadClass(name);  
         }  
         byte[] data = this.getData(in);    
@@ -77,7 +81,7 @@ public class ClassLoaderUtils extends ClassLoader{
     protected Class<?> findClass(String name) throws ClassNotFoundException {  
         InputStream in = getInputStreamPackage(name);  
         if(in == null){  
-            System.out.println("自定义加载失败！");  
+        	System.out.println(this+"当前层级未能找到class，提交到上一层及加载！");
             return super.loadClass(name);  
         }  
         byte[] data = this.getData(in);    
@@ -87,7 +91,7 @@ public class ClassLoaderUtils extends ClassLoader{
    static String packageName = "com.cyb.jvm.classloader";//已知包路径
    static String clsName = "IEChenyb";
    static String src = System.getProperty("user.dir")+"/ChenybPerson.txt";//源文档名称可以任意，存储位置任意
-   static String base="/haha/";
+   static String base="/compile/";
    static String path = System.getProperty("user.dir")+base+packageName.replace(".", "/");
    static String toJavaFile = path+File.separator+clsName+".java";//生成的java类名必须和代码的public class类名相同
    static String toClassFile = path+File.separator+clsName+".class";
@@ -102,7 +106,7 @@ public class ClassLoaderUtils extends ClassLoader{
         load2();
         load3();
         load4();
-        //javaFile.delete();
+        new File(toJavaFile).delete();
     }  
     public static void genJava() throws IOException{
     	System.out.println("------------genJava-------------");
@@ -125,14 +129,15 @@ public class ClassLoaderUtils extends ClassLoader{
     }
     public static void compileJave() throws IOException{
     	System.out.println("-------------compileJave------------");
-    	/** 动态编译这段Java代码,生成.class文件 */
+    	/** 动态编译这段Java代码,生成.class文件，默认生成到java源文件同目录 */
         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
         StandardJavaFileManager sjfm = compiler.getStandardFileManager(null, null, null);
+        System.out.println(toClassFile);
         Iterable<? extends JavaFileObject> iter = sjfm.getJavaFileObjects(toJavaFile);
         CompilationTask ct = compiler.getTask(null, sjfm, null, null, null, iter);
         ct.call();
         sjfm.close();
-        System.out.println(toClassFile);
+       
     }
     public static void load1() throws InstantiationException, IllegalAccessException, ClassNotFoundException{
     	//通过class的文件流加载
@@ -140,6 +145,7 @@ public class ClassLoaderUtils extends ClassLoader{
     	ClassLoaderUtils cu = new ClassLoaderUtils(); //从默认的classpath下查找
 	    Chenyb cyb_ = (Chenyb) cu.findClass(toClassFile,packageName+"."+clsName).newInstance(); 
 	    cyb_.print(null);
+	    cyb_.print("zhuhx");
     }
     public static void load1_1() throws InstantiationException, IllegalAccessException, ClassNotFoundException{
     	//通过class的文件流加载
@@ -147,6 +153,7 @@ public class ClassLoaderUtils extends ClassLoader{
     	ClassLoaderUtils cu = new ClassLoaderUtils(); //从默认的classpath下查找
 	    Chenyb cyb_ = (Chenyb) cu.findClass(packageName+"."+clsName).newInstance(); 
 	    cyb_.print(null);
+	    cyb_.print("iezhuhx");
     }
     public static void load2() throws InstantiationException, IllegalAccessException, ClassNotFoundException, MalformedURLException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
     	//通过包名加载
@@ -164,8 +171,18 @@ public class ClassLoaderUtils extends ClassLoader{
         Object obj = constructor.newInstance("heihei!");
         cyb  = (Chenyb) obj;
         cyb.print(null);
+        cyb.print("cheheh");
    }
-    
+    /**
+     * 
+     *作者 : 从系统的编译目录进行字节码查找<br>
+     *方法描述: 说点啥<br>
+     *创建时间: 2017年7月15日hj12
+     *@throws MalformedURLException
+     *@throws ClassNotFoundException
+     *@throws InstantiationException
+     *@throws IllegalAccessException
+     */
     public static void load3() throws MalformedURLException, ClassNotFoundException, InstantiationException, IllegalAccessException{
     	System.out.println("------------load3-------------"); 
     	//从系统的classes目录加载
@@ -177,6 +194,16 @@ public class ClassLoaderUtils extends ClassLoader{
 		person.setAge("200");
 		System.out.println("my class person getage="+person.getAge());
     }
+    /**
+     * 
+     *作者 : iechenyb<br>
+     *方法描述: 说点啥<br>
+     *创建时间: 2017年7月15日hj12
+     *@throws MalformedURLException
+     *@throws ClassNotFoundException
+     *@throws InstantiationException
+     *@throws IllegalAccessException
+     */
     public static void load4() throws MalformedURLException, ClassNotFoundException, InstantiationException, IllegalAccessException{
     	System.out.println("------------load4-------------");
     	ClassLoaderUtils myLoader = new ClassLoaderUtils();

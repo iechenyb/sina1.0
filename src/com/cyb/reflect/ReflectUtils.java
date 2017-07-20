@@ -19,8 +19,13 @@ public class ReflectUtils {
 		bean1.setAddress("武汉");
 		bean1.setAge(100);
 		bean1.setName("iechenyb");
-		printNameValueOfObject(bean);
-		printNameValueOfObject(CollectionFactory.getMap());
+		show(bean);
+		show(CollectionFactory.getMap());
+		Bean po = new Bean("","");
+		BeanVo vo = new BeanVo("1","chenyb");
+		setFieldValueByName("name",po,"who am i");
+		show(po);
+		//copy(vo, po);
 		System.out.println("************************");
 		String[] arr = {"id","Address","age","name"};
 		for(int i=0;i<arr.length;i++){
@@ -44,6 +49,20 @@ public class ReflectUtils {
 	       return null;      
 	   }      
 	}    
+	public static void setFieldValueByName(String fieldName,Object val, Object o)   
+	{      
+	   try   
+	   {      
+	       String firstLetter = fieldName.substring(0, 1).toUpperCase();      
+	       String setter = "set" + firstLetter + fieldName.substring(1); 
+	       System.out.println(setter);
+	       Method method = o.getClass().getMethod(setter,String.class);      
+	       method.invoke(o, new Object[] {val});      
+	   } catch (Exception e)   
+	   {      
+	       System.out.println("属性不存在");      
+	   }      
+	}
 	   
 	public static void compareObject(Object bean,Object bean1) throws InvocationTargetException {
 		Class<? extends Object> userCla;
@@ -88,7 +107,48 @@ public class ReflectUtils {
 			e.printStackTrace();
 		}
 	}
-	public static void printNameValueOfObject(Object bean) throws InvocationTargetException {
+	/**
+	 * 
+	 *作者 : iechenyb<br>
+	 *方法描述: 说点啥<br>
+	 *创建时间: 2017年7月15日hj12
+	 *@param from vo
+	 *@param to po
+	 *@throws InvocationTargetException
+	 */
+	public static void copy(Object from,Object to) throws InvocationTargetException {
+		Class<? extends Object> userCla;
+		try {
+			userCla = from.getClass();
+			Field[] fs = userCla.getDeclaredFields();
+			for (int i = 0; i < fs.length; i++) {
+				Field f = fs[i];
+				f.setAccessible(true); // 设置些属性是可以访问的
+				Object val = f.get(from);// 得到此属性的值
+				String type = f.getType().toString();// 得到此属性的类型
+				if (type.endsWith("File")){
+				
+				}if (type.endsWith("String")) {
+					f.set(to, val); // 给属性设值
+				} else if (type.endsWith("int") || type.endsWith("Integer")) {
+					f.set(to, val); // 给属性设值
+				}else{
+					
+				}
+			}
+			show(from);
+			System.out.println("----------------");
+			show(to);
+			
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+	}
+	public static void show(Object bean) throws InvocationTargetException {
 		Class<? extends Object> userCla;
 		try {
 			userCla = bean.getClass();

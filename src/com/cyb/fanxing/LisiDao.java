@@ -5,7 +5,6 @@ public class LisiDao extends HibernateBaseDao<Lisi,Zhangsan> {
 
 	@Override
 	public Zhangsan getT1(String id) {
-		// TODO Auto-generated method stub
 		return null;
 	}  
 } 

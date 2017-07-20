@@ -7,9 +7,9 @@ import javax.persistence.Table;
 @Table(name = "tb_bean")
 public class Bean {
 	@Id
-	@Column(name="id_")
+	@Column(name="id")
 	public String id;
-	@Column(name = "name_db")
+	@Column(name = "name")
 	public String name;
 	@Column
 	public String url="";

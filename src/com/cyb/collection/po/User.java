@@ -1,8 +1,14 @@
 package com.cyb.collection.po;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
 import com.cyb.shejimoshi.原型模式;
 
-public class User extends 原型模式 implements Comparable<User>   {
+public class User extends 原型模式 implements Comparable<User>,Serializable     {
 	/**
 	 * 
 	 */
@@ -86,7 +92,7 @@ public class User extends 原型模式 implements Comparable<User>   {
 		    return 1 ;  
 		return 0;
 	}
-	public String toString(){
+	/*public String toString(){
 		return "#"+this.name+","+this.pwd+"#";
-	}
+	}*/ 
 }

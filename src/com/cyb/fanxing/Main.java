@@ -8,5 +8,10 @@ public class Main {
 	     LisiDao lisiDao = new LisiDao();  
 	     Lisi lisi = lisiDao.get(null); 
 	     System.out.println(lisi);
+	     System.out.println(lisiDao.getT1());
+	     System.out.println(lisiDao.getT2());
+	     LisiService service = new LisiService();
+	     System.out.println(service.dao.getT1());
+	     System.out.println(service.dao.getT2());
 	}
 }
