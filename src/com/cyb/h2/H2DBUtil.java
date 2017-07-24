@@ -99,7 +99,7 @@ public class H2DBUtil {
 		   Statement stmt = conn.createStatement();
 		   ResultSet rs = stmt.executeQuery("SELECT 1+1 FROM dual ");   
 		  while(rs.next()) {   
-			  log.info("serverģʽ��1+1="+rs.getInt(1));
+			  log.info("server1+1="+rs.getInt(1));
 		  }
 		  conn.close();
 		  log.info("H2DB TCP test Success!");
@@ -114,7 +114,7 @@ public class H2DBUtil {
 		   Statement stmt = conn.createStatement();
 		   ResultSet rs = stmt.executeQuery("SELECT 1+1 FROM dual ");   
 		  while(rs.next()) {   
-			  log.info("Memģʽ��1+1="+rs.getInt(1));
+			  log.info("Mem1+1="+rs.getInt(1));
 		  }
 		  conn.close();
 		  log.info("H2DB Mem test Success!");

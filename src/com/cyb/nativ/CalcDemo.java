@@ -1,7 +1,9 @@
 package com.cyb.nativ;
-
-import com.cyb.date.DateUtil;
-
+/**
+ * Can't load IA 32-bit .dll on a AMD 64-bit platform
+ *
+ *
+ */
 public class CalcDemo {
 	
 	 static {
@@ -9,12 +11,12 @@ public class CalcDemo {
 		 System.loadLibrary("CalcClass");
 		 System.loadLibrary("CalcDemo");
 	 }	 
-	 public native  int MySub( int x,int y) ;
+	 
+	 public static native  int MySub( int x,int y) ;
+	 
 	 public static void main(String[] args) {
-		/*System.out.println(System.getProperty("java.library.path"));
-		int ret = new CalcDemo().MySub(1, 2);
+		System.out.println(System.getProperty("java.library.path"));
+		int ret = MySub(1, 2);
 		System.out.println(ret);
-		System.out.println("xxx");*/
-		 DateUtil.format("xxx", "xxxx");
 	}
 }

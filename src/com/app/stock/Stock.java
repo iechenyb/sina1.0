@@ -1,12 +1,16 @@
 package com.app.stock;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
 @Table(name="stock")
-public class Stock{
+public class Stock implements Serializable{
+	/**
+	 * 
+	 */
 	@Column(name="id")
 	public String id;
 	@Column(name="name")

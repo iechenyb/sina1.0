@@ -42,7 +42,7 @@ public class RedisClient {
         config.setMaxIdle(5); 
         config.setMaxWait(1000l); 
         config.setTestOnBorrow(false); 
-        jedisPool = new JedisPool(config,"127.0.0.1",port);
+        jedisPool = new JedisPool(config,ComputerUtil.getRealIP(),port);
     }
     
     /** 
@@ -63,7 +63,9 @@ public class RedisClient {
         // 构造池 
         shardedJedisPool = new ShardedJedisPool(config, shards); 
     } 
-
+    public static void main(String[] args) {
+    	new RedisClient().show("hash");
+	}
     public void show(String type) {  
     	if("key".equals(type)){
     		KeyOperate(); 

@@ -8,10 +8,25 @@ import org.apache.commons.logging.LogFactory;
 import redis.clients.jedis.Jedis;
 
 import com.cyb.date.DateUtil;
+import com.cyb.redis.RedisClient;
 
-public class RealQutoesMapper {
+public class FiveMinuteQutoesUtils {
 	static String RealPrix="Qutoes:Real:";
-	static Log log = LogFactory.getLog(RealQutoesMapper.class);
+	public static void main(String[] args) {
+		RedisClient client = new RedisClient();
+		Jedis jedis = client.getJedis();
+		String2Object("","",jedis);
+	}
+	static Log log = LogFactory.getLog(FiveMinuteQutoesUtils.class);
+	/**
+	 * 
+	 *作者 : iechenyb<br>
+	 *方法描述: 最新实时行情更新<br>
+	 *创建时间: 2017年7月15日hj12
+	 *@param code
+	 *@param msg
+	 *@param jedis
+	 */
 	public static void String2Object(String code,String msg,Jedis jedis){	
 		long s = System.currentTimeMillis();
 		String qutoes ="";
@@ -30,24 +45,13 @@ public class RealQutoesMapper {
 			jedis.hset(RealPrix+code, "columcash",dataArr[Contants.COLUMNCASH] );
 			jedis.hset(RealPrix+code, "turnvolume",dataArr[Contants.TURNVOLUME] );
 			jedis.hset(RealPrix+code, "systime",DateUtil.timeToMilis(new Date()) );
-		/*	jedis.hset(RealPrix+code, "name","" );
-			jedis.hset(RealPrix+code, "open","" );
-			jedis.hset(RealPrix+code, "preclose","" );
-			jedis.hset(RealPrix+code, "high","" );
-			jedis.hset(RealPrix+code, "low","" );
-			jedis.hset(RealPrix+code, "price","" );
-			jedis.hset(RealPrix+code, "close","" );
-			jedis.hset(RealPrix+code, "day","" );
-			jedis.hset(RealPrix+code, "time","" );
-			jedis.hset(RealPrix+code, "columcash","" );
-			jedis.hset(RealPrix+code, "turnvolume","" );*/
-			jedis.hset(RealPrix+code, "systime",DateUtil.timeToMilis(new Date()) );
 		} catch (Exception e) {
 			log.error(qutoes+"->"+e.toString());
 		}
 		long e = System.currentTimeMillis();
 		log.info("处理记录数="+((e-s)/1000)+"秒"+(e-s)%1000+"毫秒");
 	}
+	
 	public static void String2ObjectHK(String code,String msg,Jedis jedis ){		
 		long s = System.currentTimeMillis();
 		String qutoes ="";
@@ -65,18 +69,6 @@ public class RealQutoesMapper {
 			jedis.hset(RealPrix+code, "time",dataArr[Contants.TIME_] );
 			jedis.hset(RealPrix+code, "columcash",dataArr[Contants.CJE] );
 			jedis.hset(RealPrix+code, "turnvolume",dataArr[Contants.CJL] );
-			jedis.hset(RealPrix+code, "systime",DateUtil.timeToMilis(new Date()) );
-			/*jedis.hset(RealPrix+code, "name","" );
-			jedis.hset(RealPrix+code, "open","");
-			jedis.hset(RealPrix+code, "preclose","" );
-			jedis.hset(RealPrix+code, "high","" );
-			jedis.hset(RealPrix+code, "low","");
-			jedis.hset(RealPrix+code, "price","" );
-			jedis.hset(RealPrix+code, "close","" );
-			jedis.hset(RealPrix+code, "day","" );
-			jedis.hset(RealPrix+code, "time","" );
-			jedis.hset(RealPrix+code, "columcash","" );
-			jedis.hset(RealPrix+code, "turnvolume","" );*/
 			jedis.hset(RealPrix+code, "systime",DateUtil.timeToMilis(new Date()) );
 		} catch (Exception e) {
 			log.error(qutoes+"->"+e.toString());

@@ -9,11 +9,14 @@ public class RedisMain {
 		//new RedisClient().readData();
 		RedisClient client = new RedisClient();
 		Jedis jedis = client.getJedis();
-		for(int i=0;i<10000;i++){
+		for(int i=0;i<100;i++){
 			for(int j=0;j<10;j++){
-				jedis.hset("Qutoes:"+i+":"+j, "name", "chenyb");
+				/*jedis.hset("Qutoes:"+i+":"+j, "name", "chenyb");
 				jedis.hset("Qutoes:"+i+":"+j, "age", j+i+"");
-				jedis.hset("Qutoes:"+i+":"+j, "tel", "139387"+i);
+				jedis.hset("Qutoes:"+i+":"+j, "tel", "139387"+i);*/
+				jedis.hdel("Qutoes:"+i+":"+j, "name","chenyb");
+				jedis.hdel("Qutoes:"+i+":"+j, "age", j+i+"");
+				jedis.hdel("Qutoes:"+i+":"+j, "tel", "139387"+i);
 			}
 		}
 		System.out.println("over!");
