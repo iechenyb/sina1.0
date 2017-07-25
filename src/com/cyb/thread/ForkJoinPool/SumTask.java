@@ -22,7 +22,7 @@ public class SumTask extends RecursiveTask<Integer> {
 
     private static final long serialVersionUID = -6196480027075657316L;
 
-    private static final int THRESHOLD = 1000;
+    private static final int THRESHOLD = 0;
 
     private long[] array;
 
@@ -46,7 +46,7 @@ public class SumTask extends RecursiveTask<Integer> {
             }
         } else {
             // 1. 一个大任务分割成两个子任务
-            int mid = (low + high) >>> 1;
+            int mid = (low + high) >> 1;
             SumTask left = new SumTask(array, low, mid);
             SumTask right = new SumTask(array, mid + 1, high);
            
@@ -62,7 +62,7 @@ public class SumTask extends RecursiveTask<Integer> {
     }
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        long[] array = genArray(1000000);
+        long[] array = genArray(10);
         System.out.println("arr="+Arrays.toString(array));
 
         // 1. 创建任务

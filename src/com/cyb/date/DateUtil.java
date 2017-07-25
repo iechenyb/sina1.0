@@ -27,15 +27,18 @@ public class DateUtil {
 	   String dateString = formatter.format(date);
 	   return dateString;
    }
+   public static String timeToMilis(){
+	   return timeToMilis(new Date());
+   }
+   
    public static String timeToSec(Date date){
 	   formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	   String dateString = formatter.format(date);
 	   return dateString;
    }
+   
    public static String timeToSec(){
-	   formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	   String dateString = formatter.format(new Date());
-	   return dateString;
+	   return timeToSec(new Date());
    }
    public static String descTimeToSec(){
 	   formatter = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
@@ -47,25 +50,36 @@ public class DateUtil {
 	   String dateString = formatter.format(date);
 	   return Long.valueOf(dateString);
    }
+   
+   public static Long date2long10(){
+	   return Long.valueOf(date2long10(new Date()));
+   }
+   
    public static Long date2long8(Date date){
 	   formatter = new SimpleDateFormat("yyyyMMdd");
 	   String dateString = formatter.format(date);
 	   return Long.valueOf(dateString);
    }
+   
+   public static Long date2long8(){
+	   return Long.valueOf(date2long8(new Date()));
+   }
+   
    public static Long date2long14(Date date){
 	   formatter = new SimpleDateFormat("yyyyMMddHHmmss");
 	   String dateString = formatter.format(date);
 	   return Long.valueOf(dateString);
    }
+   
    public static String date2long14(){
-	   formatter = new SimpleDateFormat("yyyyMMddHHmmss");
-	   return formatter.format(new Date());
+	   return date2long14(new Date()).toString();
    }
+   
    //date 20150202 -> 2015-02-02
    public static String date2long10(String date){
 	   if(date.length()!=8&&date.length()!=14){
 		   try {
-			throw new Exception("参数必须为8位或者12位数字");
+			throw new Exception("参数必须为8位或者14位数字");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "error";
@@ -80,6 +94,10 @@ public class DateUtil {
 	   return dateString;
    }
    public static Calendar calendar(String yyyymmddhhmmss){
+	   yyyymmddhhmmss = yyyymmddhhmmss
+			   .replaceAll("-", "")
+			   .replaceAll(":", "").replaceAll("\\", "")
+			   .replaceAll(" ", "").replace("/", "");
 	   if(yyyymmddhhmmss.length()!=8&&yyyymmddhhmmss.length()!=14){
 		   try {
 			throw new Exception("参数必须为8位或者12位数字");

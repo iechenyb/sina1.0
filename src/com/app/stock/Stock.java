@@ -27,6 +27,8 @@ public class Stock implements Serializable{
 	public String industry;//A股 B股等
 	@Column(name="timeofmarket")
 	public String timeOfMarket;//上市时间
+	@Column(name="code_")
+	public String code_;
 	//A股总股本,A股流通股本
 	public String getId() {
 		return id;
@@ -100,6 +102,15 @@ public class Stock implements Serializable{
 	        userInfo.setExchange(rs.getString("exchange3"));
 	        return userInfo;
 	}
+	
+	public String getCode_() {
+		return code_;
+	}
+
+	public void setCode_(String code_) {
+		this.code_ = code_;
+	}
+
 	public String toString(){
 		return this.code+","+this.name+", "+this.industry+","+this.exchange;
 	}

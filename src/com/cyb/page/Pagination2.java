@@ -9,7 +9,7 @@ import com.cyb.reflect.ReflectUtils;
  *
  * @param <T>
  */
-public class Pagination implements Serializable{
+public class Pagination2 implements Serializable{
     
     private static final long serialVersionUID = 5104811017362151385L;
 
@@ -47,7 +47,7 @@ public class Pagination implements Serializable{
      * @param pageSize      每页显示记录数
      * @param recordCount   总记录数
      */
-    public  Pagination(int currentPage,int pageSize,long recordCount) {
+    public  Pagination2(int currentPage,int pageSize,long recordCount) {
         this.currentPage = currentPage;
         if(currentPage < 1) {
             this.currentPage = 1;
@@ -82,7 +82,7 @@ public class Pagination implements Serializable{
             this.hasNextPage = true;//有下一页
         }
         //偏移量
-        this.offset = (this.currentPage - 1)*pageSize;
+        this.offset = (this.currentPage - 1)*pageSize+1;
     }
     public int getCurrentPage() {
         return currentPage;
@@ -141,10 +141,10 @@ public class Pagination implements Serializable{
     }
 
     public static void main(String[] args) throws InvocationTargetException {
-    	Pagination p = new Pagination(1,20,300);
+    	Pagination2 p = new Pagination2(1,15,300);
     	for(int i=1;i<p.getPageCount();i++){
-    		Pagination p_ = new Pagination(i,20,300);
-    		System.out.println(p_.getOffset()+","+(p_.getPageSize()*i-1));
+    		Pagination2 p_ = new Pagination2(i,15,300);
+    		System.out.println(p_.getOffset()+","+p_.getPageSize()*i);
     	}
 	}
 }

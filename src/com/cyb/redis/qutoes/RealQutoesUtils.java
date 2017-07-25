@@ -5,10 +5,12 @@ import java.util.Date;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import redis.clients.jedis.Jedis;
-
+import com.app.stock.RealQutoes;
+import com.cyb.UUIDUtils;
 import com.cyb.date.DateUtil;
 import com.cyb.redis.RedisClient;
+
+import redis.clients.jedis.Jedis;
 /**
  * 实时行情计算
  * @author iechenyb
@@ -54,6 +56,30 @@ public class RealQutoesUtils {
 		}
 		//long e = System.currentTimeMillis();
 		//log.info("处理记录数="+((e-s)/1000)+"秒"+(e-s)%1000+"毫秒");
+	}
+	public static RealQutoes String2Qutoes(String qutoesStr,String code){	
+		RealQutoes qutoes = new RealQutoes();
+		qutoes.setId(UUIDUtils.getUUID());
+		try {
+			String[] dataArr = qutoesStr.replaceAll("\"", "").replaceAll(";", "").split(",");
+			qutoes.setCode(code);
+			qutoes.setName(dataArr[Contants.NAME]);
+			qutoes.setOpen(dataArr[Contants.OPEN]);
+			qutoes.setPreclose(dataArr[Contants.PRECLOSE] );
+			qutoes.setHigh(dataArr[Contants.HIGH] );
+			qutoes.setLow(dataArr[Contants.LOW] );
+			qutoes.setPrice(dataArr[Contants.PRICE] );
+			qutoes.setClose(dataArr[Contants.PRICE] );
+			qutoes.setDay(dataArr[Contants.DAY] );
+			qutoes.setTime(dataArr[Contants.TIME] );
+			qutoes.setCash(dataArr[Contants.COLUMNCASH] );
+			qutoes.setVolumn(dataArr[Contants.TURNVOLUME] );
+			qutoes.setRecordTime(DateUtil.timeToMilis() );
+			
+		} catch (Exception e) {
+			log.error(qutoes+"->"+e.toString());
+		}
+		return qutoes;
 	}
 	
 	public static void String2ObjectHK(String code,String msg,Jedis jedis ){		

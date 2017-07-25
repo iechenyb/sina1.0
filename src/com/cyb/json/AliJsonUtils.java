@@ -36,7 +36,7 @@ public class AliJsonUtils {
 	/**
 	 * 将Json文本数据信息转换为JsonObject对象，然后利用键值对的方式获取信息
 	 */
-	private static void json2JsonObjectM1() {
+	public static void json2JsonObjectM1() {
 		// 一个JsonObject文本数据
 		String s = "{\"name\":\"liuzhao\"}";
 		// 将JsonObject数据转换为Json
@@ -52,7 +52,7 @@ public class AliJsonUtils {
 	 * 将Json文本数据转换为JavaBean数据！
 	 * 需要注意的是：这时候的Json文本信息中的键的名称必须和JavaBean中的字段名称一样！键中没有的在这个JavaBean中就显示为null！
 	 */
-	private static void json2BeanM2() {
+	public static void json2BeanM2() {
 		String s = "{\"id\":\"0375\",\"city\":\"平顶山\"}";
 		// 一个简单方便 的方法将Json文本信息转换为JsonObject对象的同时转换为JavaBean对象！
 		Weibo weibo = JSON.parseObject(s, Weibo.class);// Weibo类在下边定义
@@ -65,7 +65,7 @@ public class AliJsonUtils {
 	/**
 	 * 将Map类型的数据转换为JsonString
 	 */
-	private static void complexMap2JsonM9() {
+	public static void complexMap2JsonM9() {
 		Group group = new Group();
 		group.setId(1);
 		group.setName("group");
@@ -96,7 +96,7 @@ public class AliJsonUtils {
 	/**
 	 * 由一个复杂的Object到Json的Demo
 	 */
-	private static void complex2JsonM8() {
+	public static void complex2JsonM8() {
 		Group group = new Group();
 		group.setId(1);
 		group.setName("group");
@@ -121,7 +121,7 @@ public class AliJsonUtils {
 	/**
 	 * 一个相对复杂的例子： JSON文本数据： 首先是JSONObject，转换为JSONArray； 然后将JSONArray转换为JavaBean
 	 */
-	private static void complexExampleM7() {
+	public static void complexExampleM7() {
 		String s = "{js:[{id:\"110000\",\"city\":\"北#001京市\"},{id:\"110000\",\"city\":\"北#002京市\"}"
 				+ ",{id:\"110000\",\"city\":\"北#002京市\"},{id:\"110000\",\"city\":\"北#002京市\"},"
 				+ "{id:\"110000\",\"city\":\"#006北#005京市\"},"
@@ -140,7 +140,7 @@ public class AliJsonUtils {
 	/**
 	 * 将JavaBean转换为JSON对象
 	 */
-	private static void bean2JSONObjectM6() {
+	public static void bean2JSONObjectM6() {
 		Weibo weibo = new Weibo("0373", "洛阳");
 		JSONObject json = (JSONObject) JSON.toJSON(weibo);
 		System.out.println(json.get("id"));
@@ -152,7 +152,7 @@ public class AliJsonUtils {
 	/**
 	 * 将JSON文本转换为JavaBean的集合； 内部实现肯定是：首先转换为JSONArray，然后再转换为List集合
 	 */
-	private static void json2JavaBeanM4() {
+	public static void json2JavaBeanM4() {
 		String s = "[{\"id\":\"0375\",\"city\":\"平顶山\"},{\"id\":\"0377\",\"city\":\"南阳\"}]";
 		List<Weibo> list = JSON.parseArray(s, Weibo.class);
 		for (Weibo weibo : list) {
@@ -168,7 +168,7 @@ public class AliJsonUtils {
 	 * 注意：获取到JSONArray之后（我们这里只是获取到JSONArray而不是JavaBean的List集合）
 	 * 获取JSONArray中的数据转换为String类型需要在外边加"";
 	 */
-	private static void json2JSONArrayM3() {
+	public static void json2JSONArrayM3() {
 		String s = "[{\"id\":\"0375\",\"city\":\"平顶山\"},{\"id\":\"0377\",\"city\":\"南阳\"}]";
 		// 将JSON文本转换为JSONArray
 		JSONArray array = JSON.parseArray(s);
@@ -185,7 +185,7 @@ public class AliJsonUtils {
 	/**
 	 * 将JavaBean转换为Json格式的数据/Json文本 用户数据的传递：例如上传服务器
 	 */
-	private static void bean2JsonM5() {
+	public static void bean2JsonM5() {
 		Weibo weibo = new Weibo("123456", "上海");
 		String string = JSON.toJSONString(weibo);
 		System.out.println(string);
