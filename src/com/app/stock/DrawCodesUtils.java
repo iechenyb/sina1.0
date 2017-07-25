@@ -54,6 +54,7 @@ public class DrawCodesUtils {
 			}
 		}
 	}
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) throws Exception {
 		 H2Manager.start();
 		 RedisClient client = new RedisClient();
@@ -62,9 +63,17 @@ public class DrawCodesUtils {
 		 //initStockCodes();
 		 //new Thread(new DrawCodesUtils().new TaskSH()).start();
 		// new Thread(new DrawCodesUtils().new TaskSZ()).start();
-		 initStockCodes();
-		 showKeys("*");//*StockCodeUtils.CodePrix+"sh"
-		 System.out.println(jedis.keys("Qutoes:Code*"));
+		 //initStockCodes();
+		 //showKeys("*");//*StockCodeUtils.CodePrix+"sh"
+		 //System.out.println(jedis.keys("Qutoes:Code*"));
+		 String shpath = FileUtils.getAbsolutePathAtClass(DrawCodesUtils.class)+"shstocks.data";
+		 String szpath = FileUtils.getAbsolutePathAtClass(DrawCodesUtils.class)+"szstocks.data";
+		 List<Stock> shStocks =  (List<Stock>) ObjectFileUtils.readObjectFromFile(shpath);
+		 List<Stock> szStocks = (List<Stock>) ObjectFileUtils.readObjectFromFile(szpath);
+		 System.out.println(shStocks.size()+szStocks.size());
+		 for(int i=0;i<szStocks.size();i++){
+			 System.out.println(i+","+szStocks.get(i).name+","+szStocks.get(i).getCode());
+		 }
 		 H2Manager.stop();
 		 System.exit(0);
 	}
