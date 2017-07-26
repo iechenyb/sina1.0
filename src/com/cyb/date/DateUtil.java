@@ -127,7 +127,7 @@ public class DateUtil {
 	}
 
 	public static Calendar calendar(String yyyymmddhhmmss) {
-		yyyymmddhhmmss = yyyymmddhhmmss.replaceAll("-", "").replaceAll(":", "").replaceAll("\\", "").replaceAll(" ", "")
+		yyyymmddhhmmss = yyyymmddhhmmss.replaceAll("-", "").replaceAll(":", "").replaceAll("\\\\", "").replaceAll(" ", "")
 				.replace("/", "");
 		if (yyyymmddhhmmss.length() != 8 && yyyymmddhhmmss.length() != 14) {
 			try {
@@ -159,7 +159,7 @@ public class DateUtil {
 
 	public static boolean between(String shhmmss, String ehhmmss) {
 		String day = DateUtil.date2long8(new Date()).toString(); // 20150102
-		// 09�?:30-11:30 13:00-15:00
+		// 09:30-11:30 13:00-15:00
 		Calendar mornings = DateUtil.calendar(day + shhmmss);
 		Calendar morninge = DateUtil.calendar(day + ehhmmss);
 		Calendar curDate = DateUtil.calendar(new Date());
@@ -290,6 +290,6 @@ public class DateUtil {
 		 * System.out.println(daysBetween("2012-09-08","2012-09-15"));
 		 * System.out.println(calendar("20091231").get(Calendar.DAY_OF_YEAR));
 		 */
-		System.out.println(format(new Date(), "HH:mm"));
+		System.out.println(calendar("2012/02\\02"));
 	}
 }
