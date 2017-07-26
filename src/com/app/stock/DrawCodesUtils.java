@@ -131,12 +131,13 @@ public class DrawCodesUtils {
 	public static int pageSize=850;
 	public static void initStockCodesBatch() throws IOException{
 		String[] lxs = new String[]{"sh","sz"};
-		List<Stock> stocks= new ArrayList<Stock>(); 
+		List<Stock> stocks=null;
 		StringBuffer sb = new StringBuffer();
 		Pagination page = new Pagination(1, pageSize, 999999);
 		int pageCount = page.getPageCount();
 		for(int lx=0;lx<2;lx++){
-			for(int i=1;i<pageCount;i++){//遍历页数
+			stocks= new ArrayList<Stock>(); 
+			for(int i=1;i<=pageCount;i++){//遍历页数
 				Pagination p_ = new Pagination(i, pageSize, 999999);
 				for (int j = p_.getOffset(); j <= (p_.getPageSize() * i - 1) - 1; j++){ //遍历页面数据
 					int len = String.valueOf(j).length();
