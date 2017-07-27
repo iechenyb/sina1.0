@@ -14,7 +14,10 @@
      -->
     <select id="getUser" parameterType="string" 
         resultType="com.cyb.mybatis.User">
-        select username,password from usr where username=#{xx} and 1=#{yy} and 2=#{zz}
+        select username,password from user where username=#{xx} and 1=#{yy} and 2=#{zz}
+    </select>
+     <select id="createUser" >
+       create table user (username varchar(50),password varchar(50))
     </select>
     <!-- <delete id="delUser" parameterType="string"  resultType="java.lang.Integer">
         delete  from usr where username=#{xx} and 1=#{yy} and 2=#{zz}

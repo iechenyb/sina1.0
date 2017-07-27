@@ -496,4 +496,31 @@ public class FileUtils {
 			e.printStackTrace();
 		}
     }
+    /**
+     * 
+     *作者 : iechenyb<br>
+     *方法描述: 获取文件的文件名后缀<br>
+     *创建时间: 2017年7月15日hj12
+     *@param file
+     *@return
+     */
+    
+    public static String suffix(File file) {
+		String name = file.getName();
+		int pos = name.lastIndexOf(".");
+		return name.substring(pos);
+	}
+	/**
+	 * 
+	 *作者 : iechenyb<br>
+	 *方法描述: 获取文件名后缀<br>
+	 *创建时间: 2017年7月15日hj12
+	 *@param fileName
+	 *@return
+	 */
+	public static String suffix(String fileName) {
+		int pos = fileName.lastIndexOf(".");
+		return fileName.substring(pos);
+	}
+	
 }

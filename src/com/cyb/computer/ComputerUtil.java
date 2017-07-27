@@ -28,6 +28,14 @@ public class ComputerUtil {
 		String computerName=addr.getHostName().toString();//获得本机IP
 		return computerName;
 	}
+	/**
+	 * 
+	 *作者 : iechenyb<br>
+	 *方法描述: 获取本地mac地址<br>
+	 *创建时间: 2017年7月15日hj12
+	 *@param host
+	 *@return
+	 */
 	public static String getMacAddress(String host) {
 		String mac ="";
 		StringBuffer sb = new StringBuffer();
@@ -57,5 +65,6 @@ public class ComputerUtil {
 		System.out.println(ComputerUtil.getRealIP());
 		System.out.println(ComputerUtil.getName());
 		System.out.println(getMacAddress(ComputerUtil.getRealIP()));
+		System.out.println(getMacAddress("192.168.108.221"));//不可用
 	}
 }

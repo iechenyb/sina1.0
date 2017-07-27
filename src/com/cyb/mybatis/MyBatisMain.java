@@ -11,8 +11,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import com.cyb.h2.H2Manager;
+
 public class MyBatisMain {
 	public static void main(String[] args) throws IOException {
+		H2Manager.start();
         //mybatis的配置文件
         String resource = "com/cyb/mybatis/mybatis.xml";
         SqlSession session  = getSession0(resource);
@@ -21,6 +24,7 @@ public class MyBatisMain {
          * me.gacl.mapping.userMapper是userMapper.xml文件中mapper标签的namespace属性的值，
          * getUser是select标签的id属性值，通过select标签的id属性值就可以找到要执行的SQL
          */
+        //session.update("createUser");
         String sqlKey = "getUser";//映射sql的标识字符串com.cyb.mybatis.mapper.getUser
         //执行查询返回一个唯一user对象的sql
         Map<String,Object> param = new HashMap<String,Object>();
@@ -29,7 +33,8 @@ public class MyBatisMain {
         param.put("zz", 2);
         Map user = session.selectOne(sqlKey, param);
         System.out.println(user);
-        param.put("xx", 11);
+       param.put("xx", 11);
+        H2Manager.stop();
       /*  int x = session.delete("delUser", param);
         System.out.println("del num = "+x);*/
     }
