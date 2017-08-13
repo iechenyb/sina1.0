@@ -21,6 +21,7 @@ public class DBConnectionPool {
 	Log log = LogFactory.getLog(DBConnectionPool.class);
 	private static volatile DBConnectionPool dbConnection;
     private ComboPooledDataSource cpds;
+    String configPath = FileUtils.getAbsolutePathAtClass(DBConnectionPool.class)+"config/";
 
     /**
      * 在构造函数初始化的时候获取数据库连接
@@ -29,8 +30,7 @@ public class DBConnectionPool {
         try {
             /**通过属性文件获取数据库连接的参数值**/
             Properties properties = new Properties();
-            String path = FileUtils.getAbsolutePathAtClass(getClass());
-            FileInputStream fileInputStream = new FileInputStream("src/config/jdbc-mysql.properties");
+            FileInputStream fileInputStream = new FileInputStream(configPath+"jdbc-mysql.properties");
             properties.load(fileInputStream);
             /**获取属性文件中的值**/
             String driverClassName = properties.getProperty("jdbc.driverClassName");
@@ -117,7 +117,7 @@ public class DBConnectionPool {
         super.finalize();
     }
     public static void main(String[] args) {
-    	 String path = FileUtils.getAbsolutePathAtClass(DBConnectionPool.class);
+    	 String path = FileUtils.getAbsolutePathAtClass(DBConnectionPool.class)+"config/";
     	 System.out.println(path);//12
 	}
 }

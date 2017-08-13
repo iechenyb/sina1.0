@@ -132,7 +132,7 @@ public class FileUtils {
         File file = new File(path);
         BufferedReader reader = null;
         try {
-            reader = new BufferedReader(new InputStreamReader(new FileInputStream(file),"gbk"));
+            reader = new BufferedReader(new InputStreamReader(new FileInputStream(file),"utf-8"));
             //new FileReader(file)
             String tempString = null;
             int line = 1;
@@ -257,17 +257,21 @@ public class FileUtils {
       public static void copyFileByStream(InputStream src, String dest) {
         try {
           File file = new File(dest);
-          if (!file.exists())
-            file.createNewFile();
+          if (!file.exists()){
+        	  file.createNewFile();
+          }
           FileOutputStream out = new FileOutputStream(dest);
-
           byte[] buffer = new byte[1024];
           int c;
-          while ((c = src.read(buffer)) != -1)
+          int len=0;
+          /*while ((c = src.read(buffer)) != -1)
           {
             for (int i = 0; i < c; i++)
               out.write(buffer[i]);
-          }
+          }*/
+          while((len = src.read(buffer)) != -1){
+        	  out.write(buffer,0,len);
+         }
           src.close();
           out.close();
         } catch (FileNotFoundException e) {
@@ -425,6 +429,18 @@ public class FileUtils {
 		}
 		return content;
 	}
+    public static String readContentFromFile(String file) throws IOException {
+  		InputStream in = new FileInputStream(new File(file));
+  		@SuppressWarnings("resource")
+		Reader re = new InputStreamReader(in, "UTF-8");
+  		char[] chs = new char[1024*10];
+  		int count;
+  		String content = "";
+  		while ((count = re.read(chs)) != -1) {
+  			content = content + new String(chs, 0, count);
+  		}
+  		return content;
+  	}
     public static List<String> readContentFromCurClsDirList(Class<?> clazz,String name) throws IOException {
 		InputStream in = clazz.getResourceAsStream(name);
 		Reader re = new InputStreamReader(in, "UTF-8");
@@ -464,6 +480,45 @@ public class FileUtils {
         }
        //str = new String(str.getBytes("gbk"),"utf-8"); 
         return new String(getData);
+    }
+    public static InputStream  getInstreamFromUrl(String urlStr,String savePath,String charset) throws IOException{
+        URL url = new URL(urlStr);  
+        HttpURLConnection conn = (HttpURLConnection)url.openConnection();  
+                //设置超时间为3秒
+        conn.setConnectTimeout(3*1000);
+        //防止屏蔽程序抓取而返回403错误
+        conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+
+        //得到输入流
+        InputStream inputStream = conn.getInputStream();  
+        return inputStream;
+    }
+    public static byte[]  getJsonFromUrl(String urlStr,String savePath,String charset) throws IOException{
+        URL url = new URL(urlStr);  
+        HttpURLConnection conn = (HttpURLConnection)url.openConnection();  
+                //设置超时间为3秒
+        conn.setConnectTimeout(3*1000);
+        //防止屏蔽程序抓取而返回403错误
+        conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+
+        //得到输入流
+        InputStream inputStream = conn.getInputStream();  
+        //获取自己数组
+        byte[] getData = getContentByCharset(inputStream,charset);    
+       if(savePath!=null&&!"".equals(savePath)){
+        //文件保存位置
+	        File file = new File(savePath);    
+	        FileOutputStream fos = new FileOutputStream(file);     
+	        fos.write(getData); 
+	        if(fos!=null){
+	            fos.close();  
+	        }
+	        if(inputStream!=null){
+	            inputStream.close();
+	        }
+        }
+       //str = new String(str.getBytes("gbk"),"utf-8"); 
+        return getData;
     }
     public static byte[] getContentByCharset(InputStream inputStream,String charset) throws IOException {
 		

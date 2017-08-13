@@ -91,7 +91,7 @@ public class DBTest {
 	        whereMap.put("salary","10000");
 	        try {
 	            DBUtil.query("emp_test",whereMap);
-	        } catch (SQLException e) {
+	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
 	    }
@@ -116,7 +116,6 @@ public class DBTest {
 	    public static void testQuery3() {
 	        try {
 	            List<Map<String, Object>> list = DBUtil.query("emp_test", false, null, null, null, null, null, null, null);
-
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }

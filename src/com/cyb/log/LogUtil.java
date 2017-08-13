@@ -21,6 +21,8 @@ public class LogUtil {
 		}
 	    public static void main(String[] args) {
 	    	testTomcatLog();
+	    	print(log, "apache log");//打印的行数为实际执行的行数
+            print(logger,"slf log");
 	    	log.info("********************************************************");
 	    	testSLFLog();
 	    }
@@ -29,5 +31,11 @@ public class LogUtil {
 	    }
 	    public static Logger getLog(Class<?> cls){
 			return LoggerFactory.getLogger(cls);
+	    }
+	    public static void print(Log log,String msg){
+	    	log.info(msg);
+	    }
+	    public static void print(Logger log,String msg){
+	    	log.info(msg);
 	    }
 }
