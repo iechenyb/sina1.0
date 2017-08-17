@@ -1,5 +1,12 @@
 package com.cyb.String;
+/**
+ * String：字符串常量 操作少量的数据用 
+　 StringBuffer：字符串变量 线程安全的 多线程操作字符串缓冲区 下操作大量数据
+　 StringBuilder：字符串变量 线程非安全的 单线程操作字符串缓冲区 下操作大量数据
 
+ * @author DHUser
+ *
+ */
 public class StringUtils {
  public boolean isEmpty(Object obj){
 	 if(obj==null){ return true;}
