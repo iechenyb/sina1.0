@@ -70,7 +70,7 @@ public class WekaTest {
 	   
 	    public static void main(String[] args) throws Exception { 
 	    	String path = FileUtils.getAbsolutePathAtClass(WekaTest.class);
-	        BufferedReader datafile = readDataFile(path+"weather.txt");  
+	        BufferedReader datafile = readDataFile(path+"weather.data");  
 	   
 	        Instances data = new Instances(datafile);  
 	        data.setClassIndex(data.numAttributes() - 1);  
