@@ -134,5 +134,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tess4j-3.4.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jul-to-slf4j-1.7.24.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-httpclient-3.1.jar"/>
+	<classpathentry kind="lib" path="src/com/cyb/jiqi/weka/weka-3.6.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
