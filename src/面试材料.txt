@@ -1,1 +1,9 @@
-1 http://blog.csdn.net/moneyshi/article/details/53086927
+http://blog.csdn.net/moneyshi/article/details/53086927
+http://blog.csdn.net/moneyshi/article/details/50786786
+http://www.cnblogs.com/wangyayun/p/6557851.html
+http://www.cnblogs.com/chengxuyuanzhilu/p/4707787.html
+1.junit 下测试多线程注意事项。
+2.高并发 ，处理时间短，选用哪种线程池，
+   并发低，处理时间长，选用哪种线程池，
+   高并发，处理时间长，如何处理。
+3.100亿个数字，如何最快找出其中10000个最大的数。

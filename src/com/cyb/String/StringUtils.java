@@ -9,9 +9,11 @@ public class StringUtils {
 	 return false;
  }	
  public static void main(String[] args) {
-	String str="1234567890";
+	String str="0123456789";
 	StringBuilder sb = new StringBuilder(str);
-	System.out.println(sb.replace(2, 8, "******"));
+	//replace和substring只包含起点不包含终点
+	System.out.println(sb.replace(2, 8, "******"));//01******89
+	System.out.println(str.substring(2, 5));//234
  }
  
 }
