@@ -85,12 +85,12 @@ public class UrlUtils {
 	}
     public static void main(String[] args) {  
         try{          	
-        	String path = "d:/resource/images/diaodiao/country/1";
+        	String path = "d:/data/download";
         	//FileUtils.genFile(path);
         	String url = "http://www.7879123.com/gw_getplandata.html?r=0.1945637173485011";
-        	url ="http://blog.csdn.net/iechenyb/article/details/72414208";
+        	url ="http://localhost:8088/comweb/xzzx/downtest?fileName=1.txt";
         	for(int i=0;i<100;i++){
-        		downLoadFromUrl(url,"百度.jpg",path);  
+        		downLoadFromUrl(url,"2.txt",path);  
             }
         }catch (Exception e) {
         	log.info(e.toString());
