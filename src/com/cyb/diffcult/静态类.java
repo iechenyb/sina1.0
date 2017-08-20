@@ -1,5 +1,5 @@
 package com.cyb.diffcult;
-
+//静态方法不能访问非静态方法和非静态成员变量
 //pirvate protect  一般的非内部类，是不允许有 private 与protected权限的，但内部类可以
 public class 静态类 {
 	static int a = 3;
@@ -12,7 +12,17 @@ public class 静态类 {
 		System.out.println("b = " + b);
 		System.out.println("-----------------------");
 	}
-
+    void test1(){
+    	System.out.println(a);//非静态方法可以访问静态成员变量。
+    	System.out.println(c);//非静态方法访问非静态成员
+    	meth(0);//访问静态方法
+    }
+    static void  test2(){
+    	System.out.println(a);//非静态方法可以访问静态成员变量。
+    	//System.out.println(c);//静态方法访问非非静态成员，不可以
+    	meth(0);//访问静态方法
+    	//test1(0);//访问非静态方法不可以。
+    }
 	static {
 		//meth(1);
 		System.out.println("static block initialized1");
