@@ -11,7 +11,8 @@ public abstract class 抽象类 implements 接口 {
 	  System.out.println("abstract cls.name="+name);
   }
   //private abstract void privateAbsMethod();//private的抽象方法不允许
-  protected abstract void privateAbsMethod1();
+   protected abstract void privateAbsMethod1();
+  //final protected abstract void privateAbsMethod1();抽象方法不能用final修饰
   public abstract void privateAbsMethod12();
  // abstract void privateAbsMethod1();//default的抽象方法不允许
   public static void print2(){
