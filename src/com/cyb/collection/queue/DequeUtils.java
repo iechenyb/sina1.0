@@ -2,10 +2,6 @@ package com.cyb.collection.queue;
 
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.PriorityBlockingQueue;
 
 //双向列表
 public class DequeUtils {
@@ -15,6 +11,8 @@ public class DequeUtils {
         deque.push("a");
         deque.push("b");
         deque.push("c");
+        deque.offer("d");
+        deque.add("e");
         System.out.println(deque);
         //获取栈首元素后，元素不会出栈
         String str = deque.peek();
