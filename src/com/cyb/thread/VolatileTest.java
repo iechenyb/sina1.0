@@ -30,7 +30,7 @@ class AddThread implements Runnable {//synchronized可以保证结果正确。
 	}*/
 	Object obj = new Object();
 	public  void run() {
-		synchronized (VolatileTest.class) {//VolatileTest.class obj 可以保证正确结果
+		synchronized (VolatileTest.class) {//VolatileTest.class obj 可以保证正确结果 
 			for(int i=1;i<=100;i++){
 				VolatileTest.account++;
 			}
