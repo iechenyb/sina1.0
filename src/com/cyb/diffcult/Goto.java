@@ -10,6 +10,12 @@ import java.util.Random;
  *
  */
 public class Goto {
+	public  void print(String name){
+		System.out.println("my name is "+name);
+	}
+	public  void print(){
+		System.out.println("my name is cyb");
+	}
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		outer: 

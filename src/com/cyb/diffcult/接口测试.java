@@ -1,13 +1,13 @@
 package com.cyb.diffcult;
 
 public class 接口测试  implements 接口{
-	  public int  y;
+	    public int  x=2;//子类定义与接口同名的参数，类型不一样，合法
+	    public String y ="iechenyb";//定义与接口同名的参数，覆盖接口参数值，并隐藏接口同名参数，在子类中不可见。
 		@Override
 		public void jkprint() {
-			//x = 5;//默认为final,不能被修改
-			y=5;
+			//x = 5;y=5;//默认为final,不能被修改
 			System.out.println("print,the value of x in interface is "+x);
-			System.out.println("print,the value of y in interface is "+y);//=子类同名属性覆盖接口的同名属性
+			System.out.println("print,the value of y in interface is "+y);//子类同名,同类的属性覆盖接口中的同名属性
 		}
 		public static void main(String[] args) {
 			new 接口测试().jkprint();

@@ -13,6 +13,7 @@ public class QueueUtils {
        queue.offer("c");
        queue.offer("d");
        queue.offer("e");
+       
        for(String q : queue){
            System.out.print(q+",");
        }
