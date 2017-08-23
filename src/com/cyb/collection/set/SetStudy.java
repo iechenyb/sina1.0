@@ -17,6 +17,7 @@ public class SetStudy {
 	  stus.add(new User_("e"));
 	  stus.add(new User_("a"));
 	  stus.add(new User_("a"));
+	  System.out.println(stus.contains(new User_("f")));
 	  System.out.println(stus);//报错
 	  Set<User> stus1 = new TreeSet<User>();
 	  stus1.add(new User(5,"cyb","1"));
@@ -45,6 +46,7 @@ public class SetStudy {
 	  hs.add("7");
 	  hs.add("8");
 	  hs.add("8");//默认会去重
-	  System.out.println("hashset 无序："+hs);	  
+	  System.out.println("hashset 无序："+hs);	
+	  
 }
 }

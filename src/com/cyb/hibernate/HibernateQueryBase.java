@@ -29,6 +29,7 @@ public class HibernateQueryBase extends BaseDao<User>{
 		String hql = "FROM User";
 		hql = "FROM com.cyb.freemarker.mvc.po.User";
 		hql = "FROM User AS user";
+		hql ="select a from A a ,B b WHERE a.id=b.pid";
 		hql="select s.id,s.name,sc.score from Student as s,Score as sc where s.id = sc.userId";//联合查询，查询结果特征：每行记录不在是一个对象 而是一个数组
 		Query query = this.getSession().createQuery(hql);
 		query.setFirstResult(1);//分页

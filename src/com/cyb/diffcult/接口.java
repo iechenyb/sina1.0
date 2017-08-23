@@ -1,6 +1,12 @@
 package com.cyb.diffcult;
-
-interface 接口 {
+/*private interface AA{};//error
+protected  interface BB{};//error
+static interface CC{};//error
+*/
+abstract interface DD{};
+interface Inter1{};interface Inter2{};interface Inter3{};
+//一个接口可以继承多个接口
+public interface 接口 extends Inter1 ,Inter2,Inter3 {
   public static String name="我在接口里";	
   public String x="1";
   public String y="2";

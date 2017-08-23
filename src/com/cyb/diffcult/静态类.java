@@ -10,8 +10,15 @@ public class 静态类 {
 		System.out.println("a = " + a);
 		System.out.println("b = " + b);
 		System.out.println("-----------------------");
+		//methnotStatic(123);//err
 	}
-
+	 void methnotStatic(int x) {
+		    meth(456);//非静态方法直接静态
+			System.out.println("x = " + x);
+			System.out.println("a = " + a);
+			System.out.println("b = " + b);
+			System.out.println("-----------------------");
+    }
 	static {
 		meth(1);
 		System.out.println("static block initialized1");

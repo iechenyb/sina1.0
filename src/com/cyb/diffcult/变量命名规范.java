@@ -18,6 +18,7 @@ public class 变量命名规范 {
 	String onlyen;
 	String qwe$12￥3;
 	String _546kkd;
+	//String　xxx.yyy;
 	//String 1523;//纯数字不可以
 	//String case;//关键字不可以
 }
