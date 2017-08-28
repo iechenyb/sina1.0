@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -14,10 +15,11 @@ import org.apache.commons.logging.LogFactory;
  *创建时间: 2017年8月13日 -Xms1024M -Xmx1024M
  */
 public class FileReadRaipyTest {
-	Log log = LogFactory.getLog(FileReadRaipyTest.class);
-	static String filePath = "d:/data/jsonList50.txt";
+	static Log log = LogFactory.getLog(FileReadRaipyTest.class);
+	static String filePath = "d:/data/jsonlist80.txt";
 	public static void main(String[] args) {
-		new FileReadRaipyTest().readTimeComPare();
+		log.info(readFileByLines(filePath));
+		//new FileReadRaipyTest().readTimeComPare();
 	}
 	public void readTimeComPare(){
 		log.info("====start======");
@@ -87,5 +89,34 @@ public class FileReadRaipyTest {
             e.printStackTrace();
             return "";
         }
+    }
+    
+    /**
+     * 以行为单位读取文件，常用于读面向行的格式化文件
+     */
+    public static StringBuffer readFileByLines(String path) {
+    	StringBuffer content = new StringBuffer("");
+        File file = new File(path);
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new InputStreamReader(new FileInputStream(file),"utf-8"));
+            String tempString = null;
+            // 一次读入一行，直到读入null为文件结束
+            while ((tempString = reader.readLine()) != null) {
+                // 显示行号
+                content.append(tempString.trim()+",");
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e1) {
+                }
+            }
+        }
+        return content;
     }
 }
