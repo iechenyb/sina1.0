@@ -21,6 +21,9 @@ public class StringUtils {
 	//replace和substring只包含起点不包含终点
 	System.out.println(sb.replace(2, 8, "******"));//01******89
 	System.out.println(str.substring(2, 5));//234
+	//多余的空格去掉，只留一个空格。
+	String hello = "Hello    world,welcom    to shanghai !";
+	System.out.println(hello.replaceAll("[\" \"]+", " "));
  }
  
 }
