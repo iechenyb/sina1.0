@@ -17,7 +17,6 @@ public static void main(String[] args) {
     System.out.println(12<<1);//24无符号
     System.out.println(-12>>1);//-6
     System.out.println(-12<<1);//-24
-    
     System.out.println(12>>>1);//
     //System.out.println(12<<<1);//无符号
     System.out.println(-12>>>1);//
