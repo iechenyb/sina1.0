@@ -6,6 +6,9 @@ import org.apache.commons.logging.LogFactory;
 public class 异常捕获 {
 	static Log log = LogFactory.getLog(异常捕获.class);
 	public static void main (String[] args) throws Exception {
+		
+		
+		
 		try{
 			m4();
 		}catch(Exception e){
@@ -24,7 +27,7 @@ public class 异常捕获 {
 			log.info("捕获回调函数抛出的异常信息："+e.toString());
 		}
 	}
-	public static void m5() throws Exception{
+	public static int m5() throws Exception{
 		try{
 			try{
 				throw new FatherEx();//抛出父类异常
@@ -35,11 +38,12 @@ public class 异常捕获 {
 			}
 		}catch(ChildEx e){
 			log.info("catch Child exception!");
-			return ;
+			return getIndex("m5");
 		}finally{
 			log.info("现场清理over!");//打印
 		}
 	}
+	public static int getIndex(String str){ log.info(str+"返回值执行！");return 1;}
 	public static void m4() throws Exception{
 		try{
 			try{
@@ -74,7 +78,6 @@ public class 异常捕获 {
 		try{
 			int i=0;
 			i++;
-			log.info(i);
 			int b = i/0;
 			log.info(b);
 			return ;
@@ -86,14 +89,14 @@ public class 异常捕获 {
 			log.info("清理现场!");
 		}
 	}
-	public static void m2(){
+	public static int m2(){
 		try{
 			int i=0;
 			i++;
-			log.info(i);
-			return ;
+			return getIndex("m2 normal ");
 		}catch(Exception e){
 			log.info(e.getMessage());
+			return getIndex("m2 exception ");
 		}finally{
 			log.info("清理现场!");
 		}
