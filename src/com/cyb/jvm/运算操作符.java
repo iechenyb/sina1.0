@@ -22,7 +22,11 @@ public static void main(String[] args) {
     //System.out.println(12<<<1);//无符号
     System.out.println(-12>>>1);//
     //System.out.println(-12<<<1);//
-    
-    
-}
+    String b20 = Integer.toBinaryString(20);//00010100
+    System.out.println(b20);//10100
+    System.out.println(20>>1);//10
+    System.out.println(20<<1);//40
+    System.out.println(20>>>1);//10
+    System.out.println(-20>>>1);//2147483638
+	}
 }
