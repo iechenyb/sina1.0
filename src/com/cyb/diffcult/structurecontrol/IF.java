@@ -34,5 +34,12 @@ public class IF {
 		System.out.print(str+",");
 		return false;
 	}
-	
+	/**
+	 * left,right,false
+		left,
+		left,right,
+		true,7,7
+		l1,l2,r2,
+		1,2,4,
+	 */
 }

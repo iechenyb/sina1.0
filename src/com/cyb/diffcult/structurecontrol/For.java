@@ -27,3 +27,16 @@ public class For {
 		return i;
 	}
 }
+/**
+ * 2017-08-31 21:32:27,100 com.cyb.diffcult.structurecontrol.For.init:18[main] 初始化变量！
+2017-08-31 21:32:27,100 com.cyb.diffcult.structurecontrol.For.max:22[main] 最大值判断！
+2017-08-31 21:32:27,100 com.cyb.diffcult.structurecontrol.For.main:14[main] 执行{} 0
+2017-08-31 21:32:27,100 com.cyb.diffcult.structurecontrol.For.step:26[main] 步长+1！
+2017-08-31 21:32:27,100 com.cyb.diffcult.structurecontrol.For.max:22[main] 最大值判断！
+2017-08-31 21:32:27,100 com.cyb.diffcult.structurecontrol.For.main:14[main] 执行{} 1
+2017-08-31 21:32:27,100 com.cyb.diffcult.structurecontrol.For.step:26[main] 步长+1！
+2017-08-31 21:32:27,100 com.cyb.diffcult.structurecontrol.For.max:22[main] 最大值判断！
+2017-08-31 21:32:27,100 com.cyb.diffcult.structurecontrol.For.main:14[main] 执行{} 2
+2017-08-31 21:32:27,100 com.cyb.diffcult.structurecontrol.For.step:26[main] 步长+1！
+2017-08-31 21:32:27,100 com.cyb.diffcult.structurecontrol.For.max:22[main] 最大值判断！
+*/
