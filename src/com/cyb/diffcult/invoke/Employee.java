@@ -13,6 +13,6 @@ public class Employee extends AbstractCallBack{
 	}
 	public void doWork_1() {
 		System.out.println("玩命干活中....");
-		callBack.doEvent();
+		callBack.doEvent(); 
 	}
 }
