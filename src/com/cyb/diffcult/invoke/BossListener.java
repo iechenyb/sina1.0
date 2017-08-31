@@ -7,6 +7,6 @@ package com.cyb.diffcult.invoke;
  */
 public class BossListener implements CallBack{
     public void doEvent(){
-        System.out.println("打电话给老板，告知已经完成工作了");
+        System.out.println("打电话给老板，告知已经完成工作了"); 
     }
 }
