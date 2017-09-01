@@ -8,13 +8,18 @@ import com.cyb.diffcult.other.PublicCls;
  *类描述: 同包内部测试<br>
  *创建时间: 2017年8月23日
  */
-public class 访问权限 {
+public class 访问权限  extends DefaultCls{
+	public void test(){
+		System.out.println(this.defStr);
+		System.out.println(this.proStr);
+	}
 	Log log = LogFactory.getLog(访问权限.class);
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		DefaultCls dc = new DefaultCls();//跨包时，default的类不能被访问
 		
 		String dpubStr= dc.pubStr;
+		String defStr1 = dc.defStr;//包权限同一个包的其他类可以访问
 		String dpros = dc.proStr;//protected方法只能在同包内访问
 		//String dpris = dc.priStr;//不可见
 		String dpriStr = dc.getPriStr();
