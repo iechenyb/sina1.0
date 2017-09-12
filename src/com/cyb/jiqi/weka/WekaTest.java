@@ -23,14 +23,12 @@ import com.cyb.file.FileUtils;
 public class WekaTest {
 	Log log = LogFactory.getLog(WekaTest.class);
 	 public static BufferedReader readDataFile(String filename) {  
-	        BufferedReader inputReader = null;  
-	   
+	        BufferedReader inputReader = null;  	   
 	        try {  
 	            inputReader = new BufferedReader(new FileReader(filename));  
 	        } catch (FileNotFoundException ex) {  
 	            System.err.println("File not found: " + filename);  
 	        }  
-	   
 	        return inputReader;  
 	    }  
 	   

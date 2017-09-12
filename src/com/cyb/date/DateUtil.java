@@ -291,5 +291,6 @@ public class DateUtil {
 		 * System.out.println(calendar("20091231").get(Calendar.DAY_OF_YEAR));
 		 */
 		System.out.println(calendar("2012/02\\02"));
+		System.out.println();
 	}
 }

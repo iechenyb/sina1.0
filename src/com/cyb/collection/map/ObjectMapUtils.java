@@ -7,7 +7,6 @@ import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.cyb.collection.po.User;
 import com.cyb.collection.po.User_;
 /**
  *作者 : iechenyb<br>
@@ -49,7 +48,6 @@ public class ObjectMapUtils {
                             map.put(key, value);
                         }
                     }catch (Exception e) {
-                        // TODO: handle exception
                         System.out.println("error:"+method);
                     }
                 }
@@ -57,7 +55,6 @@ public class ObjectMapUtils {
         }
         catch (Exception e)
         {
-            // TODO: handle exception
             e.printStackTrace();
         }
         return map;
