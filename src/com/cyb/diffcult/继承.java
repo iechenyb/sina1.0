@@ -14,6 +14,8 @@ public class 继承 {
 		Child c = new Child();
 		c.def();
 		c.pro();
+		
+		c.print33();
 		// c.pri();//是有方法不能被继承
 		c.pub();
 		c.print2(); // protectedl可见
@@ -25,6 +27,7 @@ public class 继承 {
 		// p.print1();//不可见 私有方法,只能被其他方法使用，不能被类实例使用
 		p.print3();
 		p.staticMethod();// 重写的静态方法不可见，调用父类自己的静态方法。
+	    //p.print33();
 	}
 }
 
@@ -97,7 +100,9 @@ class Child extends Parent {// 类继承只能单继承，多继承会报错Pare
 	public void print3() {
 		
 	}
-
+	public void print33() {
+		
+	}
 	public void print2() {
 		
 	}
