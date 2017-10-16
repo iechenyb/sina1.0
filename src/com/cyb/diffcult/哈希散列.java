@@ -18,5 +18,14 @@ public class 哈希散列 {
 	    log.info(Integer.toBinaryString(a>>6));//取除数 a/64
 	    log.info(Integer.toBinaryString((a>>6)<<6)); //取 除数*64
 	    log.info((a>>6)<<6);//a-除数*64=余数
+	    String aa = "ab"; 
+	    String cc ="ab";
+	    String bbb = "b"; 
+	    String bb = "a" + bbb; //变量相加不等
+	    String dd="a"+"b";//常量相加
+	    System.out.println(aa == bb);//result=false
+	    System.out.println(aa==cc);//true
+	    System.out.println(aa==dd);//true
+	    System.out.println(aa.equals(bb));//true
 	}
 }
