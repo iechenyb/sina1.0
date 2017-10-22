@@ -1,15 +1,22 @@
 package com.cyb.tomcat;
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintStream;
+import java.net.HttpURLConnection;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.URL;
 import java.net.URLDecoder;
 import java.util.StringTokenizer;
+
+import org.apache.commons.io.IOUtils;
 
 /**
  * http://blog.csdn.net/qiangcai/article/details/60583330 作者 : iechenyb<br>
@@ -54,7 +61,7 @@ public class TomcatServer {
 							// 根据客户端的Socket对象获取输入流对象。
 							// 封装字节流到字符流
 							BufferedReader reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
-
+							DataInputStream reader1 = new DataInputStream((client.getInputStream()));
 							// GET /test.jpg /HTTP1.1
 							// http请求由三部分组成，分别是：请求行、消息报头、请求正文。
 							// 这里取的第一行数据就是请求行。http协议详解可以参考http://www.cnblogs.com/li0803/archive/2008/11/03/1324746.html说的很详细
@@ -81,7 +88,17 @@ public class TomcatServer {
 								}
 								System.out.println("the Http Header is : " + line);
 							}
-
+							/*for(int i=0;i<10;i++) {
+								System.out.println("the body is :"+reader.readLine());
+							}*/
+							char[] c=new char[1024];  
+					        int temp=0;  
+					        int len=0;  
+					        while((temp=reader.read())!=-1){  
+					            c[len]=(char) temp;  
+					            len++;  
+					        }  
+					        System.out.println(new String(c,0,len));  
 							// 如果是POST的请求，直接打印POST提交上来的数据
 							if ("post".equals(method.toLowerCase())) {
 								System.out.println("the post request body is: " + reader.readLine());
@@ -126,6 +143,7 @@ public class TomcatServer {
 				}
 			}
 		}
+		
 
 		private void closeSocket(Socket socket) {
 			try {
