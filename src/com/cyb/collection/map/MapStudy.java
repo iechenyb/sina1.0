@@ -27,10 +27,20 @@ public class MapStudy {
 	// table.put("null", null);
 	// System.out.println(table);//Exception in thread "main" java.lang.NullPointerException
 	 //table.put(null, null);//Exception in thread "main" java.lang.NullPointerException
-	 LinkedHashMap<String,String> lhm = new LinkedHashMap<String,String>();
+	 LinkedHashMap<String,String> lhm = new LinkedHashMap<String,String>(10,0.75f,true);
 	 lhm.put("1", "1");
 	 lhm.put("2", "1");
-	 lhm.put("3", "1");
+	 lhm.put("5", "1");
+	 System.out.println(lhm);
+	 lhm.get("2");//不改变顺序
+	 System.out.println(lhm);
+	 lhm.get("5");//不改变顺序
+	 System.out.println(lhm);
+	 lhm.put("2","234");//不改变顺序
+	 System.out.println(lhm);
+	 lhm.put("4","234");//不改变顺序
+	 System.out.println(lhm);
+	 lhm.remove("2");//不改变顺序
 	 System.out.println(lhm);
 	 Map<User,User> treeMap = new TreeMap<User,User>();
 	 treeMap.put(new User(5,"",""), new User(5,"",""));
