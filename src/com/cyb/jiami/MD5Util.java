@@ -37,12 +37,12 @@ public class MD5Util {
      * @throws Exception
      */
     public static void main(String args[]) throws Exception {
-        String str = new String("amigoxiexiexingxing");
+        String str = new String("1");
         System.out.println("原始：" + str);
         System.out.println("MD5后：" + md5Encode(str));
         System.out.println("MD5后：" + md5Encode(str));
         System.out.println("MD5后：" + md5Encode(str));
         System.out.println("MD5后：" + md5Encode(str));
-        System.out.println("MD5后：" + md5Encode(str));
+        System.out.println("MD5后：" + md5Encode("c4ca4238a0b923820dcc509a6f75849b"));
     }
 }

@@ -16,6 +16,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
@@ -115,8 +117,47 @@ public class SpiderHttpClient {
 		HttpPost httpRequst = new HttpPost(url);// 创建HttpPost对象
 
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("string666666", "1234567890"));
+		params.add(new BasicNameValuePair("realname", "1234567890"));
+		params.add(new BasicNameValuePair("company", "1234567890"));
+		params.add(new BasicNameValuePair("mobile", "13832623546"));
+		params.add(new BasicNameValuePair("email", "123@qq.com"));
+		params.add(new BasicNameValuePair("mintro", "1234567890"));
+		try {
+			httpRequst.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
+			httpRequst.setHeader("self_define", "value");
+			HttpResponse httpResponse = new DefaultHttpClient().execute(httpRequst);
+			if (httpResponse.getStatusLine().getStatusCode() == 200) {
+				HttpEntity httpEntity = httpResponse.getEntity();
+				result = EntityUtils.toString(httpEntity);// 取出应答字符串
+			}
+			httpRequst.abort();
+			httpRequst.releaseConnection();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			result = e.getMessage().toString();
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+			result = e.getMessage().toString();
+		} catch (IOException e) {
+			e.printStackTrace();
+			result = e.getMessage().toString();
+		}
+		return result;
+	}
+	public static String doPost(String url,Map<String,String> para) {
+		String result = "";
+		HttpPost httpRequst = new HttpPost(url);// 创建HttpPost对象
 
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		;
+		for(String key :para.keySet()){
+			params.add(new BasicNameValuePair(key, para.get(key)));
+		}
+		/*params.add(new BasicNameValuePair("realname", "1234567890"));
+		params.add(new BasicNameValuePair("company", "1234567890"));
+		params.add(new BasicNameValuePair("mobile", "13832623546"));
+		params.add(new BasicNameValuePair("email", "123@qq.com"));
+		params.add(new BasicNameValuePair("mintro", "1234567890"));*/
 		try {
 			httpRequst.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
 			httpRequst.setHeader("self_define", "value");
