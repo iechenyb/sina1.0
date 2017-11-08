@@ -223,7 +223,7 @@ public class DateUtil {
 		c.add(Calendar.DAY_OF_MONTH, i);
 		return c.getTime();
 	}
-
+	
 	public static String str8to10(String yyyymmdd, String split) {
 		return yyyymmdd.substring(0, 4) + split + yyyymmdd.substring(4, 6) + split + yyyymmdd.substring(6, 8);
 	}

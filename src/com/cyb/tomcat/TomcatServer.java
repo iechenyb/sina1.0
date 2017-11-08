@@ -29,7 +29,7 @@ import org.apache.commons.io.IOUtils;
  */
 public class TomcatServer {
 
-	private final static int PORT = 8080;
+	private final static int PORT = 8088;
 
 	public static void main(String[] args) {
 

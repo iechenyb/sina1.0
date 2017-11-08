@@ -33,7 +33,7 @@ import com.sun.tools.jdi.LinkedHashMap;
  */
 public class TomcatServer2 {
 
-	private final static int PORT = 8080;
+	private final static int PORT = 8088;
 
 	public static void main(String[] args) {
 
