@@ -2,6 +2,8 @@ package com.app.lhug.logic;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -20,8 +22,8 @@ import com.cyb.file.FileUtils;
  * 类描述: 说点啥<br>
  * 创建时间: 2017年11月8日
  */
-public class LhugCaculatorOther {
-	Log log = LogFactory.getLog(LhugCaculatorOther.class);
+public class LhugCaculatorSingle {
+	Log log = LogFactory.getLog(LhugCaculatorSingle.class);
 	static List<TB_A> aList = null;//人员成绩记录
 	public static void calByAccount(String account, int season, boolean check) throws IOException {
 		int count = 240*season;
@@ -93,5 +95,10 @@ public class LhugCaculatorOther {
 			long e = System.currentTimeMillis();
 			System.out.println("第"+i+"次测试共耗时：" + (e - s) / 1000 + "." + (e - s) % 1000);
 		}
+	}
+	
+	public static void test(){
+		ThreadPoolExecutor execute = (ThreadPoolExecutor) Executors.newWorkStealingPool();
+		
 	}
 }

@@ -20,17 +20,26 @@ import com.cyb.file.FileUtils;
 public class DataGeneror {
 	Log log = LogFactory.getLog(DataGeneror.class);
 	static int yearDays = 240;
+	public static int start = 888666;
+	public static int personNum = 5000;
 	static String standardCsvFilePath = "d:/data/lhug/sjjy.csv";
 	public static String standardTxtFilePath = "D:\\data\\lhug\\standard\\123456-3.txt";
 	public static String standardTxtFilePathHashDwjz = "D:\\data\\lhug\\standard\\123456-3-dwjz.txt";
 	public static void main(String[] args) throws Exception {
-		/*genAData("123456",2);
-		genAData("123456",3);
-		genAData("123456",5);
-		genAData("123456",10);*/
 		
-		genStandard();//生成json不带单位净值
-		genStandardHashDwjz();//生成json带单位净值
+		genBatchDataTest();
+		//genStandard();//生成json不带单位净值
+		//genStandardHashDwjz();//生成json带单位净值
+	}
+	//批量生成5000人的数据
+	public static void genBatchDataTest(){
+		for(int i=start;i<start+personNum;i++){
+			String account = String.valueOf(i);
+			genAData(account,2);
+			genAData(account,3);
+			genAData(account,5);
+			genAData(account,10);
+		}
 	}
 	/**
 	 * 
