@@ -52,6 +52,7 @@ public class 回撤率S1 {
 					} else {
 						syl.setZxhcsyl(preSyl.getZxhcsyl());// 设置最小收益率
 					}
+					
 					double curZdhcl = (syl.getZdhcsyl() - syl.getZxhcsyl()) / (1 + syl.getZdhcsyl());
 					if(curZdhcl>preSyl.getZdhcl()){
 						syl.setZdhcl(curZdhcl);

@@ -12,7 +12,7 @@ import net.sf.json.JSONArray;
  * 计算回撤，需要的时候计算回撤率
  * 存 ：最大回撤 最高点  
  */
-public class 回撤率S2 {
+public class 回撤率S3 {
 	public static Map<Integer, Double> ljsyl = new LinkedHashMap<Integer, Double>();
 	public static List<Syl> syls = new ArrayList<Syl>(21);
 
