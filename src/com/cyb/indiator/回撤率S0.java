@@ -45,7 +45,6 @@ public static int findSection(int start,int end){
 				i++;
 			}
 		}
-		
 		System.out.print("start="+(start+1)+",end="+(end+1)+":");
 		if(!sfht) {
 			if(rs.containsKey("huiche")){
