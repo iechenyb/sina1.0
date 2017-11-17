@@ -10,12 +10,13 @@ import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.ConnectListener;
+import com.corundumstudio.socketio.listener.DisconnectListener;
 import com.cyb.computer.ComputerUtil;
 
 public class PushUtil {
 	public static Logger log = LoggerFactory.getLogger(PushUtil.class);
 	public  static List<SocketIOClient> clients = new ArrayList<SocketIOClient>();
-	public static SocketIOServer server;
+	public static SocketIOServer server;//保证单例模式
 	public static boolean isStarted = false;
 	public static void startPushServer() {
 		try {
@@ -31,6 +32,12 @@ public class PushUtil {
 					clients.add(client);
 				}
 			});
+			server.addDisconnectListener(new DisconnectListener() {
+				@Override
+				public void onDisconnect(SocketIOClient client) {
+					clients.remove(client);
+				}
+			});
 			server.start();
 			log.info("puser server started!");
 		    Object object = new Object();
@@ -42,7 +49,19 @@ public class PushUtil {
 		}
 	}
 	public static void main(String[] args) {
-		
+		/*Timer timer = new Timer();  
+        timer.schedule(new TimerTask() {  
+            @Override  
+            public void run() {  
+                Random random = new Random();  
+                String data = "{\"x\":" +random.nextInt(100)+ ",\"y\":" +random.nextInt(100)+ "}";  
+                BASE64Encoder encoder = new BASE64Encoder();  
+                data = encoder.encode(data.getBytes());  
+                for(IOClient client : clients) {  
+                    client.send(formatMessage(data));  
+                }  
+            }  
+        }, 1000, 1000); */ 
 		startPushServer();
 	}
 }

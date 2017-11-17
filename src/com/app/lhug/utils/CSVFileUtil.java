@@ -1,14 +1,20 @@
 package com.app.lhug.utils;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -124,7 +130,7 @@ public class CSVFileUtil {
 	/**
 	 * 字符串类型的List转换成一个CSV行。（输出CSV文件的时候用）
 	 */
-	public static String toCSVLine(ArrayList strArrList) {
+	public static String toCSVLine(List strArrList) {
 		if (strArrList == null) {
 			return "";
 		}
@@ -245,6 +251,149 @@ public class CSVFileUtil {
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+
+	public static void main(String[] args) {
+		BufferedWriter bw = null;
+		List<String> r1 = new ArrayList<String>();
+		List<String> r2 = new ArrayList<String>();
+		List<String> r3 = new ArrayList<String>();
+
+		r1.add("name");
+		r1.add("age");
+		r2.add("chneyb");
+		r2.add("220");
+		r3.add("sff");
+		r3.add("20");
+		System.out.println(toCSVLine(r1));
+		System.out.println(toCSVLine(r2));
+		System.out.println(toCSVLine(r3));
+		writeCSV(toCSVLine(r2));
+		//genData();
+		genDataList();
+	}
+
+	public static void genData() {
+		List<Map<String, String>> exportData = new ArrayList<Map<String, String>>();
+		Map<String, String> row = null;
+		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
+		map.put("1", "第一列");
+		map.put("2", "第二列");
+		map.put("3", "第三列");
+		map.put("4", "第四列");
+
+		for (int i = 0; i < 100; i++) {
+			row = new LinkedHashMap<String, String>();
+			row.put("1", "11" + i);
+			row.put("2", "12" + i);
+			row.put("3", "13" + i);
+			row.put("4", "14" + i);
+			exportData.add(row);
+		}
+		createCSVFile(exportData, map, "d:/123/", "12");
+		
+	}
+	
+	public static void genDataList() {
+		//表头
+		String[] headers = {"account","ywrq","ljdwjz","ljsyl","drqy","srqy","dryk","drjrj"
+				,"maxrjjrj","jzdrljjrj","zdljjrj"};
+		writeCSV(toCSVLine(headers));
+	}
+
+	/**
+	 * 
+	 * @param exportData
+	 *            需要导出的数据
+	 * @param rowMapper
+	 *            行名称
+	 * @param outPutPath
+	 *            导出的路径
+	 * @param filename
+	 *            文件名
+	 * @return csv文件
+	 */
+	public static File createCSVFile(List exportData, LinkedHashMap rowMapper, String outPutPath, String filename) {
+
+		File csvFile = null;
+		BufferedWriter csvFileOutputStream = null;
+		try {
+			// 创建文件
+			csvFile = new File(outPutPath + filename + ".csv");
+			// csvFile.getParentFile().mkdir();
+			File parent = csvFile.getParentFile();
+			if (parent != null && !parent.exists()) {
+				parent.mkdirs();
+			}
+			csvFile.createNewFile();
+
+			// GB2312使正确读取分隔符","
+			csvFileOutputStream = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(csvFile), "GB2312"),
+					1024);
+			// 写入文件头部
+			for (Iterator propertyIterator = rowMapper.entrySet().iterator(); propertyIterator.hasNext();) {
+				java.util.Map.Entry propertyEntry = (java.util.Map.Entry) propertyIterator.next();
+				csvFileOutputStream.write("\"" + propertyEntry.getValue().toString() + "\"");
+				if (propertyIterator.hasNext()) {
+					csvFileOutputStream.write(",");
+				}
+			}
+			csvFileOutputStream.newLine();
+
+			// 写入文件内容
+			for (Iterator iterator = exportData.iterator(); iterator.hasNext();) {
+				// Object row = (Object) iterator.next();
+				LinkedHashMap row = (LinkedHashMap) iterator.next();
+				System.out.println(row);
+
+				for (Iterator propertyIterator = row.entrySet().iterator(); propertyIterator.hasNext();) {
+					java.util.Map.Entry propertyEntry = (java.util.Map.Entry) propertyIterator.next();
+					// System.out.println( BeanUtils.getProperty(row,
+					// propertyEntry.getKey().toString()));
+					csvFileOutputStream.write("\"" + propertyEntry.getValue().toString() + "\"");
+					if (propertyIterator.hasNext()) {
+						csvFileOutputStream.write(",");
+					}
+				}
+				if (iterator.hasNext()) {
+					csvFileOutputStream.newLine();
+				}
+			}
+			csvFileOutputStream.flush();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				csvFileOutputStream.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return csvFile;
+	}
+
+	public static void writeCSV(String row) {
+		String path = "d://data/my.csv";
+		File csvFile = null;
+		BufferedWriter csvFileOutputStream = null;
+		try {
+			// 创建文件
+			csvFile = new File(path);
+			// csvFile.getParentFile().mkdir();
+			File parent = csvFile.getParentFile();
+			if (parent != null && !parent.exists()) {
+				parent.mkdirs();
+			}
+			csvFile.createNewFile();
+			// GB2312使正确读取分隔符","
+			csvFileOutputStream = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(csvFile), "GB2312"),
+					1024);
+			csvFileOutputStream.write(row);
+			csvFileOutputStream.newLine();
+			csvFileOutputStream.flush();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }
