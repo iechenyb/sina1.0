@@ -8,6 +8,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.cyb.date.DateUtil;
+import com.cyb.url.UrlUtils;
 
 /**
  * 作者 : iechenyb<br>
@@ -38,7 +39,7 @@ public class 模拟高并发CountdownLatch {
 					begin.await();
 					Thread.sleep((long) (Math.random() * 1000));
 					log.info("No." + No + " arrived at "+DateUtil.timeToMilis());
-					//log.info(UrlUtils.downLoadFromUrl("http://www.baidu.com", null, null).length());
+					log.info(UrlUtils.downLoadFromUrl("http://localhost/mvc-1/infor.do", null, null));
 				} catch (InterruptedException e) {
 
 				} finally {
