@@ -1,7 +1,9 @@
 package com.cyb.indiator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.util.Assert;
 
@@ -10,9 +12,8 @@ import com.cyb.data.DataUtils;
 import net.sf.json.JSONArray;
 
 //http://blog.csdn.net/zdy0_2004/article/details/46822685
-//http://www.ab126.com/shuxue/1838.html
-public class 增量方差1 {
-	public static int num=10;
+public class 增量方差3 {
+	public static int num=3;
 	public static List<Bzc> syls = new ArrayList<Bzc>();//收益率记录
 	public static void main(String[] args) {
 		init();
@@ -69,25 +70,34 @@ public class 增量方差1 {
 		return Double.valueOf(DataUtils.e2StringBD(Math.sqrt(zlfc), 8));
 	}
 	
-	
+	public static Map<Integer,Double> dataMap = new HashMap<Integer,Double>();
 	public static void init(){
+		dataMap.put(1, 0d);
+		dataMap.put(2, 0.00451786d);
+		dataMap.put(3, 0.00628594d);
+		dataMap.put(4, 0d);
+		dataMap.put(5, 0d);
+		dataMap.put(6, 0.00758966d);
+		dataMap.put(7, -0.00232531d);
+		dataMap.put(8, 0.00553101d);
+		dataMap.put(9, -0.0078625d);
+		num = dataMap.size();
 		try{
 		syls = new ArrayList<Bzc>(num);
 		int day = 1;
 		for(int i=0;i<=num;i++){
 			Bzc bzc = new Bzc();
-			double drsyl = i+1;
 			if(i==0){
 				bzc.setDays(1);
-				bzc.setLjsyl(1);
-				bzc.setPjsyl(1);
+				bzc.setLjsyl(0);
+				bzc.setPjsyl(0);
 			}else{
 				//每次累计一天，因为连续
 				bzc.setDays(syls.get(i-1).getDays()+day);
-				bzc.setLjsyl(syls.get(i-1).getLjsyl()+drsyl);
+				bzc.setLjsyl(syls.get(i-1).getLjsyl()+dataMap.get(i+1));
 				bzc.setPjsyl(bzc.getLjsyl()/bzc.getDays());
 			}
-			bzc.setDrsyl(drsyl);
+			bzc.setDrsyl(dataMap.get(i+1));
 			bzc.setOrder(i+1);
 			syls.add(bzc);
 		}

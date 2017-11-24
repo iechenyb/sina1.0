@@ -138,6 +138,9 @@ public class DoubleUtil extends DataUtils implements Serializable {
     	System.out.println(new BigDecimal(d3).compareTo(new BigDecimal(d1)));
     	System.out.println(BigDecimal.ZERO.compareTo(new BigDecimal(d1)));
     	System.out.println(new BigDecimal(d1).compareTo(new BigDecimal(d2)));
+    	
+    	BigDecimal pow = new BigDecimal(2);
+    	System.out.println(pow.pow(2));
     }
     
     public static void testBigDecimal(){

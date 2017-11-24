@@ -43,8 +43,17 @@ public class OrderedExeThreads {
 			Future<Map<String,Object>> result = (Future<Map<String,Object>>) execute.submit(task);  
             results.add(result);  
         }  
-		
-		do{  
+		while(execute.getActiveCount()>0){
+			try {
+				Thread.sleep(2000);
+				System.out.println("任务还没有执行完成呢，慢慢等吧！");
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+				
+			}
+		}
+		System.out.println("哎呀，终于执行完了！！！");
+		/*do{  
 			try {  
 			System.out.println("*******************************************");
             System.out.printf("Main: Number of Completed Tasks:%d\n",execute.getCompletedTaskCount());  
@@ -66,7 +75,7 @@ public class OrderedExeThreads {
             } catch (Exception e) {  
                 e.printStackTrace();  
             } 
-        }  
+        } */ 
         execute.shutdown();
 	}
 	public void test(){
@@ -161,7 +170,7 @@ class FactorialCalculator implements Callable<Map<String,Object>> {
         }else{  
             for(int i = 2; i <= number; i++) {  
                 result *= i;  
-                TimeUnit.MILLISECONDS.sleep(20);  
+                TimeUnit.MILLISECONDS.sleep(200);  
             }  
         }  
         System.out.printf("%s-%s: %d\n",Thread.currentThread().getName(),"task"+name,result);  
