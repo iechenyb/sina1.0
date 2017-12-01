@@ -13,8 +13,8 @@ import com.cyb.url.SpiderHttpClient;
  * 类描述: 说点啥<br>
  * 创建时间: 2017年10月26日
  */
-public class DOSTest {
-	Log log = LogFactory.getLog(DOSTest.class);
+public class DOSTest1 {
+	Log log = LogFactory.getLog(DOSTest1.class);
 	public static void main(String[] args) {
 		for(int num=0;num<100;num++){
 			new Thread(new Runnable() {

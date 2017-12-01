@@ -98,7 +98,6 @@ public class LhugCaculatorSingle {
 	}
 	
 	public static void test(){
-		ThreadPoolExecutor execute = (ThreadPoolExecutor) Executors.newWorkStealingPool();
 		
 	}
 }

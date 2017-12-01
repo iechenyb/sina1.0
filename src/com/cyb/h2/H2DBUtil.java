@@ -8,8 +8,6 @@ import java.sql.Statement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.cyb.diffcult.内部类.Inner1;
-
 public class H2DBUtil {
 	static Logger log = LoggerFactory.getLogger(H2DBUtil.class);
 	private static String embedPrix = "jdbc:h2:";
@@ -20,7 +18,6 @@ public class H2DBUtil {
 		H2Manager.start();
 	}
 	public static void main(String[] args) {
-		new Inner1();
 		H2Manager.start();H2Manager.start();
 		H2DBUtil.testFileConnection("test0");
 		H2DBUtil.testTCPConnection();
