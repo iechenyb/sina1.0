@@ -1,9 +1,8 @@
 package com.cyb.annotation.spring;
-
-
 @AnnotationService 
 public class LongServiceTest {
-	private IUser userdao;  
+	private IUser userdao; 
+	
 	public IUser getUserdao1() {
 		return userdao1;
 	}

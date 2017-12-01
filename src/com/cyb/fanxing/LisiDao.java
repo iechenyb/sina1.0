@@ -5,6 +5,6 @@ public class LisiDao extends HibernateBaseDao<Lisi,Zhangsan> {
 
 	@Override
 	public Zhangsan getT1(String id) {
-		return null;
+		return new Zhangsan();
 	}  
 } 
