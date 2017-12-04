@@ -12,10 +12,12 @@ public class Main {
 		AbstractAnimal  fish = new Fish();
 		fish.breath();
 		fish.print();//抽象类的父类
+		fish.eat();
 		//fish.fatherMethod();不可见
 		AbstractAnimal  tigger = new Tigger();
 		tigger.breath();
 		tigger.print();
+		tigger.eat();
 		//tigger.grandMethod();//不可见
 		//tigger.fatherMethod();//不可见
 	}

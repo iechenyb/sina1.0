@@ -31,5 +31,11 @@ public class Tigger extends AbstractAnimal implements FatherExtendGrandInterface
 		
 	}
 
+	@Override
+	void fly() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

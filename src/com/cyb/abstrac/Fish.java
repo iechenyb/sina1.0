@@ -26,5 +26,10 @@ public class Fish extends AbstractAnimal implements FatherInterface{
 		
 	}
 
+	@Override
+	void fly() {
+		
+	}
+
 	
 }
