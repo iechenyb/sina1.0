@@ -1,10 +1,8 @@
-package com.cyb.proxy.p1;
+package com.cyb.reflect.rpc;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-
-import com.cyb.proxy.InterceptorClass;
 
 /**
  * Created by IntelliJ IDEA. User: leizhimin Date: 2008-3-20 23:24:10 Company:
@@ -12,6 +10,14 @@ import com.cyb.proxy.InterceptorClass;
  */
 public class DynamicProxyHandler implements InvocationHandler {
 	private Object business; // 被代理对象
+
+
+	/**
+	 * 动态生成一个代理类对象,并绑定被代理类和代理处理器
+	 * 
+	 * @param business
+	 * @return 代理类对象
+	 */
 	public Object bind(Object business) {
 		this.business = business;
 		return Proxy.newProxyInstance(
@@ -25,6 +31,7 @@ public class DynamicProxyHandler implements InvocationHandler {
 
 				this);
 	}
+
 	/**
 	 * 代理要调用的方法,并在方法调用前后调用连接器的方法.
 	 * 
@@ -40,8 +47,9 @@ public class DynamicProxyHandler implements InvocationHandler {
 	public Object invoke(Object proxy, Method method, Object[] args)
 			throws Throwable {
 		Object result = null;
-		result = method.invoke(proxy, args);
-		return result; 
+		System.out.println(method.getName()+","+args[0]);
+		result = method.invoke(business, args);
+		return result;
 	}
 
 	public Object getBusiness() {

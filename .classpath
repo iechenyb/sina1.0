@@ -125,5 +125,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="src/com/cyb/jiqi/weka/weka-3.6.2.jar"/>
 	<classpathentry kind="lib" path="src/com/cyb/mongodb/mongo-java-driver-3.2.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/asm-3.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/cglib-2.2.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

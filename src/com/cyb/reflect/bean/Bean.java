@@ -1,17 +1,22 @@
-package com.cyb.reflect;
+package com.cyb.reflect.bean;
 
-import java.io.File;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-
-public class BeanVo {
+@Table(name = "tb_bean")
+public class Bean {
+	@Id
+	@Column(name="id")
 	public String id;
+	@Column(name = "name")
 	public String name;
+	@Column
 	public String url="";
+	@Column
 	public int type;
 	
-	public File file;
-	
-    public BeanVo(String id,String name){
+    public Bean(String id,String name){
     	this.id=id;
     	this.name=name;
     }
@@ -44,11 +49,4 @@ public class BeanVo {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public File getFile() {
-		return file;
-	}
-	public void setFile(File file) {
-		this.file = file;
-	}
-	
 }
