@@ -1,7 +1,6 @@
 package com.cyb.socket.one2one;
 
 public class Message {
-	//登陆时需要提供给服务器一个id进行验证
 	public String userId;
 	public String userName;
 	public String fromSocket ;

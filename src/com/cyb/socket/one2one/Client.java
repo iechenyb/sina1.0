@@ -9,18 +9,18 @@ import java.net.Socket;
 
 /**
  *************************************************************** 
- * ÏîÄ¿Ãû³Æ£ºJavaThread ³ÌÐòÃû³Æ£ºJabberClient ÈÕÆÚ£º2012-8-23 ÏÂÎç01:47:12 
- * ×÷Õß£º
- * Ä£¿é£º 
- * ÃèÊö£º 
- * ±¸×¢£º
+ * ï¿½ï¿½Ä¿ï¿½ï¿½Æ£ï¿½JavaThread ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ£ï¿½JabberClient ï¿½ï¿½ï¿½Ú£ï¿½2012-8-23 ï¿½ï¿½ï¿½ï¿½01:47:12 
+ * ï¿½ï¿½ï¿½ß£ï¿½
+ * Ä£ï¿½é£º 
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+ * ï¿½ï¿½×¢ï¿½ï¿½
  * ------------------------------------------------------------ 
- * ÐÞ¸ÄÀúÊ·
- * ÐòºÅ
- * ÈÕÆÚ
- * ÐÞ¸ÄÈË
- * ÐÞ¸ÄÔ­Òò
- * ÐÞ¸Ä±¸×¢£º
+ * ï¿½Þ¸ï¿½ï¿½ï¿½Ê·
+ * ï¿½ï¿½ï¿½
+ * ï¿½ï¿½ï¿½ï¿½
+ * ï¿½Þ¸ï¿½ï¿½ï¿½
+ * ï¿½Þ¸ï¿½Ô­ï¿½ï¿½
+ * ï¿½Þ¸Ä±ï¿½×¢ï¿½ï¿½
  * 
  * @version
  *************************************************************** 
@@ -28,7 +28,7 @@ import java.net.Socket;
 public class Client {
 
 	/**
-	 * ·½·¨Ãû£ºmain ÃèÊö£º ×÷Õß£º°×Åô·É ÈÕÆÚ£º2012-8-23 ÏÂÎç01:47:12
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½main ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú£ï¿½2012-8-23 ï¿½ï¿½ï¿½ï¿½01:47:12
 	 * 
 	 * @param @param args
 	 * @return void
@@ -38,10 +38,8 @@ public class Client {
 		BufferedReader br = null;
 		PrintWriter pw = null;
 		try {
-			//¿Í»§¶ËsocketÖ¸¶¨·þÎñÆ÷µÄµØÖ·ºÍ¶Ë¿ÚºÅ
-			socket = new Socket("192.168.16.211", Server.PORT);
+			socket = new Socket("localhost", Server.PORT);
 			System.out.println("Socket=" + socket);
-			//Í¬·þÎñÆ÷Ô­ÀíÒ»Ñù
 			br = new BufferedReader(new InputStreamReader(
 					socket.getInputStream()));
 			pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(
