@@ -21,7 +21,7 @@ public class DataGeneror {
 	Log log = LogFactory.getLog(DataGeneror.class);
 	static int yearDays = 240;
 	public static int start = 888666;
-	public static int personNum = 5000;
+	public static int personNum = 500000;
 	static String standardCsvFilePath = "d:/data/lhug/sjjy.csv";
 	public static String standardTxtFilePath = "D:\\data\\lhug\\standard\\123456-3.txt";
 	public static String standardTxtFilePathHashDwjz = "D:\\data\\lhug\\standard\\123456-3-dwjz.txt";
