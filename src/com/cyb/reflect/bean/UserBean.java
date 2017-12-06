@@ -1,4 +1,6 @@
-package com.cyb.reflect;
+package com.cyb.reflect.bean;
+
+import com.cyb.reflect.Reflector;
 
 public class UserBean extends Reflector {
     private Integer id=123;

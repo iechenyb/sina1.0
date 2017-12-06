@@ -70,7 +70,7 @@ public class LhugCaculatorStandard {
 		} else {
 			for (int i = 0; i < from.size(); i++) {
 				// 先断定日期一样
-				Assert.isTrue(from.get(i).getYwrq() == baseList.get(i).getYwrq());
+					Assert.isTrue(from.get(i).getYwrq() == baseList.get(i).getYwrq());
 				System.out.println("日期：" + from.get(i).getYwrq() + "," + from.get(i).getLjdwjz() + "=="
 						+ baseList.get(i).getLjdwjz());
 				double wucha = Double

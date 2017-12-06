@@ -1,8 +1,9 @@
 package com.cyb.reflect;
 
 import com.cyb.reflect.Reflector;
+import com.cyb.reflect.bean.Bean;
 
-public class Main {
+public class GenSqlTest {
       public static void main(String[] args) throws IllegalArgumentException, IllegalAccessException {
     	  Bean bean = new Bean("23","chenyb");
     	  System.out.println(Reflector.object2Map(bean));

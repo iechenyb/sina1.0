@@ -11,7 +11,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;  
+import java.util.Map;
+
+import com.cyb.reflect.bean.Bean;
+import com.cyb.reflect.bean.BeanVo;  
   
 public class BeanRefUtil {  
     /** 
@@ -241,15 +244,15 @@ public class BeanRefUtil {
     	Bean po = new Bean("0","0"); 
     	BeanVo vo = new BeanVo("nothing","iechenyb123456789");
     	
-    	ReflectUtils.show(po);
+    	ReflectUtils.show(po);//对象默认初始化
     	System.out.println("----------------------");
-    	BeanRefUtil.setFieldValue(po, map); 
+    	BeanRefUtil.setFieldValue(po, map); //用map的值，设置对象值
     	ReflectUtils.show(po);
     	Map<String, String> valueMap = BeanRefUtil.getFieldValueMap(po);
     	System.out.println(valueMap);
     	System.out.println("----------------------");
     	vo.setName("new Name");
-    	BeanRefUtil.copy(vo, po);
+    	BeanRefUtil.copy(vo, po);//复制对象
     	ReflectUtils.show(po);
 	}
 }  

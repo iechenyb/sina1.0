@@ -4,6 +4,7 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import com.cyb.reflect.bean.UserBean;
 import com.cyb.reflect.invoke.CallMethod;
 
 public class ReflectTest {

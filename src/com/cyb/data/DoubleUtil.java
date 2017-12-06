@@ -105,7 +105,7 @@ public class DoubleUtil extends DataUtils implements Serializable {
 	     return db.toPlainString();  
    }
     public static void main(String[] args) {
-		double val1=0.05;
+		/*double val1=0.05;
 		double val2=0.01;
 		System.out.println(DoubleUtil.divide(val1, val2));
 		System.out.println(DoubleUtil.divide(val1, val2,8));
@@ -117,6 +117,53 @@ public class DoubleUtil extends DataUtils implements Serializable {
 		 String aa = "-4.99183553218834E-7";  
 		 double bb = -4.99183553218834E-7;
 		 System.out.println(E2Double(aa));  
-	     System.out.println(E2Double(bb));  
-	}
+	     System.out.println(E2Double(bb));  */
+    	//无限循环小数会报错new BigDecimal(10).divide(new BigDecimal(3))
+    	BigDecimal big = new BigDecimal(10).divide(new BigDecimal(3),8,RoundingMode.HALF_DOWN);
+    	//3.33333333
+    	big = new BigDecimal(3).divide(new BigDecimal(4),1,RoundingMode.HALF_DOWN);
+    	//0.75->0.7
+    	big = new BigDecimal(3).divide(new BigDecimal(9),1,RoundingMode.HALF_UP);
+    	//0.75->0.8
+    	big = new BigDecimal(10/3.0);//.multiply(new BigDecimal(12));//默认16位小数
+    	System.out.println(big.doubleValue());
+    	//testBigDecimal();
+    	big = new BigDecimal(0.123456789);//
+    	/*big.setScale("0.123456789",BigDecimal.ROUND_HALF_UP);
+    	System.out.println(big.doubleValue());*/
+    	System.out.println(divide(1d,3d,8));
+    	double d1 = 0.00000000;//8
+    	double d2 = 0.000000001;//9
+    	double d3 = 0;
+    	System.out.println(new BigDecimal(d3).compareTo(new BigDecimal(d1)));
+    	System.out.println(BigDecimal.ZERO.compareTo(new BigDecimal(d1)));
+    	System.out.println(new BigDecimal(d1).compareTo(new BigDecimal(d2)));
+    	
+    	BigDecimal pow = new BigDecimal(2);
+    	System.out.println(pow.pow(2));
+    }
+    
+    public static void testBigDecimal(){
+    	 double i = 3.856;
+    	   // 舍掉小数取整
+    	   System.out.println("舍掉小数取整:Math.floor(3.856)=" + (int) Math.floor(i));
+    	   // 四舍五入取整
+    	   System.out.println("四舍五入取整:(3.856)="
+    	     + new BigDecimal(i).setScale(0, BigDecimal.ROUND_HALF_UP));
+    	   // 四舍五入保留两位小数
+    	   System.out.println("四舍五入取整:(3.856)="
+    	     + new BigDecimal(i).setScale(2, BigDecimal.ROUND_HALF_UP));
+    	   // 凑整，取上限
+    	   System.out.println("凑整:Math.ceil(3.856)=" + (int) Math.ceil(i));
+    	   // 舍掉小数取整
+    	   System.out.println("舍掉小数取整:Math.floor(-3.856)=" + (int) Math.floor(-i));
+    	   // 四舍五入取整
+    	   System.out.println("四舍五入取整:(-3.856)="
+    	     + new BigDecimal(-i).setScale(0, BigDecimal.ROUND_HALF_UP));
+    	   // 四舍五入保留两位小数
+    	   System.out.println("四舍五入取整:(-3.856)="
+    	     + new BigDecimal(-i).setScale(2, BigDecimal.ROUND_HALF_UP));
+    	   // 凑整，取上限
+    	   System.out.println("凑整(-3.856)=" + (int) Math.ceil(-i));
+    }
 }

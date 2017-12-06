@@ -1,9 +1,7 @@
-<%@page import="com.cyb.Contanst"%>
 <%@ page language="java" import="java.util.*" pageEncoding="gbk"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-String pushUrl = Contanst.pushUrl;
 %>
 <!DOCTYPE html>
 <html>
@@ -14,11 +12,45 @@ String pushUrl = Contanst.pushUrl;
     <script src="jquery-1.7.2.min.js"></script>
 	<script>
 		$(function(){
-			var socket =  io.connect('<%=pushUrl%>');
+		   //pushUrl = "http://"+ip+":"+port;
+			var socket =  io.connect(pushUrl);
 			 socket.on("pushpoint", function(data){
+			 	//监听pushpoint事件
 				$('#x').text(data.x);
 				$('#y').text(data.y);
 			});
+			    socket.on('connect', function() {
+					console.log("连接成功");		
+					//首次进入页面连接成功后从服务器端主动拉取一次数据。			
+					//socket.emit('getmsg', "事件名称");					
+				});
+				socket.on("connecting", function() {
+					console.log("正在连接");
+				});
+				socket.on('disconnect', function() {
+					console.log("断开连接");
+				});
+				socket.on('connect_failed', function() {
+					console.log("连接失败");
+				});
+				socket.on('error', function(data) {
+					console.log("连接错误" + data);
+				});
+				socket.on('message', function(data) {
+					console.log("信息" + data);
+				});
+				socket.on('anything', function(data) {
+					console.log("连接信息" + data);
+				});
+				socket.on('reconnect_failed', function() {
+					console.log("重连失败");
+				});
+				socket.on('reconnect', function() {
+					console.log("成功重连");
+				});
+				socket.on('reconnecting', function(data) {
+					console.log("正在重连" + data);
+				});
 		});
 	</script>
 </head>

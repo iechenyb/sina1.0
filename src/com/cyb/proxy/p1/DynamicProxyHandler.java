@@ -12,7 +12,19 @@ import com.cyb.proxy.InterceptorClass;
  */
 public class DynamicProxyHandler implements InvocationHandler {
 	private Object business; // 被代理对象
+	public Object bind(Object business) {
+		this.business = business;
+		return Proxy.newProxyInstance(
+		// 被代理类的ClassLoader
 
+				business.getClass().getClassLoader(),
+				// 要被代理的接口,本方法返回对象会自动声称实现了这些接口
+
+				business.getClass().getInterfaces(),
+				// 代理处理器对象
+
+				this);
+	}
 	/**
 	 * 代理要调用的方法,并在方法调用前后调用连接器的方法.
 	 * 
@@ -28,16 +40,8 @@ public class DynamicProxyHandler implements InvocationHandler {
 	public Object invoke(Object proxy, Method method, Object[] args)
 			throws Throwable {
 		Object result = null;
-		System.out.println("execute begin!");
-//		System.out.println("method begin toGenericString:"+method.toGenericString());  
-//	    System.out.println("method name:"+method.getName());  
-	   /* if(args!=null){
-	    	System.out.println("method args:"+(String)args[0]);  
-	    }*/
 		result = method.invoke(proxy, args);
-		System.out.println("execute over!");
-		return null; // To change body of implemented methods use File |
-						// Settings | File Templates.
+		return result; 
 	}
 
 	public Object getBusiness() {

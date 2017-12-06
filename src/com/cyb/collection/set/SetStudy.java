@@ -23,7 +23,7 @@ public class SetStudy {
 	  stus1.add(new User(5,"cyb","1"));
 	  stus1.add(new User(3,"iechenyb","2"));
 	  stus1.add(new User(1,"chenyb","111"));
-	  stus1.add(new User(1,"chenyb","111"));
+	  stus1.add(new User(2,"chenyb1","111"));
 	  System.out.println(stus1);//
 	  /*Iterator<User> it=  stus1.iterator();
 	  while(it.hasNext()){
@@ -47,6 +47,10 @@ public class SetStudy {
 	  hs.add("8");
 	  hs.add("8");//默认会去重
 	  System.out.println("hashset 无序："+hs);	
-	  
+	  Object[] us = (Object[]) stus1.toArray();
+	  for(int i=0;i<us.length;i++){
+		  User user = (User) us[i];
+		  System.out.println(user.getName());
+	  }
 }
 }

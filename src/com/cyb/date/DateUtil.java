@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.StringTokenizer;
+import java.util.TimeZone;
 
 /**
  * 
@@ -274,7 +276,23 @@ public class DateUtil {
 		}
 		return Integer.parseInt(String.valueOf(between_days));
 	}
-
+    public static String showTime(long s,long e){
+    	long  ms = e-s ;//毫秒数     
+    	//初始化Formatter的转换格式。     
+    	SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss.SSS");
+    	formatter.setTimeZone(TimeZone.getTimeZone("GMT+00:00"));
+    	String hms = formatter.format(ms);  
+    	String hmstmp = hms.substring(0, hms.length()-4);
+    	StringTokenizer st = new StringTokenizer(hmstmp, ":");  
+    	 while(st.hasMoreElements()){  
+    		if(!st.nextToken().equals("00")){
+    			break;
+    		}else{
+    			hms = hms.substring(3, hms.length());
+    		}  
+    	 }  
+    	return hms;
+    }
 	public static void main(String[] args) throws ParseException {
 		/*
 		 * System.out.println(DateUtil.date2long10("20150603"));
@@ -291,6 +309,6 @@ public class DateUtil {
 		 * System.out.println(calendar("20091231").get(Calendar.DAY_OF_YEAR));
 		 */
 		System.out.println(calendar("2012/02\\02"));
-		System.out.println();
+		System.out.println(showTime(0,3600*70+123));
 	}
 }

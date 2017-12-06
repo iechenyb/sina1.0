@@ -4,36 +4,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import com.cyb.collection.common.CollectionFactory;
-
 public class ReflectUtils {
-	public static void main(String[] args) throws Exception {
-	    CollectionFactory.build(10);
-		UserBean bean = new UserBean();
-		bean.setId(1000);
-		bean.setAddress("武汉");
-		bean.setAge(100);
-		bean.setName("chenyb");
-		UserBean bean1 = new UserBean();
-		bean1.setId(1000);
-		bean1.setAddress("武汉");
-		bean1.setAge(100);
-		bean1.setName("iechenyb");
-		show(bean);
-		show(CollectionFactory.getMap());
-		Bean po = new Bean("","");
-		BeanVo vo = new BeanVo("1","chenyb");
-		setFieldValueByName("name",po,"who am i");
-		show(po);
-		//copy(vo, po);
-		System.out.println("************************");
-		String[] arr = {"id","Address","age","name"};
-		for(int i=0;i<arr.length;i++){
-			System.out.println(arr[i]+"="+getFieldValueByName(arr[i],bean));
-		}
-		System.out.println("************************");
-		compareObject(bean,bean1);
-	}
 	public static Object getFieldValueByName(String fieldName, Object o)   
 	{      
 	   try   

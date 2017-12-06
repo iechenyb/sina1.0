@@ -37,7 +37,7 @@ public class CallMethod {
 			Object obj1 = method1.invoke(call, (Object[]) null);
 			System.out.println("object1="+obj1);// null
 			getParamTypes("sunvins1",CallMethod.class);
-			//Method method2 = CallMethod.class.getMethod("sunvins1",	String.class, int.class);
+			//Method method2 = CallMethod.class.getMethod("sunvins1",String.class, int.class);
 			Method method2 = CallMethod.class.getMethod("sunvins1",	getParamTypes("sunvins1",CallMethod.class));
 			
 			Map<String,Object> paramsHttp = new HashMap<String,Object>();
