@@ -1,4 +1,4 @@
-package com.cyb.reflect.rpc;
+package com.cyb.reflect.rpc.jdk;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -8,7 +8,7 @@ import java.lang.reflect.Proxy;
  * Created by IntelliJ IDEA. User: leizhimin Date: 2008-3-20 23:24:10 Company:
  * LavaSoft(http://lavasoft.blog.51cto.com/) 动态代理处理器工具
  */
-public class DynamicProxyHandler implements InvocationHandler {
+public class JdkDynamicProxy implements InvocationHandler {
 	private Object business; // 被代理对象
 
 
@@ -18,17 +18,14 @@ public class DynamicProxyHandler implements InvocationHandler {
 	 * @param business
 	 * @return 代理类对象
 	 */
-	public Object bind(Object business) {
+	public Object getProxy(Object business) {
 		this.business = business;
 		return Proxy.newProxyInstance(
 		// 被代理类的ClassLoader
-
 				business.getClass().getClassLoader(),
 				// 要被代理的接口,本方法返回对象会自动声称实现了这些接口
-
 				business.getClass().getInterfaces(),
 				// 代理处理器对象
-
 				this);
 	}
 
