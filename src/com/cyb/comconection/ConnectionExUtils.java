@@ -100,7 +100,7 @@ public class ConnectionExUtils<T> extends QueryRunner {
         Table table = cls.getAnnotation(Table.class);
         String tableName = table.name();
         if(StringUtils.isEmpty(Reflector.getAnnotionedId(t))){
-        	throw new Exception("对象id不能为空！");
+        	throw new Exception("对象id不能为空或者是否存在id注解 ！");
         }
         String hasSql="select * from "+tableName +" where id='"+Reflector.getAnnotionedId(t)+"'";
         Object obj = this.queryForObject(hasSql, (Class<T>) cls);

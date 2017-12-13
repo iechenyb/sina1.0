@@ -5,16 +5,16 @@ import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-public class ParamsUtil {
+public class ParamsUtilLocal {
 
 	private static Properties p = null;
-	static Log log = LogFactory.getLog(ParamsUtil.class);
+	static Log log = LogFactory.getLog(ParamsUtilLocal.class);
 	public synchronized static void initByPath() throws Exception {
 		InputStream inputstream = null;
 		try {
 			if (p == null) 
 			{
-				String filePath = System.getProperty("user.dir")+"/config.properties";
+				String filePath = "d:/data/config/neteye.properties";
 				p = new Properties();
 				log.info("初始化属性文件:"+filePath);
 				inputstream = new FileInputStream(filePath);
@@ -30,18 +30,22 @@ public class ParamsUtil {
 		}
 	}
 
-	public static String get(String key) {
+	public synchronized static String get(String key) {
 		String result = "";
 		try {
 			if(p==null){
 				initByPath();
 			}
-			result = p.getProperty(p.getProperty("etc"));
+			result = p.getProperty(key);
 			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "";
 		}
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(get("etc"));
 	}
 	
 }

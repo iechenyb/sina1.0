@@ -43,7 +43,7 @@ public class CmdUtils {
 			BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream(),"gbk"));
 			String line = null;
 			while ((line = br.readLine()) != null) {
-				System.out.println(line);
+				//System.out.println(line);
 				sb.append(line+",");
 			}
 			br.close();
@@ -95,9 +95,11 @@ public class CmdUtils {
 
 	public static void main(String[] args) {
 		//java -version 不可以查看
-		System.out.println(exeCMDWithResult("netstat -a"));
-		System.out.println(exeCMDWithResult("ipconfig | findstr IPv4"));
+		/*System.out.println(exeCMDWithResult("netstat -a"));
+		System.out.println(exeCMDWithResult("ipconfig | findstr IPv4"));*/
 		System.out.println(getLocalIPForCMD());
 		System.out.println(getLocalIPForJava());
+		
+		System.out.println(exeCMDWithResult("ping www.baidu.com").contains("找不到主机"));
 	}
 }
