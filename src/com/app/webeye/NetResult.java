@@ -32,7 +32,9 @@ public class NetResult {
 	
 	@Column(name = "desc",columnDefinition="varchar(100)")
 	private String desc;
-
+	
+	@Column(name = "time",columnDefinition="varchar(25)")
+	private String time;
 	
 	public String getId() {
 		return id;
@@ -89,6 +91,14 @@ public class NetResult {
 
 	public void setDomain(String domain) {
 		this.domain = domain;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
 	}
 	
 	

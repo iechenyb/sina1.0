@@ -9,8 +9,6 @@ import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 
 import com.cyb.h2.H2Manager;
-import com.cyb.quartz.LzstoneMain;
-import com.cyb.quartz.LzstoneTimeTask;
 /**
  *作者 : iechenyb<br>
  *类描述: 说点啥<br>
@@ -20,12 +18,12 @@ public class Start {
 	private static Scheduler sched;
 	Log log = LogFactory.getLog(Start.class);
 	public static void main(String[] args) {
-		JobDetail jobDetail = new JobDetail("job","default",PingTask.class);
+		JobDetail jobDetail = new JobDetail("job","default",NetTask.class);
         //目标 创建任务计划
         try {
         	H2Manager.start();
 			new  NetDbUtils("NetDB");
-			CronTrigger trigger = new CronTrigger("trigger","ping","*/5 * * * * ?");
+			CronTrigger trigger = new CronTrigger("trigger","ping","*/10 * * * * ?");
 			 try {
 				sched = new org.quartz.impl.StdSchedulerFactory().getScheduler();
 				sched.start();

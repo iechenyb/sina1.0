@@ -7,25 +7,26 @@ import com.cyb.cmd.CmdUtils;
 import com.cyb.date.DateUtil;
 import com.cyb.reflect.DDLUtils;
 
-public class PingTask{
+public class TelNetTask{
     public static void execute() throws JobExecutionException{
     	NetResult nr;
-		String ip = "www.baidu.com";
+		String ip = "127.0.0.1";
+		String port = "8080";
 		for(int i=0;i<1;i++){
-			String rs = CmdUtils.exeCMDWithResult("ping "+ip);
+			String rs = CmdUtils.exeCMDWithResult("telnet "+ip +" "+port);
 			nr = new NetResult();
 			nr.setId(UUIDUtils.getUUID());
-			nr.setType("ip");
+			nr.setType("port");
 			nr.setIp(ip);
 			nr.setDomain(ip);
-			nr.setName("百度服务");
+			nr.setName("本地服务");
 			nr.setTime(DateUtil.timeToSec());
-			if(rs.contains("找不到主机")){
+			if(rs.contains("连接失败")){
 				nr.setZt("0");
-				nr.setDesc("通道异常!");
+				nr.setDesc("端口异常!");
 			}else{
 				nr.setZt("1");
-				nr.setDesc("通道正常");
+				nr.setDesc("端口正常");
 			}
 			String sql = null;
 			try {

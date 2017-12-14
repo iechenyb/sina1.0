@@ -14,7 +14,7 @@ public class NetUtils {
 			H2Manager.start();
 			new  NetDbUtils("NetDB");
 			NetResult nr;
-			String ip = "www.baidu.com1";
+			String ip = "www.baidu.com";
 			for(int i=0;i<10;i++){
 				String rs = CmdUtils.exeCMDWithResult("ping "+ip);
 				nr = new NetResult();

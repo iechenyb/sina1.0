@@ -117,7 +117,7 @@ public class ImagePreProcess {
 	    }  
 	  
 	    public static void downloadImage() {  
-	        HttpClient httpClient = new HttpClient();  
+	        MyHttpClient httpClient = new MyHttpClient();  
 	        GetMethod getMethod = new GetMethod("");  
 	        for (int i = 0; i < 30; i++) {  
 	            try {  

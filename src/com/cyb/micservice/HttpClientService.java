@@ -1,9 +1,6 @@
 package com.cyb.micservice;
 
-import io.netty.handler.codec.http.HttpResponse;
-
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,12 +84,13 @@ public class HttpClientService {
 		try {
 			String url = "http://localhost:8080/oauth/token";
 			HttpPost httpRequst = new HttpPost(url);// 创建HttpPost对象Y2xpZW50Om1fdm9sdW50ZWVy
+			//填写完basic设置后，生成了header信息
 			httpRequst.addHeader("Authorization","Basic Y2xpZW50Om1fdm9sdW50ZWVy");
 			//httpRequst.addHeader("Authorization","client:m_volunteer");
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 			params.add(new BasicNameValuePair("grant_type", "password"));
-			params.add(new BasicNameValuePair("username", "voltest"));
-			params.add(new BasicNameValuePair("password", "voltest"));
+			params.add(new BasicNameValuePair("username", "yes"));
+			params.add(new BasicNameValuePair("password", "yes"));
 			httpRequst.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
 			org.apache.http.HttpResponse httpResponse = new DefaultHttpClient()
 					.execute(httpRequst);

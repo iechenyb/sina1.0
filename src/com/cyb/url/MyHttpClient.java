@@ -35,7 +35,7 @@ import org.apache.http.util.EntityUtils;
 
 import com.cyb.file.FileUtils;
 
-public class SpiderHttpClient {
+public class MyHttpClient {
 	static String charset = "gbk";// "gb2312"
 	static String filepath = "d:/SpiderHttpClient.htm";
 	static String url_str = "http://www.czce.com.cn/portal/DFSStaticFiles/Future/2016/20160215/FutureDataWhsheet.htm";
