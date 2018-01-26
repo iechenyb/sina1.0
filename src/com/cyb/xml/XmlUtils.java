@@ -23,6 +23,7 @@ import org.xml.sax.SAXException;
 
 
 public class XmlUtils {
+	//dom4j
 	public static  void generXml(String dest) throws Exception{
 		// 第一种方式：创建文档，并创建根元�?
         // 创建文档:使用了一个Helper�?

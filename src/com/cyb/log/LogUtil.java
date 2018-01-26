@@ -20,7 +20,9 @@ public class LogUtil {
 	        log.error("This is slf4j error message");
 		}
 	    public static void main(String[] args) {
-	    	testTomcatLog();
+	    	log.info("sfdf");
+	    	Service.print("chenyb");
+	    	//testTomcatLog();
 	    	/*print(log, "apache log");//打印的行数为实际执行的行数
             print(logger,"slf log");
 	    	log.info("********************************************************");

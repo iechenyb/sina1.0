@@ -1,0 +1,11 @@
+XML的解析方式分为四种：1、DOM解析；2、SAX解析；3、JDOM解析；4、DOM4J解析。其中前两种属于基础方法，是官方提供的平台无关的解析方式；
+后两种属于扩展方法，它们是在基础的方法上扩展出来的，只适用于java平台。
+https://www.cnblogs.com/longqingyang/p/5577937.html
+SAX的全称是Simple APIs for XML，也即XML简单应用程序接口。与DOM不同，SAX提供的访问模式是一种顺序模式，这是一种快速读写XML数据的方式。当使用SAX分析器对XML文档进行分析时，会触发一系列事件，并激活相应的事件处理函数，应用程序
+通过这些事件处理函数实现对XML文档的访问，因而SAX接口也被称作事件驱动接口。
+DOM的全称是Document Object Model，也即文档对象模型
+
+
+This parser does not support specification "null" version "null":
+产生原因：xerces.jar or xercesImpl.jar的版本不兼容导致引发Application冲突. 
+解决办法：将classpath中的xerces.jar or xercesImpl.jar remove.

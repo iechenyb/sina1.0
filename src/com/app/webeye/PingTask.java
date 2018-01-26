@@ -1,14 +1,12 @@
 package com.app.webeye;
 
-import org.quartz.JobExecutionException;
-
 import com.cyb.UUIDUtils;
 import com.cyb.cmd.CmdUtils;
 import com.cyb.date.DateUtil;
 import com.cyb.reflect.DDLUtils;
 
 public class PingTask{
-    public static void execute() throws JobExecutionException{
+    public static void execute(){
     	NetResult nr;
 		String ip = "www.baidu.com";
 		for(int i=0;i<1;i++){
