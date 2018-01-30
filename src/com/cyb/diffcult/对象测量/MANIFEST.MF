@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Premain-Class: com.cyb.diffcult.对象测量.MySizeOf
+Created-By: 1.7.0_80 (Oracle Corporation)
+
