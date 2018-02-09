@@ -11,6 +11,11 @@ public class CommonCls implements Interface{
 
 	@Override
 	public void print() {
-		//必须实现接口方法
+		//必须实现接口普通方法
+	}
+
+	@Override
+	public void absprint() {
+		//必须实现接口的抽象方法
 	}
 }

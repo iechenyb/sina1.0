@@ -5,12 +5,11 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import com.cyb.reflect.bean.UserBean;
-import com.cyb.reflect.invoke.CallMethod;
 
 public class ReflectTest {
 	 @SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws Exception {
-	  Class clazz = Class.forName("com.cyb.reflect.UserBean");//这里的类名是全名。。有包的话要加上包名
+	  Class clazz = Class.forName("com.cyb.reflect.bean.UserBean");//这里的类名是全名。。有包的话要加上包名
 	  Object obj = clazz.newInstance();
 	  Field[] fields = clazz.getDeclaredFields();
 	  //写数据

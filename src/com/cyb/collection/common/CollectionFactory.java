@@ -18,7 +18,10 @@ public class CollectionFactory {
 	public static Set<Integer> set = new HashSet<Integer>();
 	public static Map<String, String> map = new HashMap<String, String>();
 	public static User user = new User();
-
+    public CollectionFactory(){
+    	build(100);
+    	buildBeans(100);
+    } 
 	public static void build(int nums) {
 		for (int i = 0; i < nums; i++) {
 			User user = new User();

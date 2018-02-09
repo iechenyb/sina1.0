@@ -11,7 +11,9 @@ import java.lang.reflect.Modifier;
 import java.util.IdentityHashMap;
 import java.util.Map;
 import java.util.Stack;
-
+/*https://www.cnblogs.com/myna/p/7573843.html 
+ * 使用命令查看jvm中对象个数和占用内存
+ */
 public class MySizeOf {
 
     static Instrumentation inst;

@@ -3,7 +3,7 @@ package com.app.webeye;
 import com.cyb.UUIDUtils;
 import com.cyb.cmd.CmdUtils;
 import com.cyb.date.DateUtil;
-import com.cyb.reflect.DDLUtils;
+import com.cyb.reflect.sql.DDLUtils;
 
 public class PingTask{
     public static void execute(){

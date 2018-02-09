@@ -31,6 +31,11 @@ public class AbstractChild extends Abstract{
 			public void print() {
 				System.out.println("interface override!");
 			}
+
+			@Override
+			public void absprint() {//实现抽象方法
+				
+			}
 		};
 		in1.print();
 	}

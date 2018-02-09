@@ -2,7 +2,7 @@ package com.cyb.collection.po;
 
 import java.io.Serializable;
 
-import com.cyb.shejimoshi.原型模式;
+import com.cyb.shejimoshi.创建型.原型模式;
 
 public class User extends 原型模式 implements Comparable<User>,Serializable     {
 	/**

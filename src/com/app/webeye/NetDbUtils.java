@@ -11,7 +11,7 @@ import com.app.utils.ParamsUtilLocal;
 import com.cyb.comconection.ConnectionExUtils;
 import com.cyb.h2.H2DBUtil;
 import com.cyb.h2.H2Manager;
-import com.cyb.reflect.DDLUtils;
+import com.cyb.reflect.sql.DDLUtils;
 
 public class NetDbUtils {
 	private static Log log = LogFactory.getLog(NetDbUtils.class);

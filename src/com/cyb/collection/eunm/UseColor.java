@@ -2,6 +2,7 @@ package com.cyb.collection.eunm;
 
 public class UseColor {
 	public static void main(String[] args) {
+		System.out.println( Color.isRed( Color.BLANK ) ) ; 
 		System.out.println( isRed( Color.BLANK ) ) ;  //结果： false
         System.out.println( isRed( Color.RED ) ) ;    //结果： true
         showColor(Color.YELLOW);
@@ -29,6 +30,5 @@ public class UseColor {
             System.out.println( color );
             break;
         }
-         
     }
 }

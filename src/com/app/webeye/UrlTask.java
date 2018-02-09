@@ -5,7 +5,7 @@ import java.net.URL;
 
 import com.cyb.UUIDUtils;
 import com.cyb.date.DateUtil;
-import com.cyb.reflect.DDLUtils;
+import com.cyb.reflect.sql.DDLUtils;
 
 public class UrlTask{
     public static void execute(){

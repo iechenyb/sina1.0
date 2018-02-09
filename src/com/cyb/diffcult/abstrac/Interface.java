@@ -11,5 +11,7 @@ public interface Interface {
 	 *类描述: 说点啥&lt;br&gt;
 	 *创建时间: 2017年8月31日
 	 */
+	public int a=0;//接口中声明的变量都是final的，所以必须进行初始化！
 	public void print();
+	public abstract void absprint();
 }
