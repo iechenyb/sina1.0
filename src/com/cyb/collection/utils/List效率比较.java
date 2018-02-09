@@ -18,7 +18,9 @@ public class List效率比较 {
     private static LinkedList linkedList = new LinkedList();
     private static ArrayList arrayList = new ArrayList();
     private static Vector vector = new Vector();
-    private static Stack stack = new Stack();
+    /*同步安全Vector可以实现可增长的动态对象数组容量增加方式不同，
+    Vector默认增长为原来一培，而ArrayList却是原来的一半+1*/
+    private static Stack stack = new Stack();//同步安全 Stack是继承于Vector。
     public static void main(String[] args) {
         // 换行符
         System.out.println();
