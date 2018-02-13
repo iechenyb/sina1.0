@@ -1,4 +1,4 @@
-package com.cyb.proxy;
+package com.cyb.proxy.http;
 
 
 import java.util.Properties;

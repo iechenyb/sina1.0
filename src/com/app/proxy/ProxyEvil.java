@@ -23,7 +23,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.cyb.h2.H2Manager;
-import com.cyb.proxy.ProxyUtils;
+import com.cyb.proxy.http.ProxyUtils;
 import com.cyb.url.HttpsClient;
 import com.cyb.url.UrlUtils;
 

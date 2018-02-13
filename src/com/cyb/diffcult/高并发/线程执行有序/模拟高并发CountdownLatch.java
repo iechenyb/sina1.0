@@ -35,11 +35,12 @@ public class 模拟高并发CountdownLatch {
 				try {
 					// 如果当前计数为零，则此方法立即返回。
 					// 等待
-					Thread.currentThread().setName(No+"-User");
-					begin.await();
-					Thread.sleep((long) (Math.random() * 1000));
 					log.info("No." + No + " arrived at "+DateUtil.timeToMilis());
-					log.info(UrlUtils.downLoadFromUrl("http://localhost/mvc-1/infor.do", null, null));
+					Thread.currentThread().setName(No+"-User");
+					begin.await();//等待开枪示意开始
+					Thread.sleep((long) (Math.random() * 1000));
+					log.info("No." + No + " run over "+DateUtil.timeToMilis());
+					//log.info(UrlUtils.downLoadFromUrl("http://localhost/mvc-1/infor.do", null, null));
 				} catch (InterruptedException e) {
 
 				} finally {
@@ -62,7 +63,10 @@ public class 模拟高并发CountdownLatch {
 		}
 		System.out.println("Game Start");
 		// begin减一，开始游戏
-		begin.countDown();//此处注释掉，则所有线程都被阻塞
+		boolean start = false;
+		if(start){//是否明抢示意开始！
+			begin.countDown();//此处注释掉，则所有线程都被阻塞
+		}
 		// 等待end变为0，即所有选手到达终点
 		end.await();
 		System.out.println("Game Over");
