@@ -35,6 +35,28 @@ public class PropertyUtil {
 			}
 		}
 	}
+	@SuppressWarnings("unused")
+	public synchronized static Properties initByPath(String configFilePath) throws Exception {
+		InputStream inputstream = null;
+		Properties p = new Properties();
+		try {
+			
+				p = new Properties();
+				log.info("初始化属性文件:"+configFilePath);
+				inputstream = new FileInputStream(configFilePath);
+				p.load(inputstream);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return p;
+		}finally{
+			if(inputstream!=null){
+				inputstream.close();
+				inputstream = null;
+			}
+		}
+		return p;
+	}
 	public synchronized static void initByPackage() throws Exception {
 		InputStream inputstream = null;
 		try {

@@ -155,6 +155,34 @@ public class FileUtils {
         }
         return content;
     }
+    @SuppressWarnings("unused")
+	public static List<String> readFileToList(String path) {
+    	System.out.println("操作文件路径："+path);
+    	List<String> content = new ArrayList<String>();
+        File file = new File(path);
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new InputStreamReader(new FileInputStream(file),"utf-8"));
+            String tempString = null;
+            int line = 1;
+            // 一次读入一行，直到读入null为文件结束
+            while ((tempString = reader.readLine()) != null) {
+                // 显示行号
+            	content.add(tempString.trim());
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e1) {
+                }
+            }
+        }
+        return content;
+    }
     public static  byte[] readInputStream(InputStream inputStream) throws IOException {    
         byte[] buffer = new byte[1024];    
         int len = 0;    

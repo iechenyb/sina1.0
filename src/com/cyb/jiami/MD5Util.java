@@ -1,5 +1,12 @@
 package com.cyb.jiami;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.math.BigInteger;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
 import java.security.MessageDigest;
 
 public class MD5Util {
@@ -30,7 +37,28 @@ public class MD5Util {
         }
         return hexValue.toString();
     }
-
+    public static String getMd5ByFile(File file) throws FileNotFoundException {  
+        String value = null;  
+        FileInputStream in = new FileInputStream(file);  
+    try {  
+        MappedByteBuffer byteBuffer = in.getChannel().map(FileChannel.MapMode.READ_ONLY, 0, file.length());  
+        MessageDigest md5 = MessageDigest.getInstance("MD5");  
+        md5.update(byteBuffer);  
+        BigInteger bi = new BigInteger(1, md5.digest());  
+        value = bi.toString(16);  
+    } catch (Exception e) {  
+        e.printStackTrace();  
+    } finally {  
+            if(null != in) {  
+                try {  
+                in.close();  
+            } catch (IOException e) {  
+                e.printStackTrace();  
+            }  
+        }  
+    }  
+    return value;  
+    } 
     /**
      * 测试主函数
      * @param args
@@ -44,5 +72,6 @@ public class MD5Util {
         System.out.println("MD5后：" + md5Encode(str));
         System.out.println("MD5后：" + md5Encode(str));
         System.out.println("MD5后：" + md5Encode("c4ca4238a0b923820dcc509a6f75849b"));
+       System.out.println(getMd5ByFile(new File("d:\\data\\mail.txt")));
     }
 }
