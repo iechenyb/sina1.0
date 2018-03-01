@@ -11,4 +11,14 @@ public class RandomUtil {
 	public static int randomInt(){
 		return random.nextInt();
 	}
+	
+	public static void main(String[] args) {
+		System.out.println(randomInt(1,100));
+		System.out.println(randomInt());
+		Math.round(Math.random() * 10);//0-10之间的数
+		new java.util.Random().nextInt(10);
+		java.util.concurrent.ThreadLocalRandom.current().nextInt(10);
+		Math.round(Math.random() * 10);
+		Math.floor(Math.random() * 11);
+	}
 }

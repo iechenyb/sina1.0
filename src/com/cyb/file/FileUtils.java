@@ -17,6 +17,9 @@ import java.io.RandomAccessFile;
 import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +27,22 @@ import com.cyb.frame.LoginFrame;
 import com.cyb.freemarker.FreeMarkerUtil;
 
 public class FileUtils {
+	public void pathInfo() throws IOException {  
+		@SuppressWarnings("unused")
+		int million  =  1_000_000;
+        Path path = Paths.get("c:\\Temp\\temp");  
+
+        System.out.println("Number of Nodes:" + path.getNameCount());  
+
+        System.out.println("File Name:" + path.getFileName());  
+
+        System.out.println("File Root:" + path.getRoot());  
+
+        System.out.println("File Parent:" + path.getParent());   
+         
+        //这样写不会抛异常  
+        Files.deleteIfExists(path);  
+}
     /**
      * 以字节为单位读取文件，常用于读二进制文件，如图片、声音、影像等文件。
      */

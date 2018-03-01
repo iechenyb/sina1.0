@@ -10,8 +10,10 @@ public class Main {
 	Log log = LogFactory.getLog(Main.class);
 	
 	public static void main(String[] args) {
-		String file="d://data//netresult.csv";
-		//CSVFileUtil.writeCSV(file,"a,b,c,d");
-		CSVFileUtil.genData();
+		String file="d://data//mycsv.csv";
+		/*CSVFileUtil.writeCSV(file,"a,b,c,d");
+		CSVFileUtil.writeCSV(file,"1,2,3,4");
+		CSVFileUtil.genData();*/
+		CSVFileUtil.show(file);
 	}
 }

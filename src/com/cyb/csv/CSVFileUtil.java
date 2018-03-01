@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -232,7 +233,13 @@ public class CSVFileUtil {
 		File csv = new File(filePath); // CSV文件路径
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new FileReader(csv));
+			//br = new BufferedReader(new FileReader(csv));//无法设置编码
+			FileInputStream in = new FileInputStream(csv);
+			try {
+				br = new BufferedReader(new InputStreamReader(in,"gb2312"));
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -259,7 +266,6 @@ public class CSVFileUtil {
 		List<String> r1 = new ArrayList<String>();
 		List<String> r2 = new ArrayList<String>();
 		List<String> r3 = new ArrayList<String>();
-
 		r1.add("name");
 		r1.add("age");
 		r2.add("chneyb");
@@ -280,7 +286,6 @@ public class CSVFileUtil {
 		map.put("2", "第二列");
 		map.put("3", "第三列");
 		map.put("4", "第四列");
-
 		for (int i = 0; i < 100; i++) {
 			row = new LinkedHashMap<String, String>();
 			row.put("1", "11" + i);
@@ -289,7 +294,7 @@ public class CSVFileUtil {
 			row.put("4", "14" + i);
 			exportData.add(row);
 		}
-		createCSVFile(exportData, map, "d:/data", "mycsv");
+		createCSVFile(exportData, map, "d:/data/", "mycsv");
 	}
 
 	/**
@@ -304,6 +309,7 @@ public class CSVFileUtil {
 	 *            文件名
 	 * @return csv文件
 	 */
+	@SuppressWarnings("rawtypes")
 	public static File createCSVFile(List exportData, LinkedHashMap rowMapper, String outPutPath, String filename) {
 
 		File csvFile = null;
@@ -311,6 +317,7 @@ public class CSVFileUtil {
 		try {
 			// 创建文件
 			csvFile = new File(outPutPath + filename + ".csv");
+			System.out.println("csv文件目录"+csvFile);
 			// csvFile.getParentFile().mkdir();
 			File parent = csvFile.getParentFile();
 			if (parent != null && !parent.exists()) {
