@@ -29,6 +29,7 @@ public class User_ implements Comparable<User_>{
 		this.pwd = pwd;
 	}
 	
+	@Override
 	public String toString(){
 		return this.name+"#"+this.pwd;
 	}

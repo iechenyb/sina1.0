@@ -1,0 +1,19 @@
+IDEA 插件安装
+
+IDEA 版的插件已发布到 IDEA 官方仓库中(最低支持版本 14.1.7，JDK1.7+)。
+
+只需打开 Settings &gt;&gt; Plugins &gt;&gt; Browse repositories 输入 Alibaba 搜索一下便可以看到对应插件了，点击安装等待安装完成。
+
+至于如何使用请大家到官方[Github 仓库]https://github.com/alibaba/p3c会自动检测插件新版，并提示出来，所以大家不用担心插件的更新问题。
+
+Eclipse 插件安装
+
+Eclipse 版插件支持 4.2（Juno，JDK1.8+）及以上版本，我们提供自主的 Update Site。
+
+通过 Help &gt;&gt; Install New Software 然后输入 https://p3c.alibaba.com/plugin/eclipse/update 即可看到安装列表。
+
+大家可以通过 Help &gt;&gt; Check for Udates 进行插件新版检测。
+
+使用体验：
+
+安装好了之后，可以在windows-preference中看到对应的插件（Alibaba Code Analysis）

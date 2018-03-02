@@ -131,6 +131,7 @@ public class ConnectionPool implements IConnectionPool {
     }  
   
     // 销毁连接池  
+    @Override
     public synchronized void destroy() {  
         for (Connection conn : freeConnection) {  
             try {  

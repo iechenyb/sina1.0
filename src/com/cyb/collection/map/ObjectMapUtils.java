@@ -80,8 +80,9 @@ public class ObjectMapUtils {
                         + propertyName.substring(1);
                 //获取属性对应的对象字段
                 Field field = getClassField(clazz, propertyName);
-                if(field==null)
+                if(field==null){
                     continue;
+                }
                 //获取字段类型
                 Class<?> fieldTypeClass = field.getType();
                 //根据字段类型进行值的转换

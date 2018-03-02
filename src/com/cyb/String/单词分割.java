@@ -11,9 +11,9 @@ import org.apache.commons.logging.LogFactory;
 public class 单词分割 {
 	Log log = LogFactory.getLog(单词分割.class);
 	public static void main(String[] args) {
-		String sentence = " i am a student !";
-		//按照空格进行分割
-		StringTokenizer st = new StringTokenizer(sentence, " ");  
+		String sentence = " hello,i, am. a student !";
+		//按照空格进行分割,可以多个进行分割
+		StringTokenizer st = new StringTokenizer(sentence, " .,");  
 		System.out.println();
 		 while(st.hasMoreElements()){  
 			 System.out.println("Token:" + st.nextToken());  
