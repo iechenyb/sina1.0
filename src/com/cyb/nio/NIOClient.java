@@ -10,7 +10,7 @@ import java.util.Iterator;
 import org.apache.commons.logging.LogFactory;
 /**
  *作者 : iechenyb<br>
- *类描述: 说点啥<br>
+ *类描述: not blocking io 和bio blocking io<br>
  *创建时间: 2018年1月30日
  *聊天程序
  *https://www.cnblogs.com/yanghuahui/p/3686054.html

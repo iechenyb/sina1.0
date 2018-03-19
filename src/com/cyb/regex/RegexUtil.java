@@ -26,9 +26,19 @@ public class RegexUtil {
 		 * while(ma.find()){ System.out.println(ma.group()); }
 		 */
 	}
-
+	public static void  findUrl(String pattern ,String uri){
+	    Pattern pt=Pattern.compile(pattern);
+	    Matcher mt=pt.matcher(uri);
+	   // mt.lookingAt();
+	   // mt.matches();
+	    while(mt.find()){
+	        System.out.println(mt.group());
+	    }
+	}
 	public static void main(String[] args) {
-
-		findStartEn();
+		findUrl("/*","/a/b/c");
+		findUrl("/*","/a/b");
+		findUrl("*.jsp","a.jsp");
+		//findStartEn();
 	}
 }

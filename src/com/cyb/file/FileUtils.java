@@ -596,6 +596,11 @@ public class FileUtils {
     	String packageName = clss.getPackage().getName().replaceAll("\\.", "/");
     	return packagePath+"/src/"+packageName+"/";
     }
+    public static String getAbsolutePathAtMavenClass(Class<?> clss){
+    	String packagePath = System.getProperty("user.dir");
+    	String packageName = clss.getPackage().getName().replaceAll("\\.", "/");
+    	return packagePath+"/src/maven/java/"+packageName+"/";
+    }
     public static void main(String[] args) {
        /* String to = "d:\\file\\industry.txt";
         appendString2File1("111汉字1", to);
