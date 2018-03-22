@@ -53,4 +53,9 @@ public class Child  implements Father,Monther {
 	public void handsome() {
 		System.out.println("继承了祖先的英俊！");
 	}
+
+	@Override
+	public void some() {
+		
+	}
 }

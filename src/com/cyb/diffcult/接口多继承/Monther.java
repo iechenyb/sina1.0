@@ -7,4 +7,5 @@ package com.cyb.diffcult.接口多继承;
  */
 public interface Monther extends Ancestor{
 	public void beautify();//漂亮
+	public void some();
 }

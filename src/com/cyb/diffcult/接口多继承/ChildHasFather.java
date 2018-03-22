@@ -35,4 +35,9 @@ public class ChildHasFather  implements Father {
 		Father father = child;
 		father.high();
 	}
+
+	@Override
+	public void some() {
+		
+	}
 }
