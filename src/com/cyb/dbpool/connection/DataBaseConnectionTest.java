@@ -33,5 +33,7 @@ public class DataBaseConnectionTest {
 		while(rs.next()){
 			System.out.println("查询结果(1+1=?) "+rs.getString(1));
 		}
+		conn.close();
+		stmt.close();
 	}
 }

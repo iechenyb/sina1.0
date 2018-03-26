@@ -35,8 +35,10 @@ public class SetStudy {
 	  ts.add("1");
 	  ts.add("2");
 	  ts.add("4");
-	  System.out.println("treeset 有序："+ts);
-	  HashSet<String> hs = new HashSet<String>();
+	  System.out.println("treeset 有序："+ts);//自动去重（覆盖）
+	  HashSet<String> hs = new HashSet<String>();//基于hashmap实现
+	  
+	  
 	  hs.add("1");
 	  hs.add("2");
 	  hs.add("3");

@@ -16,9 +16,19 @@ import com.google.common.collect.Lists;
 
 public class ListStudy {
 	public static void main(String[] args) {
-		testUserAfterAddToList();
+		//testUserAfterAddToList();
+		CollectionFactory.build(10);
+		System.out.println(CollectionFactory.list);
+		Object[] a = CollectionFactory.list.toArray();
+		a = Arrays.copyOf(a, a.length, Object[].class);
+		for(int i=0;i<a.length;i++){
+			System.out.print(a[i]+",");
+		}
 	}
 
+	public static void testArrayListCopy(){
+		
+	}
 	public static void testUserAfterAddToList() {
 		ArrayList<User> users = new ArrayList<User>();
 		User user = new User();
@@ -107,6 +117,8 @@ public class ListStudy {
 		List<String> strList5 = ImmutableList.of("1", "2", "3");
 		System.out.println(strList5);
 		strList5.add("xxx");// 不可修改，否则报错
+		
+		
 	}
 
 }
