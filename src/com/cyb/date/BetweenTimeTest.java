@@ -16,6 +16,7 @@ public class BetweenTimeTest {
 	 * @param args 
 	 */  
 	public static void main(String[] args) {  
+		System.out.println(DateUtil.daysBetween("20180330", "20180402"));
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 		String cur = sdf.format(new Date());
 		System.out.println("current time is "+cur);

@@ -1,4 +1,6 @@
 package com.cyb.csv;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 /**
@@ -14,6 +16,8 @@ public class Main {
 		/*CSVFileUtil.writeCSV(file,"a,b,c,d");
 		CSVFileUtil.writeCSV(file,"1,2,3,4");
 		CSVFileUtil.genData();*/
-		CSVFileUtil.show(file);
+		file = "D:\\chenyb\\1BMS系统\\kiiik.csv";
+		List<String> tables = CSVFileUtil.show(file);
+		System.out.println(tables);
 	}
 }

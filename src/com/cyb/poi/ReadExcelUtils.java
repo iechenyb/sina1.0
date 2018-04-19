@@ -171,7 +171,8 @@ public class ReadExcelUtils {
          }  
     }
     public static void main(String[] args) {      
-    	String path = System.getProperty("user.dir")+"/src/com/cyb/poi/gnqd.xlsx";
+    	//String path = System.getProperty("user.dir")+"/src/com/cyb/poi/gnqd.xlsx";
+    	String path="D:\\chenyb\\1BMS系统\\bms功能分拆方案1.0.xlsx";
     	displayExcel(path);
     }      
 }   

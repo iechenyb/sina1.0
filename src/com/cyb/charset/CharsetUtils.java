@@ -1,8 +1,14 @@
 package com.cyb.charset;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class CharsetUtils {
+	static Log log = LogFactory.getLog(CharsetUtils.class);
 	 /** 7位ASCII字符，也叫作ISO646-US、Unicode字符集的基本拉丁块 */  
     public static final String US_ASCII = "US-ASCII";  
   
@@ -83,7 +89,7 @@ public class CharsetUtils {
      * @return 
      * @throws UnsupportedEncodingException 
      */  
-    public String changeCharset(String str, String newCharset)  
+    public static String changeCharset(String str, String newCharset)  
             throws UnsupportedEncodingException {  
         if (str != null) {  
             // 用默认字符编码解码字符串。  
@@ -118,49 +124,49 @@ public class CharsetUtils {
     }  
     public static  void test(String str) throws UnsupportedEncodingException{
     	CharsetUtils test = new CharsetUtils();  
-        System.out.println("str: " + str);  
+        log.info("str: " + str);  
         String gbk = test.toGBK(str);  
-        System.out.println("转换成GBK码: " + gbk);  
-        System.out.println();  
+        log.info("转换成GBK码: " + gbk);  
         String ascii = test.toASCII(str);  
-        System.out.println("转换成US-ASCII码: " + ascii);  
+        log.info("转换成US-ASCII码: " + ascii);  
         gbk = test.changeCharset(ascii, CharsetUtils.US_ASCII,  
         		CharsetUtils.GBK);  
-        System.out.println("再把ASCII码的字符串转换成GBK码: " + gbk);  
-        System.out.println();  
+        log.info("再把ASCII码的字符串转换成GBK码: " + gbk);  
         String iso88591 = test.toISO_8859_1(str);  
-        System.out.println("转换成ISO-8859-1码: " + iso88591);  
+        log.info("转换成ISO-8859-1码: " + iso88591);  
         gbk = test.changeCharset(iso88591, CharsetUtils.ISO_8859_1,  
         		CharsetUtils.GBK);  
-        System.out.println("再把ISO-8859-1码的字符串转换成GBK码: " + gbk);  
-        System.out.println();  
+        log.info("再把ISO-8859-1码的字符串转换成GBK码: " + gbk);  
         String utf8 = test.toUTF_8(str);  
-        System.out.println("转换成UTF-8码: " + utf8);  
+        log.info("转换成UTF-8码: " + utf8);  
         gbk = test.changeCharset(utf8, CharsetUtils.UTF_8, CharsetUtils.GBK);  
-        System.out.println("再把UTF-8码的字符串转换成GBK码: " + gbk);  
-        System.out.println();  
+        log.info("再把UTF-8码的字符串转换成GBK码: " + gbk);  
         String utf16be = test.toUTF_16BE(str);  
-        System.out.println("转换成UTF-16BE码:" + utf16be);  
+        log.info("转换成UTF-16BE码:" + utf16be);  
         gbk = test.changeCharset(utf16be, CharsetUtils.UTF_16BE,  
         		CharsetUtils.GBK);  
-        System.out.println("再把UTF-16BE码的字符串转换成GBK码: " + gbk);  
-        System.out.println();  
+        log.info("再把UTF-16BE码的字符串转换成GBK码: " + gbk);  
         String utf16le = test.toUTF_16LE(str);  
-        System.out.println("转换成UTF-16LE码:" + utf16le);  
+        log.info("转换成UTF-16LE码:" + utf16le);  
         gbk = test.changeCharset(utf16le, CharsetUtils.UTF_16LE,  
         		CharsetUtils.GBK);  
-        System.out.println("再把UTF-16LE码的字符串转换成GBK码: " + gbk);  
-        System.out.println();  
+        log.info("再把UTF-16LE码的字符串转换成GBK码: " + gbk);  
         String utf16 = test.toUTF_16(str);  
-        System.out.println("转换成UTF-16码:" + utf16);  
+        log.info("转换成UTF-16码:" + utf16);  
         gbk = test.changeCharset(utf16, CharsetUtils.UTF_16LE,  
         		CharsetUtils.GBK);  
-        System.out.println("再把UTF-16码的字符串转换成GBK码: " + gbk);  
-        String s = new String("中文".getBytes("UTF-8"), "UTF-8");  
-        System.out.println(s);  
+        log.info("再把UTF-16码的字符串转换成GBK码: " + gbk);  
+        /*String s = new String("中文".getBytes("UTF-8"), "UTF-8");  
+        log.info(s);  */
     }
+	static String[] charset =new String[]{"GB2312","GBK","UTF-8","UTF-16",CharsetUtils.ISO_8859_1};
     public static void main(String[] args) throws UnsupportedEncodingException {  
-    	String str = "��֤С��";  
-    	test(str);
+    	String str = "鎬荤粡鐞�"; 
+    	//test(str);
+    	for(int i=0;i<charset.length;i++){
+    		for(int j=0;j<charset.length;j++){
+    			System.out.println(charset[i]+"--->"+charset[j]+" "+new String(str.getBytes(charset[i]),charset[j]));
+    		}
+    	}
     }  
 }

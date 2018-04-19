@@ -261,14 +261,14 @@ public class DateUtil {
 	/**
 	 * 字符串的日期格式的计算
 	 */
-	public static int daysBetween(String smdate, String bdate) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	public static int daysBetween(String start, String end) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		Calendar cal = Calendar.getInstance();
 		long between_days = 0;
 		try {
-			cal.setTime(sdf.parse(smdate));
+			cal.setTime(sdf.parse(start));
 			long time1 = cal.getTimeInMillis();
-			cal.setTime(sdf.parse(bdate));
+			cal.setTime(sdf.parse(end));
 			long time2 = cal.getTimeInMillis();
 			between_days = (time2 - time1) / (1000 * 3600 * 24);
 		} catch (ParseException e) {
