@@ -31,7 +31,7 @@ public class CodeTree {
 
 		CodeNode root = new CodeNode();// 结果树
 		turnToList(rMap, root);// 递归解析map树，并放入root这个根节点中
-		System.out.println(root);
+		System.out.println(root.printSelf(root, new StringBuilder()));
 		// root既是结果树
 	}
 

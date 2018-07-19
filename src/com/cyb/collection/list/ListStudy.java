@@ -17,13 +17,25 @@ import com.google.common.collect.Lists;
 public class ListStudy {
 	public static void main(String[] args) {
 		//testUserAfterAddToList();
-		CollectionFactory.build(10);
+		ArrayList<String> arr = new ArrayList<String>();  
+        for(int i=0;i<100;++i){  
+            arr.add("str"+i);  
+        }  
+        for (String string : arr) {  
+            System.out.print(string+" ");  
+        }  
+        System.out.println();  
+        Collections.reverse(arr);  
+        for (String string : arr) {  
+            System.out.print(string+" ");  
+        }  
+		/*CollectionFactory.build(10);
 		System.out.println(CollectionFactory.list);
 		Object[] a = CollectionFactory.list.toArray();
 		a = Arrays.copyOf(a, a.length, Object[].class);
 		for(int i=0;i<a.length;i++){
 			System.out.print(a[i]+",");
-		}
+		}*/
 	}
 
 	public static void testArrayListCopy(){

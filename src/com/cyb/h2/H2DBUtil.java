@@ -17,12 +17,21 @@ public class H2DBUtil {
 	static {
 		H2Manager.start();
 	}
-	public static void main(String[] args) {
-		H2Manager.start();H2Manager.start();
-		H2DBUtil.testFileConnection("test0");
-		H2DBUtil.testTCPConnection();
-		H2DBUtil.testMemConnection();
-		System.exit(0);
+	public static void main(String[] args) throws ClassNotFoundException {
+		Class.forName("org.h2.Driver");
+		//H2Manager.start();
+		//H2DBUtil.testFileConnection("test0");
+		H2DBUtil.testTCPConnection("remote");
+		//H2DBUtil.testMemConnection();
+		//System.exit(0);
+		while(true){
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+				
+			}
+		}
 	}
    public static void testFileConnection(String dbName){
 	   try {
@@ -80,7 +89,7 @@ public class H2DBUtil {
 		   Statement stmt = conn.createStatement();
 		   ResultSet rs = stmt.executeQuery("SELECT 1+1 FROM dual ");   
 		  while(rs.next()) {   
-			  log.info("serverģʽ��1+1="+rs.getInt(1));
+			  log.info("server 1+1="+rs.getInt(1));
 		  }
 		  conn.close();
 		  log.info("H2DB TCP test Success!");

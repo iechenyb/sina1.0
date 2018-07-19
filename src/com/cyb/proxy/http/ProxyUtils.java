@@ -1,8 +1,5 @@
 package com.cyb.proxy.http;
 
-
-import java.util.Properties;
-
 public class ProxyUtils
 {
   public static void setServiceProxy(String host,String port)

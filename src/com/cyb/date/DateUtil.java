@@ -14,7 +14,9 @@ import java.util.TimeZone;
  *
  */
 public class DateUtil {
+	
 	private static SimpleDateFormat formatter = null;
+	
 
 	/**
 	 * 
@@ -73,10 +75,13 @@ public class DateUtil {
 		return timeToSec(new Date());
 	}
 
-	public static String descTimeToSec() {
+	public static String descTimeToSec(Date date) {
 		formatter = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
-		String dateString = formatter.format(new Date());
+		String dateString = formatter.format(date);
 		return dateString;
+	}
+	public static String descTimeToSec(){
+		return descTimeToSec(new Date());
 	}
 
 	public static Long date2long10(Date date) {

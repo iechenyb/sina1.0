@@ -22,8 +22,11 @@ import org.apache.commons.logging.LogFactory;
  */
 public class EnumerationStudy {
 	Log log = LogFactory.getLog(EnumerationStudy.class);
-
+	enum Priority { High, Normal, Low};
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
+		Priority [] a=new Priority[]{Priority.High,Priority.Normal,Priority.Low};
+		System.out.println(Priority.High);
 		Enumeration<String> days;
 		Vector<String> dayNames = new Vector<String>();
 		dayNames.add("Sunday");

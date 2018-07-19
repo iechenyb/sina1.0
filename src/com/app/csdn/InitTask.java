@@ -9,7 +9,7 @@ public class InitTask implements Job{
     	try {
     		//GetAricle.init();
     		//GetAricle.initProxy();
-    		System.out.println(GetAricle.recordRank());
+    		GetAricle.recordRank();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
