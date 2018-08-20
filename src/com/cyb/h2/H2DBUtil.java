@@ -66,6 +66,19 @@ public class H2DBUtil {
 		   Connection conn = DriverManager.getConnection(path, "sa", "");
 		   return conn;
 	   } catch (Exception e) {
+		   e.printStackTrace();
+			System.out.println("tcp File test err!");
+			return null;
+		}
+	  
+   }
+   public static Connection getConnectionByPath(String path,String params){
+	   try {
+		   Class.forName("org.h2.Driver");
+		   Connection conn = DriverManager.getConnection(path+params, "sa", "");
+		   return conn;
+	   } catch (Exception e) {
+		   e.printStackTrace();
 			System.out.println("tcp File test err!");
 			return null;
 		}
@@ -101,6 +114,21 @@ public class H2DBUtil {
 	   try {
 		   //Class.forName("org.h2.Driver");
 		   Connection conn = DriverManager.getConnection(tcpPrix+dbPath+dbName, "sa", "");
+		   Statement stmt = conn.createStatement();
+		   ResultSet rs = stmt.executeQuery("SELECT 1+1 FROM dual ");   
+		  while(rs.next()) {   
+			  log.info("server1+1="+rs.getInt(1));
+		  }
+		  conn.close();
+		  log.info("H2DB TCP test Success!");
+		} catch (Exception e) {
+			log.info("tcp TCP test err!");
+		} 
+   }
+   public static void testTCPConnection(String dbName,String params){
+	   try {
+		   //Class.forName("org.h2.Driver");
+		   Connection conn = DriverManager.getConnection(tcpPrix+dbPath+dbName+params, "sa", "");
 		   Statement stmt = conn.createStatement();
 		   ResultSet rs = stmt.executeQuery("SELECT 1+1 FROM dual ");   
 		  while(rs.next()) {   

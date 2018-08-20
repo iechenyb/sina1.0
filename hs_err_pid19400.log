@@ -1,0 +1,420 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x000000006ebf4e09, pid=19400, tid=26620
+#
+# JRE version: Java(TM) SE Runtime Environment (7.0_80-b15) (build 1.7.0_80-b15)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (24.80-b11 mixed mode windows-amd64 compressed oops)
+# Problematic frame:
+# V  [jvm.dll+0xa4e09]
+#
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000000024fd000):  JavaThread "main" [_thread_in_vm, id=26620, stack(0x0000000002710000,0x0000000002810000)]
+
+siginfo: ExceptionCode=0xc0000005, reading address 0x0000000000000010
+
+Registers:
+RAX=0x0000000000000008, RBX=0x0000000000000000, RCX=0x00000000024fdb48, RDX=0x00000000024fdaf0
+RSP=0x000000000280e9d0, RBP=0x00000000024fdaf8, RSI=0x00000000024fdb38, RDI=0x00000000024fdb40
+R8 =0x000000073c28de70, R9 =0x0000000000000031, R10=0x000000073c28de70, R11=0x00000000024fdb00
+R12=0x00000000024fd000, R13=0x0000000000000005, R14=0x0000000002546e20, R15=0x0000000002547d40
+RIP=0x000000006ebf4e09, EFLAGS=0x0000000000010202
+
+Top of Stack: (sp=0x000000000280e9d0)
+0x000000000280e9d0:   0000000000000000 0000000000000000
+0x000000000280e9e0:   000000000280eb08 0000000000000000
+0x000000000280e9f0:   000000000280eac8 00000000024fd000
+0x000000000280ea00:   0000000000000000 000000006ebd0bef
+0x000000000280ea10:   000000000000001a 0000000700000001
+0x000000000280ea20:   00000000000000b6 00000000024fd600
+0x000000000280ea30:   000000073c28ea70 0000000000000000
+0x000000000280ea40:   00000000024fdaf0 00000000024fd000
+0x000000000280ea50:   000000000280eb39 000000006ebf507c
+0x000000000280ea60:   000000000280eb00 00000000024fdaf0
+0x000000000280ea70:   00000000024fdaf8 0000000700000000
+0x000000000280ea80:   00000000024fd000 000000000280ebd0
+0x000000000280ea90:   00000000024fdaf0 000000006ebef77b
+0x000000000280eaa0:   0000000002547d40 0000000000000000
+0x000000000280eab0:   000000073c01eb70 0000000000000000
+0x000000000280eac0:   00000000000000b6 00000000024fd000 
+
+Instructions: (pc=0x000000006ebf4e09)
+0x000000006ebf4de9:   24 08 0f 85 82 00 00 00 48 8b 94 24 98 00 00 00
+0x000000006ebf4df9:   48 85 d2 74 44 38 1d 0c 54 6b 00 48 8b 02 74 15
+0x000000006ebf4e09:   8b 40 08 8b 0d a6 5a 65 00 48 d3 e0 48 03 05 94
+0x000000006ebf4e19:   5a 65 00 eb 04 48 8b 40 08 48 85 c0 74 1b 49 8b 
+
+
+Register to memory mapping:
+
+RAX=0x0000000000000008 is an unknown value
+RBX=0x0000000000000000 is an unknown value
+RCX=0x00000000024fdb48 is an unknown value
+RDX=0x00000000024fdaf0 is an unknown value
+RSP=0x000000000280e9d0 is pointing into the stack for thread: 0x00000000024fd000
+RBP=0x00000000024fdaf8 is an unknown value
+RSI=0x00000000024fdb38 is an unknown value
+RDI=0x00000000024fdb40 is an unknown value
+R8 =0x000000073c28de70 is an oop
+{constant pool} 
+ - klass: {other class}
+ - holder: 0x000000073c2902c8
+ - cache: 0x000000073c2938b0
+ -   1 :  : 'com/cyb/collection/po/User' {0x3c2902c8}
+ -   2 :  : 'com/cyb/collection/po/User'
+ -   3 :  : 'com/cyb/shejimoshi/创建型/原型模式' {0x3c28ffd8}
+ -   4 :  : 'com/cyb/shejimoshi/创建型/原型模式'
+ -   5 :  : 'java/lang/Comparable'
+ -   6 :  : 'java/lang/Comparable'
+ -   7 :  : 'java/io/Serializable'
+ -   8 :  : 'java/io/Serializable'
+ -   9 :  : 'serialVersionUID'
+ -  10 :  : 'J'
+ -  11 :  : 'ConstantValue'
+ -  12 :  : 1
+ -  14 :  : 'staticValue'
+ -  15 :  : 'Ljava/lang/String;'
+ -  16 :  : 'id'
+ -  17 :  : 'Ljava/lang/Integer;'
+ -  18 :  : 'name'
+ -  19 :  : 'pwd'
+ -  20 :  : '<clinit>'
+ -  21 :  : '()V'
+ -  22 :  : 'Code'
+ -  23 :  : "123456789" {0xc0814870}
+ -  24 :  : '123456789'
+ -  25 :  : klass_index=1 name_and_type_index=26
+ -  26 :  : name_index=14 signature_index=15
+ -  27 :  : 'LineNumberTable'
+ -  28 :  : 'LocalVariableTable'
+ -  29 :  : '<init>'
+ -  30 :  : '(Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;)V'
+ -  31 :  : klass_index=3 name_and_type_index=32
+ -  32 :  : name_index=29 signature_index=21
+ -  33 :  : klass_index=1 name_and_type_index=34
+ -  34 :  : name_index=16 signature_index=17
+ -  35 :  : klass_index=1 name_and_type_index=36
+ -  36 :  : name_index=18 signature_index=15
+ -  37 :  : klass_index=1 name_and_type_index=38
+ -  38 :  : name_index=19 signature_index=15
+ -  39 :  : 'this'
+ -  40 :  : 'Lcom/cyb/collection/po/User;'
+ -  41 :  : '(Ljava/lang/String;Ljava/lang/String;)V'
+ -  42 :  : 'getName'
+ -  43 :  : '()Ljava/lang/String;'
+ -  44 :  : 'setName'
+ -  45 :  : '(Ljava/lang/String;)V'
+ -  46 :  : 'getPwd'
+ -  47 :  : 'setPwd'
+ -  48 :  : 'hashCode'
+ -  49 :  : '()I'
+ -  50 :  : klass_index=51 name_and_type_index=53
+ -  51 :  : 'java/lang/String' {0x3c00ab88}
+ -  52 :  : 'java/lang/String'
+ -  53 :  : name_index=48 signature_index=49
+ -  54 :  : 'prime'
+ -  55 :  : 'I'
+ -  56 :  : 'result'
+ -  57 :  : 'StackMapTable'
+ -  58 :  : 'equals'
+ -  59 :  : '(Ljava/lang/Object;)Z'
+ -  60 :  : klass_index=61 name_and_type_index=63
+ -  61 :  : 'java/lang/Object'
+ -  62 :  : 'java/lang/Object'
+ -  63 :  : name_index=64 signature_index=65
+ -  64 :  : 'getClass'
+ -  65 :  : '()Ljava/lang/Class;'
+ -  66 :  : klass_index=51 name_and_type_index=67
+ -  67 :  : name_index=58 signature_index=59
+ -  68 :  : 'obj'
+ -  69 :  : 'Ljava/lang/Object;'
+ -  70 :  : 'other'
+ -  71 :  : 'getId'
+ -  72 :  : '()Ljava/lang/Integer;'
+ -  73 :  : 'setId'
+ -  74 :  : '(Ljava/lang/Integer;)V'
+ -  75 :  : 'compareTo'
+ -  76 :  : '(Lcom/cyb/collection/po/User;)I'
+ -  77 :  : klass_index=78 name_and_type_index=80
+ -  78 :  : 'java/lang/Integer'
+ -  79 :  : 'java/lang/Integer'
+ -  80 :  : name_index=81 signature_index=49
+ -  81 :  : 'intValue'
+ -  82 :  : 'o'
+ -  83 :  : '(Ljava/lang/Object;)I'
+ -  84 :  : klass_index=1 name_and_type_index=85
+ -  85 :  : name_index=75 signature_index=76
+ -  86 :  : 'SourceFile'
+ -  87 :  : 'User.java'
+ -  88 :  : 'Signature'
+ -  89 :  : 'Lcom/cyb/shejimoshi/创建型/原型模式;Ljava/lang/Comparable<Lcom/cyb/collection/po/User;>;Ljava/io/Serializable;'
+
+R9 =0x0000000000000031 is an unknown value
+R10=0x000000073c28de70 is an oop
+{constant pool} 
+ - klass: {other class}
+ - holder: 0x000000073c2902c8
+ - cache: 0x000000073c2938b0
+ -   1 :  : 'com/cyb/collection/po/User' {0x3c2902c8}
+ -   2 :  : 'com/cyb/collection/po/User'
+ -   3 :  : 'com/cyb/shejimoshi/创建型/原型模式' {0x3c28ffd8}
+ -   4 :  : 'com/cyb/shejimoshi/创建型/原型模式'
+ -   5 :  : 'java/lang/Comparable'
+ -   6 :  : 'java/lang/Comparable'
+ -   7 :  : 'java/io/Serializable'
+ -   8 :  : 'java/io/Serializable'
+ -   9 :  : 'serialVersionUID'
+ -  10 :  : 'J'
+ -  11 :  : 'ConstantValue'
+ -  12 :  : 1
+ -  14 :  : 'staticValue'
+ -  15 :  : 'Ljava/lang/String;'
+ -  16 :  : 'id'
+ -  17 :  : 'Ljava/lang/Integer;'
+ -  18 :  : 'name'
+ -  19 :  : 'pwd'
+ -  20 :  : '<clinit>'
+ -  21 :  : '()V'
+ -  22 :  : 'Code'
+ -  23 :  : "123456789" {0xc0814870}
+ -  24 :  : '123456789'
+ -  25 :  : klass_index=1 name_and_type_index=26
+ -  26 :  : name_index=14 signature_index=15
+ -  27 :  : 'LineNumberTable'
+ -  28 :  : 'LocalVariableTable'
+ -  29 :  : '<init>'
+ -  30 :  : '(Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;)V'
+ -  31 :  : klass_index=3 name_and_type_index=32
+ -  32 :  : name_index=29 signature_index=21
+ -  33 :  : klass_index=1 name_and_type_index=34
+ -  34 :  : name_index=16 signature_index=17
+ -  35 :  : klass_index=1 name_and_type_index=36
+ -  36 :  : name_index=18 signature_index=15
+ -  37 :  : klass_index=1 name_and_type_index=38
+ -  38 :  : name_index=19 signature_index=15
+ -  39 :  : 'this'
+ -  40 :  : 'Lcom/cyb/collection/po/User;'
+ -  41 :  : '(Ljava/lang/String;Ljava/lang/String;)V'
+ -  42 :  : 'getName'
+ -  43 :  : '()Ljava/lang/String;'
+ -  44 :  : 'setName'
+ -  45 :  : '(Ljava/lang/String;)V'
+ -  46 :  : 'getPwd'
+ -  47 :  : 'setPwd'
+ -  48 :  : 'hashCode'
+ -  49 :  : '()I'
+ -  50 :  : klass_index=51 name_and_type_index=53
+ -  51 :  : 'java/lang/String' {0x3c00ab88}
+ -  52 :  : 'java/lang/String'
+ -  53 :  : name_index=48 signature_index=49
+ -  54 :  : 'prime'
+ -  55 :  : 'I'
+ -  56 :  : 'result'
+ -  57 :  : 'StackMapTable'
+ -  58 :  : 'equals'
+ -  59 :  : '(Ljava/lang/Object;)Z'
+ -  60 :  : klass_index=61 name_and_type_index=63
+ -  61 :  : 'java/lang/Object'
+ -  62 :  : 'java/lang/Object'
+ -  63 :  : name_index=64 signature_index=65
+ -  64 :  : 'getClass'
+ -  65 :  : '()Ljava/lang/Class;'
+ -  66 :  : klass_index=51 name_and_type_index=67
+ -  67 :  : name_index=58 signature_index=59
+ -  68 :  : 'obj'
+ -  69 :  : 'Ljava/lang/Object;'
+ -  70 :  : 'other'
+ -  71 :  : 'getId'
+ -  72 :  : '()Ljava/lang/Integer;'
+ -  73 :  : 'setId'
+ -  74 :  : '(Ljava/lang/Integer;)V'
+ -  75 :  : 'compareTo'
+ -  76 :  : '(Lcom/cyb/collection/po/User;)I'
+ -  77 :  : klass_index=78 name_and_type_index=80
+ -  78 :  : 'java/lang/Integer'
+ -  79 :  : 'java/lang/Integer'
+ -  80 :  : name_index=81 signature_index=49
+ -  81 :  : 'intValue'
+ -  82 :  : 'o'
+ -  83 :  : '(Ljava/lang/Object;)I'
+ -  84 :  : klass_index=1 name_and_type_index=85
+ -  85 :  : name_index=75 signature_index=76
+ -  86 :  : 'SourceFile'
+ -  87 :  : 'User.java'
+ -  88 :  : 'Signature'
+ -  89 :  : 'Lcom/cyb/shejimoshi/创建型/原型模式;Ljava/lang/Comparable<Lcom/cyb/collection/po/User;>;Ljava/io/Serializable;'
+
+R11=0x00000000024fdb00 is an unknown value
+R12=0x00000000024fd000 is a thread
+R13=0x0000000000000005 is an unknown value
+R14=0x0000000002546e20 is an unknown value
+R15=0x0000000002547d40 is an unknown value
+
+
+Stack: [0x0000000002710000,0x0000000002810000],  sp=0x000000000280e9d0,  free space=1018k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0xa4e09]
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  com.cyb.collection.po.User.hashCode()I+24
+j  java.lang.Object.toString()Ljava/lang/String;+23
+v  ~StubRoutines::call_stub
+j  com.cyb.lock.ReadAndWriteLockTest.main([Ljava/lang/String;)V+173
+v  ~StubRoutines::call_stub
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x000000000e9ef800 JavaThread "Service Thread" daemon [_thread_blocked, id=11908, stack(0x000000000f590000,0x000000000f690000)]
+  0x000000000e9f3800 JavaThread "C2 CompilerThread1" daemon [_thread_blocked, id=10684, stack(0x000000000f770000,0x000000000f870000)]
+  0x000000000e9fb800 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=8868, stack(0x000000000f890000,0x000000000f990000)]
+  0x000000000e9de800 JavaThread "JDWP Command Reader" daemon [_thread_in_native, id=11580, stack(0x000000000edf0000,0x000000000eef0000)]
+  0x000000000e9dd000 JavaThread "JDWP Event Helper Thread" daemon [_thread_blocked, id=8788, stack(0x000000000f3e0000,0x000000000f4e0000)]
+  0x000000000d46f800 JavaThread "JDWP Transport Listener: dt_socket" daemon [_thread_in_vm, id=8136, stack(0x000000000f0d0000,0x000000000f1d0000)]
+  0x000000000e9d2800 JavaThread "Attach Listener" daemon [_thread_blocked, id=3824, stack(0x000000000ef40000,0x000000000f040000)]
+  0x000000000d45e000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=23984, stack(0x000000000e540000,0x000000000e640000)]
+  0x000000000d3fb000 JavaThread "Finalizer" daemon [_thread_blocked, id=24760, stack(0x000000000e8c0000,0x000000000e9c0000)]
+  0x000000000d3f4000 JavaThread "Reference Handler" daemon [_thread_blocked, id=6540, stack(0x000000000e6b0000,0x000000000e7b0000)]
+=>0x00000000024fd000 JavaThread "main" [_thread_in_vm, id=26620, stack(0x0000000002710000,0x0000000002810000)]
+
+Other Threads:
+  0x000000000d3f0800 VMThread [stack: 0x000000000e440000,0x000000000e540000] [id=11348]
+  0x000000000ea70800 WatcherThread [stack: 0x000000000f9c0000,0x000000000fac0000] [id=24044]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ PSYoungGen      total 57344K, used 3932K [0x00000007c0600000, 0x00000007c4600000, 0x0000000800000000)
+  eden space 49152K, 8% used [0x00000007c0600000,0x00000007c09d7298,0x00000007c3600000)
+  from space 8192K, 0% used [0x00000007c3e00000,0x00000007c3e00000,0x00000007c4600000)
+  to   space 8192K, 0% used [0x00000007c3600000,0x00000007c3600000,0x00000007c3e00000)
+ ParOldGen       total 130048K, used 0K [0x0000000741200000, 0x0000000749100000, 0x00000007c0600000)
+  object space 130048K, 0% used [0x0000000741200000,0x0000000741200000,0x0000000749100000)
+ PSPermGen       total 21504K, used 2638K [0x000000073c000000, 0x000000073d500000, 0x0000000741200000)
+  object space 21504K, 12% used [0x000000073c000000,0x000000073c293a10,0x000000073d500000)
+
+Card table byte_map: [0x0000000005810000,0x0000000005e40000] byte_map_base: 0x0000000001e30000
+
+Polling page: 0x0000000000220000
+
+Code Cache  [0x0000000002810000, 0x0000000002a80000, 0x0000000005810000)
+ total_blobs=182 nmethods=5 adapters=138 free_code_cache=48759Kb largest_free_block=49913728
+
+Compilation events (10 events):
+Event: 0.384 Thread 0x000000000e9fb800    1             java.lang.String::hashCode (55 bytes)
+Event: 0.385 Thread 0x000000000e9f3800    2             java.io.Win32FileSystem::normalize (143 bytes)
+Event: 0.389 Thread 0x000000000e9fb800 nmethod 1 0x000000000286eed0 code [0x000000000286f020, 0x000000000286f218]
+Event: 0.389 Thread 0x000000000e9fb800    3             java.lang.String::indexOf (70 bytes)
+Event: 0.391 Thread 0x000000000e9fb800 nmethod 3 0x000000000286e190 code [0x000000000286e2e0, 0x000000000286e4f8]
+Event: 0.391 Thread 0x000000000e9fb800    4   !         sun.nio.cs.ext.DoubleByte$Decoder::decodeArrayLoop (329 bytes)
+Event: 0.391 Thread 0x000000000e9f3800 nmethod 2 0x00000000028720d0 code [0x0000000002872220, 0x0000000002872668]
+Event: 0.391 Thread 0x000000000e9f3800    5             java.lang.String::indexOf (166 bytes)
+Event: 0.395 Thread 0x000000000e9f3800 nmethod 5 0x0000000002871710 code [0x0000000002871860, 0x0000000002871d58]
+Event: 0.398 Thread 0x000000000e9fb800 nmethod 4 0x0000000002872e10 code [0x0000000002872fe0, 0x00000000028738b0]
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (2 events):
+Event: 0.391 Thread 0x00000000024fd000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x0000000002872480 method=java.io.Win32FileSystem.normalize(Ljava/lang/String;)Ljava/lang/String; @ 104
+Event: 0.392 Thread 0x00000000024fd000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x000000000286f1e0 method=java.lang.String.hashCode()I @ 14
+
+Internal exceptions (4 events):
+Event: 0.090 Thread 0x00000000024fd000 Threw 0x00000007c060f660 at C:\re\jdk7u80\2329\hotspot\src\share\vm\prims\jni.cpp:3991
+Event: 0.388 Thread 0x00000000024fd000 Threw 0x00000007c08040e8 at C:\re\jdk7u80\2329\hotspot\src\share\vm\prims\jvm.cpp:1319
+Event: 0.408 Thread 0x00000000024fd000 Threw 0x00000007c080eca8 at C:\re\jdk7u80\2329\hotspot\src\share\vm\prims\jvm.cpp:1319
+Event: 0.408 Thread 0x00000000024fd000 Threw 0x00000007c0811318 at C:\re\jdk7u80\2329\hotspot\src\share\vm\prims\jvm.cpp:1319
+
+Events (10 events):
+Event: 5.568 Executing VM operation: ChangeSingleStep
+Event: 5.568 Executing VM operation: ChangeSingleStep done
+Event: 7.314 Executing VM operation: GetOrSetLocal
+Event: 7.314 Executing VM operation: GetOrSetLocal done
+Event: 7.314 Executing VM operation: GetOrSetLocal
+Event: 7.314 Executing VM operation: GetOrSetLocal done
+Event: 7.315 Executing VM operation: GetOrSetLocal
+Event: 7.315 Executing VM operation: GetOrSetLocal done
+Event: 7.315 Executing VM operation: GetOrSetLocal
+Event: 7.315 Executing VM operation: GetOrSetLocal done
+
+
+Dynamic libraries:
+0x000000013fd10000 - 0x000000013fd43000 	C:\Program Files\Java\jre7\bin\javaw.exe
+0x0000000077800000 - 0x000000007799f000 	C:\Windows\SYSTEM32\ntdll.dll
+0x00000000774a0000 - 0x00000000775bf000 	C:\Windows\system32\kernel32.dll
+0x000007fefd2e0000 - 0x000007fefd34a000 	C:\Windows\system32\KERNELBASE.dll
+0x000007fefe7c0000 - 0x000007fefe89b000 	C:\Windows\system32\ADVAPI32.dll
+0x000007fefde30000 - 0x000007fefdecf000 	C:\Windows\system32\msvcrt.dll
+0x000007fefdca0000 - 0x000007fefdcbf000 	C:\Windows\SYSTEM32\sechost.dll
+0x000007fefe2e0000 - 0x000007fefe40d000 	C:\Windows\system32\RPCRT4.dll
+0x00000000775c0000 - 0x00000000776ba000 	C:\Windows\system32\USER32.dll
+0x000007fefddc0000 - 0x000007fefde27000 	C:\Windows\system32\GDI32.dll
+0x000007fefe5d0000 - 0x000007fefe5de000 	C:\Windows\system32\LPK.dll
+0x000007fefe480000 - 0x000007fefe54b000 	C:\Windows\system32\USP10.dll
+0x000007fefb490000 - 0x000007fefb684000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.7601.18837_none_fa3b1e3d17594757\COMCTL32.dll
+0x000007fefe550000 - 0x000007fefe5c1000 	C:\Windows\system32\SHLWAPI.dll
+0x000007fefdc70000 - 0x000007fefdc9e000 	C:\Windows\system32\IMM32.DLL
+0x000007fefdfd0000 - 0x000007fefe0d9000 	C:\Windows\system32\MSCTF.dll
+0x000000005d000000 - 0x000000005d0d2000 	C:\Program Files\Java\jre7\bin\msvcr100.dll
+0x000000006eb50000 - 0x000000006f329000 	C:\Program Files\Java\jre7\bin\server\jvm.dll
+0x000007fef8970000 - 0x000007fef8979000 	C:\Windows\system32\WSOCK32.dll
+0x000007fefe290000 - 0x000007fefe2dd000 	C:\Windows\system32\WS2_32.dll
+0x000007fefe470000 - 0x000007fefe478000 	C:\Windows\system32\NSI.dll
+0x000007fefd6c0000 - 0x000007fefd6fb000 	C:\Windows\system32\WINMM.dll
+0x00000000779b0000 - 0x00000000779b7000 	C:\Windows\system32\PSAPI.DLL
+0x000000006d3e0000 - 0x000000006d3ef000 	C:\Program Files\Java\jre7\bin\verify.dll
+0x000000006b940000 - 0x000000006b968000 	C:\Program Files\Java\jre7\bin\java.dll
+0x000000006c730000 - 0x000000006c765000 	C:\Program Files\Java\jre7\bin\jdwp.dll
+0x000000006d460000 - 0x000000006d468000 	C:\Program Files\Java\jre7\bin\npt.dll
+0x000000006b920000 - 0x000000006b936000 	C:\Program Files\Java\jre7\bin\zip.dll
+0x000000006d340000 - 0x000000006d349000 	C:\Program Files\Java\jre7\bin\dt_socket.dll
+0x000007fefab50000 - 0x000007fefab65000 	C:\Windows\system32\NLAapi.dll
+0x000007fef8d30000 - 0x000007fef8d45000 	C:\Windows\system32\napinsp.dll
+0x000007fef8d10000 - 0x000007fef8d29000 	C:\Windows\system32\pnrpnsp.dll
+0x000007fefca40000 - 0x000007fefca95000 	C:\Windows\System32\mswsock.dll
+0x000007fefc8c0000 - 0x000007fefc91b000 	C:\Windows\system32\DNSAPI.dll
+0x000007fef91f0000 - 0x000007fef91fb000 	C:\Windows\System32\winrnr.dll
+0x000007fef9d60000 - 0x000007fef9d87000 	C:\Windows\system32\IPHLPAPI.DLL
+0x000007fef9d50000 - 0x000007fef9d5b000 	C:\Windows\system32\WINNSI.DLL
+0x000007fef9bc0000 - 0x000007fef9c13000 	C:\Windows\System32\fwpuclnt.dll
+0x000007fef8c60000 - 0x000007fef8c68000 	C:\Windows\system32\rasadhlp.dll
+0x000007fefc070000 - 0x000007fefc077000 	C:\Windows\System32\wshtcpip.dll
+0x000007fefa890000 - 0x000007fefa9b5000 	C:\Windows\system32\dbghelp.dll
+
+VM Arguments:
+jvm_args: -agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:58881 -Dfile.encoding=utf-8 
+java_command: com.cyb.lock.ReadAndWriteLockTest
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=C:\Program Files (x86)\Java\jdk1.8.0_45
+JRE_HOME=C:\Program Files (x86)\Java\jdk1.8.0_45\jre
+PATH=C:\Program Files (x86)\Common Files\NetSarang;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Common Files\ThinPrint\;C:\Program Files\Java\jdk1.7.0_80;D:\chenyb\tools\android-sdk-windows\platform-tools;D:\chenyb\tools\apache-maven-3.0.4\bin;C:\Program Files\nodejs\;C:\Windows\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\TortoiseSVN\bin;C:\Program Files\VisualSVN Server\bin;C:\cygwin64\bin;C:\Program Files\TortoiseGit\bin;JAVA_HOME\bin;JAVA_HOME\jre\bin;C:\Program Files\MySQL\MySQL Utilities 1.6\;C:\Program Files\Git\cmd;D:\chenyb\middleware\Ruby22-x64\bin;D:\apache-tomcat-8.5.24\lib;D:\data\agent;C:\Program Files (x86)\Java\jdk1.8.0_45/bin;C:\Users\DHUser\.dnx\bin;C:\Users\DHUser\AppData\Roaming\npm;C:\Users\DHUser\Documents\IDM Computer Solutions\UltraEdit;C:\Program Files\DockerToolbox;C:\Program Files (x86)\Nmap
+USERNAME=DHUser
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 60 Stepping 3, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 7 , 64 bit Build 7601 Service Pack 1
+
+CPU:total 4 (4 cores per cpu, 1 threads per core) family 6 model 60 stepping 3, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, erms, tsc, tscinvbit
+
+Memory: 4k page, physical 12505636k(1003448k free), swap 25009396k(4885632k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (24.80-b11) for windows-amd64 JRE (1.7.0_80-b15), built on Apr 10 2015 11:26:34 by "java_re" with unknown MS VC++:1600
+
+time: Tue Aug 14 15:52:18 2018
+elapsed time: 7 seconds
+

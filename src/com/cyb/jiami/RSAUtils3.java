@@ -178,8 +178,10 @@ public class RSAUtils3 {
         Map<String, String> keyMap = RSAUtils3.createKeys(1024);
         String  publicKey = keyMap.get("publicKey");
         String  privateKey = keyMap.get("privateKey");
-        System.out.println("公钥: \n\r" + publicKey);
-        System.out.println("私钥： \n\r" + privateKey);
+        System.out.println("公钥baseen: \n\r" + publicKey);
+        System.out.println("私钥baseen： \n\r" + privateKey);
+        System.out.println("公钥basede: \n\r" + new String(Base64.decodeBase64(publicKey)));
+        System.out.println("私钥basede： \n\r" + new String(Base64.decodeBase64(privateKey)));
         System.out.println("公钥加密——>私钥解密");
         String str = "站在大明门前守卫的禁卫军，事先没有接到\n" +
                 "有关的命令，但看到大批盛装的官员来临，也就\n" +

@@ -25,88 +25,62 @@ import org.apache.commons.lang.StringUtils;
 
 import com.cyb.mybatis.User;
 
-public class ConnectionUtils<T> extends QueryRunner {
-	public  Connection conn = null;  
+public class ConnectionDataSourceUtils<T> extends QueryRunner {
+	public DBPoolConnection dsp =null;
 	public QueryRunner query = null;
-	public ConnectionUtils(){
-	    //String url = "jdbc:h2:tcp://localhost/~/te;AUTO_SERVER=true";  
-		String url = "jdbc:h2:tcp://localhost/~/te;AUTO_SERVER=true";  
-	    String jdbcDriver = "org.h2.Driver";  
-	    String user = "sa";  
-	    String password = "111111";  
-	    DbUtils.loadDriver(jdbcDriver); 
+	public ConnectionDataSourceUtils(String dbName){
 	    query = new QueryRunner();
 	    try {  
-	        conn = DriverManager.getConnection(url, user, password);  
+	         dsp =new DBPoolConnection(dbName);
+	         if(query==null){
+	 			query = new QueryRunner();
+	 		}
 	    } catch (Exception e) {  
 	        e.printStackTrace();  
 	    } finally {  
-	        //DbUtils.closeQuietly(conn);  
 	    }  
 	}
-	public ConnectionUtils(String path){
-		if(StringUtils.isEmpty(path)){ path = "~";}
-		String url = "jdbc:h2:tcp://localhost/"+path+""; //;AUTO_SERVER=true 
-		System.out.println(url);
-	    String jdbcDriver = "org.h2.Driver";  
-	    String user = "sa";  
-	    String password = "111111";  
-	    DbUtils.loadDriver(jdbcDriver); 
-	    query = new QueryRunner();
-	    try {  
-	        conn = DriverManager.getConnection(url, user, password);  
-	    } catch (Exception e) {  
-	        e.printStackTrace();  
-	    } finally {  
-	        //DbUtils.closeQuietly(conn);  
-	    }  
-	}
+	
 	public  void close(){
-		DbUtils.closeQuietly(conn); 
 	}
-	public ConnectionUtils(Connection conn){
-		if(this.conn == null){
-			this.conn = conn;
-		}else{
-			new ConnectionUtils<T>();
-		}
-		if(query==null){
-			query = new QueryRunner();
-		}
-	}
+	
+	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws SQLException {
-	     String sql = "select username,password from usr";
-	     ConnectionUtils<User> dbUtils = new ConnectionUtils<User>();
+	     /*String sql = "select username,password from usr";
+	     ConnectionDataSourceUtils<User> dbUtils = new ConnectionDataSourceUtils<User>("h2-1");
 	     List<User> users = dbUtils.queryForList(sql,User.class);
 	     for (int i = 0; i < users.size(); i++) {  
 	        	User p = users.get(i);  
 	            System.out.println("name:" + p.getUsername() + ",pwd:" + p.getPassword());  
 	      }  
-	     ConnectionUtils<Map<String,Object>> dbUtils1 = new ConnectionUtils<Map<String,Object>>();
+	     ConnectionDataSourceUtils<Map<String,Object>> dbUtils1 = new ConnectionDataSourceUtils<Map<String,Object>>("h2-1");
 	     List<Map<String,Object>> maps = dbUtils1.queryForMap(sql,Map.class);
 	     System.out.println(maps);
 	     
 	     User user = dbUtils.queryForObject(sql,User.class);
-	     System.out.println(user.getUsername()+","+user.getPassword());
+	     System.out.println(user.getUsername()+","+user.getPassword());*/
 	     //如何返回一个聚合值 比如记录总数
+		String sql = "select count(1) from test";
+		ConnectionDataSourceUtils<List<Map>> dbUtils = new ConnectionDataSourceUtils<List<Map>>("h2-1");
+		List<List<Map>> rs = dbUtils.queryForMap(sql, List.class);
+		System.out.println(rs);
+		
+		ConnectionDataSourceUtils<Map> dbUtils1 = new ConnectionDataSourceUtils<Map>("h2-1");
+		List<Map> rs1 = dbUtils1.queryForMap(sql, Map.class);
+		System.out.println(rs1);
 	}
-	 /*Topic newlyTopic=null;
-	 2         QueryRunner runner= new QueryRunner(JdbcUtil.getDataSource());
-	 3         String sql ="select * from topic where type_id= ? order by time desc";
-	 4         Object[] params={typeId};
-	 5         newlyTopic= runner.query(sql,new BeanHandler<Topic>(Topic.class),params);
-	 6         return newlyTopic;*/
+	 
 	public  List<T> queryForList(String sql,Class<T> cls) throws SQLException{
-		List<T> results = this.query.query(conn, sql, new BeanListHandler<T>(cls));    
+		List<T> results = this.query.query(dsp.getConnection(), sql, new BeanListHandler<T>(cls));    
 		return results;
 	}
 	public  T queryForObject(String sql,Class<T> cls) throws SQLException{
-		T t = this.query.query(conn, sql, new BeanHandler<T>(cls));  
+		T t = this.query.query(dsp.getConnection(), sql, new BeanHandler<T>(cls));  
 		return t;
 	}
 	public  List<T> queryForMap(String sql,@SuppressWarnings("rawtypes") Class cls) throws SQLException{
 		@SuppressWarnings("unchecked")
-		List<T> results = (List<T>) this.query.query(conn, sql, new MapListHandler());         
+		List<T> results = (List<T>) this.query.query(dsp.getConnection(), sql, new MapListHandler());         
 		return results;
 	}
 	
@@ -123,8 +97,12 @@ public class ConnectionUtils<T> extends QueryRunner {
 	}
 	public int update(String sql){
 		try {
-            //事务开始
-           return  this.query.update(conn,sql);
+			  long s = System.currentTimeMillis();
+	            //事务开始
+	          int a= this.query.update(dsp.getConnection(),sql);
+	          long e = System.currentTimeMillis();
+	          System.out.println("删除执行毫秒数："+(e-s));
+	          return a;
             //事务提交
         } catch (SQLException e) {
             e.printStackTrace();
@@ -305,7 +283,8 @@ public class ConnectionUtils<T> extends QueryRunner {
 
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public <T> T query(Connection conn, String sql, Object param,
             ResultSetHandler<T> rsh) {
         try {
@@ -316,7 +295,8 @@ public class ConnectionUtils<T> extends QueryRunner {
 
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public <T> T query(Connection conn, String sql, Object[] params,
             ResultSetHandler<T> rsh) {
         try {
@@ -348,7 +328,8 @@ public class ConnectionUtils<T> extends QueryRunner {
 
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public <T> T query(String sql, Object param, ResultSetHandler<T> rsh)
          {
         try {
@@ -359,7 +340,8 @@ public class ConnectionUtils<T> extends QueryRunner {
 
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public <T> T query(String sql, Object[] params, ResultSetHandler<T> rsh)
              {
         try {

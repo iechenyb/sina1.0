@@ -19,7 +19,7 @@ public class RunnerMain {
 	public static void run() throws Exception {// "*/30 * 8-20 * * ?" "0 */5 * *
 												// * ?"
 		JobDetail jobDetail = new JobDetail("job", "mygroup", GetAricleTimeTask.class);
-		CronTrigger trigger = new CronTrigger("trigger", "lzstone", "0 */1 * * * ?");
+		CronTrigger trigger = new CronTrigger("trigger", "lzstone", "*/10 * * * * ?");
 		sched = new org.quartz.impl.StdSchedulerFactory().getScheduler();
 
 		JobDetail init = new JobDetail("xxx", "xxx", InitTask.class);

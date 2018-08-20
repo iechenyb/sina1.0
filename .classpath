@@ -145,5 +145,7 @@
 			<attribute name="maven.scope" value="compile"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/reflections-0.9.11.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/druid-1.1.10.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
