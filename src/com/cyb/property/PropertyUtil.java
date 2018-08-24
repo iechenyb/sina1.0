@@ -159,4 +159,41 @@ public class PropertyUtil {
 		}
 	}
 	
+	
+	public static Properties load(String dbFileName){
+		if(!dbFileName.endsWith("properties")){
+    		return loadPropertiesFile("config\\"+dbFileName+".properties");
+    	}else{
+    		return loadPropertiesFile("config\\"+dbFileName);
+    	}
+	}
+	/**
+     * @param string 配置文件名
+     * @return Properties对象
+     */
+    private static Properties loadPropertiesFile(String fileName) {
+        String webRootPath = System.getProperty("user.dir");//工程名
+        if (null == fileName || fileName.equals("")){
+            throw new IllegalArgumentException("Properties file path can not be null" + fileName);
+        }
+        InputStream inputStream = null;
+        Properties p = null;
+        try {
+            inputStream = new FileInputStream(new File(webRootPath + "\\" + fileName));
+            p = new Properties();
+            p.load(inputStream);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (null != inputStream){
+                    inputStream.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return p;
+    }
+	
 }

@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -159,10 +160,16 @@ public class SpiderHttpClient {
 			httpRequst.setEntity(new UrlEncodedFormEntity(params, HTTP.UTF_8));
 			@SuppressWarnings("resource")
 			HttpResponse httpResponse = new DefaultHttpClient().execute(httpRequst);
-			if (httpResponse.getStatusLine().getStatusCode() == 200) {
-				HttpEntity httpEntity = httpResponse.getEntity();
+			int code = httpResponse.getStatusLine().getStatusCode();
+			HttpEntity httpEntity = httpResponse.getEntity();
+			if ( code == 200) {
 				result = EntityUtils.toString(httpEntity);// 取出应答字符串
+			}else if(code==302){
+				Header locationHeader = httpResponse.getFirstHeader("location"); 
+				result= locationHeader.getValue(); 
+				System.out.println("重定向地址"+result);
 			}
+				
 			httpRequst.abort();
 			httpRequst.releaseConnection();
 		} catch (UnsupportedEncodingException e) {

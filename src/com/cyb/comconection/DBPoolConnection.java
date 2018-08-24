@@ -2,13 +2,16 @@ package com.cyb.comconection;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
  
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 import com.alibaba.druid.pool.DruidPooledConnection;
+import com.app.h2Study.H2LogTestMain;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -19,8 +22,9 @@ import org.apache.commons.logging.LogFactory;
  */
 public class DBPoolConnection {
 	Log log = LogFactory.getLog(DBPoolConnection.class);
-	private static DBPoolConnection dbPoolConnection = null;
-    private static DruidDataSource druidDataSource = null;
+	private  DBPoolConnection dbPoolConnection = null;
+    private  DruidDataSource druidDataSource = null;
+    private  Properties properties = null;
     
    /* static {
     	Properties properties = loadPropertiesFile("config\\db_server.properties");
@@ -35,7 +39,7 @@ public class DBPoolConnection {
     }
     
     public DBPoolConnection(String dbFileName) throws Exception{
-    	Properties properties = null;
+    	
     	if(!dbFileName.endsWith("properties")){
     		properties = loadPropertiesFile("config\\"+dbFileName+".properties");
     	}else{
@@ -47,7 +51,7 @@ public class DBPoolConnection {
      * 数据库连接池单例
      * @return
      */
-    public static synchronized DBPoolConnection getInstance(){
+    public  synchronized DBPoolConnection getInstance(){
         if (null == dbPoolConnection){
             dbPoolConnection = new DBPoolConnection();
         }
@@ -66,9 +70,8 @@ public class DBPoolConnection {
      * @param string 配置文件名
      * @return Properties对象
      */
-    private static Properties loadPropertiesFile(String fullFile) {
+    private  Properties loadPropertiesFile(String fullFile) {
         String webRootPath = System.getProperty("user.dir");//工程名
-        System.out.println("工程路径："+webRootPath);
         if (null == fullFile || fullFile.equals("")){
             throw new IllegalArgumentException("Properties file path can not be null" + fullFile);
         }
@@ -91,29 +94,36 @@ public class DBPoolConnection {
         }
         return p;
     }
-    
-    
+    public static void query(String sql,Connection con,String[] colums) throws SQLException{
+    	PreparedStatement ps = con.prepareStatement(sql);
+    	ResultSet rs = ps.executeQuery();
+        while (rs.next()){
+        	for(int i=0;i<colums.length;i++){
+        		System.out.print(rs.getString(colums[i])+"\t");
+        	}
+        	System.out.println();
+        }
+    }
+    public static void delete(String sql,Connection con) throws SQLException{
+    	long s = System.currentTimeMillis();
+    	PreparedStatement ps = con.prepareStatement(sql);
+    	int count = ps.executeUpdate();
+    	System.out.println(con+",删除记录总数："+count+",执行耗时："+(System.currentTimeMillis()-s));
+    }
     public static void main(String[] args) throws Exception {
     	//执行一条sql语句测试
-    	DBPoolConnection dbp =new DBPoolConnection("db_server"); 
-    			//DBPoolConnection.getInstance();    //获取数据连接池单例
-        DruidPooledConnection conn = null;
-        PreparedStatement ps = null;
+    	DBPoolConnection dbp =new DBPoolConnection("h2-1"); 
+    	DBPoolConnection dbp2 =new DBPoolConnection("h2-2"); 
         try {
-        	String sql = "update sys_user set name='tbuser'  where id=2;";
-            conn = dbp.getConnection();    //从数据库连接池中获取数据库连接
-            ps = conn.prepareStatement(sql);
-            ps.executeUpdate();
-        } catch (SQLException e) {
+        	String query = "select * from "+H2LogTestMain.name;
+        	//query(query,dbp.getConnection(),new String[]{"id","name"});
+        	String delete = "delete from "+H2LogTestMain.name;
+        	delete(delete,dbp.getConnection());
+        	dbp2.getConnection();
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                if (null != ps){
-                    ps.close();
-                }
-                if (null != conn){
-                    conn.close();
-                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

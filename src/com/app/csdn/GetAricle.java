@@ -1,6 +1,8 @@
 package com.app.csdn;
 
 import java.io.IOException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -8,6 +10,16 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.io.UnsupportedEncodingException;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+ 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.X509TrustManager;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -18,7 +30,9 @@ import org.jsoup.select.Elements;
 
 import com.cyb.date.DateUtil;
 import com.cyb.file.FileUtils;
+import com.cyb.url.HttpsClient;
 import com.cyb.url.UrlUtils;
+
 
 public class GetAricle {
 	static Log log = LogFactory.getLog(GetAricle.class);
@@ -46,7 +60,7 @@ public class GetAricle {
 
 	public static void main(String[] args) throws IOException {
 		//init();
-		recordRank();
+		recordRank1();
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -68,7 +82,52 @@ public class GetAricle {
 		}
 		return hm;
 	}
-
+	public static void trustEveryone() {
+        try {  
+            HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;  
+                }
+            });  
+            SSLContext context = SSLContext.getInstance("TLS");  
+            context.init(null, new X509TrustManager[] { new X509TrustManager() {
+                public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+                }
+  
+                public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+                }
+  
+                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                    return new X509Certificate[0];  
+                }
+            } }, new SecureRandom());  
+            HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
+        } catch (Exception e) {
+            // e.printStackTrace();  
+        }
+	}
+    public static String recordRank1(){
+    	trustEveryone();
+    	String url = "https://me.csdn.net/";
+    	String html = HttpsClient.getPageHtml(url);
+    	System.out.println("aaaa"+html);
+    	String rankStr = "";
+		try {
+			// 这是get方式得到的
+			//System.setProperty("javax.net.ssl.trustStore", "/path/to/web2.uconn.edu.jks");
+			Document doc = Jsoup.connect(url).get();
+			Elements links = doc.select("ul[class='mod_my_t clearfix']");
+			for (Element link : links) {
+				rankStr = DateUtil.timeToMilis(new Date()) + " " + link.text() ;
+			}
+			System.out.println("排名路径："+rankFilePath);
+			System.out.println(rankStr);
+			FileUtils.appendString2File(rankStr+ "\n", rankFilePath);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return rankStr;
+    }
 	public static String recordRank() {
 		String rankStr = "";
 		try {

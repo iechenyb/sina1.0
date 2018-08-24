@@ -25,10 +25,10 @@ import org.apache.commons.lang.StringUtils;
 
 import com.cyb.mybatis.User;
 
-public class ConnectionDataSourceUtils<T> extends QueryRunner {
+public class ConnectionDataSourcePoolUtils<T> extends QueryRunner {
 	public DBPoolConnection dsp =null;
 	public QueryRunner query = null;
-	public ConnectionDataSourceUtils(String dbName){
+	public ConnectionDataSourcePoolUtils(String dbName){
 	    query = new QueryRunner();
 	    try {  
 	         dsp =new DBPoolConnection(dbName);
@@ -61,11 +61,11 @@ public class ConnectionDataSourceUtils<T> extends QueryRunner {
 	     System.out.println(user.getUsername()+","+user.getPassword());*/
 	     //如何返回一个聚合值 比如记录总数
 		String sql = "select count(1) from test";
-		ConnectionDataSourceUtils<List<Map>> dbUtils = new ConnectionDataSourceUtils<List<Map>>("h2-1");
+		ConnectionDataSourcePoolUtils<List<Map>> dbUtils = new ConnectionDataSourcePoolUtils<List<Map>>("h2-1");
 		List<List<Map>> rs = dbUtils.queryForMap(sql, List.class);
 		System.out.println(rs);
 		
-		ConnectionDataSourceUtils<Map> dbUtils1 = new ConnectionDataSourceUtils<Map>("h2-1");
+		ConnectionDataSourcePoolUtils<Map> dbUtils1 = new ConnectionDataSourcePoolUtils<Map>("h2-1");
 		List<Map> rs1 = dbUtils1.queryForMap(sql, Map.class);
 		System.out.println(rs1);
 	}
@@ -101,7 +101,7 @@ public class ConnectionDataSourceUtils<T> extends QueryRunner {
 	            //事务开始
 	          int a= this.query.update(dsp.getConnection(),sql);
 	          long e = System.currentTimeMillis();
-	          System.out.println("删除执行毫秒数："+(e-s));
+	          System.out.println("删除执行毫秒数："+(e-s)+",删除条数"+a);
 	          return a;
             //事务提交
         } catch (SQLException e) {

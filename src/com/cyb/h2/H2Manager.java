@@ -10,7 +10,7 @@ public class H2Manager {
 	 public static void initServer(){
 		 try {
 			 Server.createTcpServer();//new String[] { "-tcpPort", "6665" }
-			//server = Server.createTcpServer(new String[] { "-tcpPort", "6665" });
+			server = Server.createTcpServer(new String[] { "-tcpPort", "6665" });
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}	

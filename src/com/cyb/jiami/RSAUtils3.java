@@ -190,6 +190,7 @@ public class RSAUtils3 {
                 "城楼上下也无朝会的迹象，既无几案，站队点名\n" +
                 "的御史和御前侍卫“大汉将军”也不见踪影，不免\n" +
                 "心中揣测，互相询问：所谓午朝是否讹传？";
+        str="123456789";
         System.out.println("\r明文：\n" + str);
         System.out.println("\r明文大小：" + str.getBytes().length);
         //公钥加密

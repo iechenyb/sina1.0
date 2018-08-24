@@ -315,6 +315,7 @@ public class RSAUtils2 {
     	System.out.println("公钥\r\n"+new String(pubKey.getEncoded()));
     	System.out.println("私钥\r\n"+new String(priKey.getEncoded()));
         String source = "春眠不觉晓，处处闻啼鸟，也来风雨声，花落知多少。";
+        source="123456789";
         System.out.println("原文字：" + source);
         publicEnPrivateDe(source);//公钥加密私钥解密测试
         System.out.println("--------------------------");
