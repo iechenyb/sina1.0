@@ -20,6 +20,7 @@ import java.security.PublicKey;
 import java.security.SecureRandom;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.security.spec.DSAPublicKeySpec;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.RSAPrivateKeySpec;
 import java.security.spec.RSAPublicKeySpec;
@@ -214,7 +215,7 @@ public class RSAUtil5 {
     	String rsaKeyStore = RSAKeyStore;//"d:/data/rsa/"+"aaa"+".key";
     	String test = "helloworld";  
         String pubk = new String (getKeyPair(rsaKeyStore).getPublic().getEncoded());
-        System.out.println(getKeyPair(rsaKeyStore).getPublic());
+        System.out.println("公钥信息："+(RSAPublicKey)getKeyPair(rsaKeyStore).getPublic());
         System.out.println("\tpublic key:"+pubk);//注意model作为参数给前台
         String hexstring=ConvertUtil.stringToHexString(pubk);
         System.out.println(hexstring);
@@ -226,7 +227,16 @@ public class RSAUtil5 {
         byte[] de_test = decrypt(getKeyPair(rsaKeyStore).getPrivate(), en_test);  
         System.out.println(new String(de_test));  
         decRequest(rsaKeyStore);
+        String mo = "8246a46f44fc4d961e139fd70f4787d272d374532f4d2d9b7cbaad6a15a8c1301319aa6b3f30413b859351c71938aec516fa7147b69168b195e81df46b6bed7950cf3a1c719d42175f73d7c97a85d7d20a9e83688b92f05b3059bb2ff75cd7190a042cd2db97ebc2ab4da366f2a7085556ed613b5a39c9fdd2bb2595d1dc23b5";
+        getModulus((RSAPublicKey)getKeyPair(rsaKeyStore).getPublic());
         //如何将生成的公钥和秘钥写入文件！
+        
+        RSAPublicKey pk = generateRSAPublicKey(mo.getBytes(),"10001".getBytes());
+        System.out.println("生成公钥："+pk);//不对
+        
+        System.out.println("根据m和e生成公钥："+getPublicKey(mo,"10001"));
+        en_test = encrypt(getPublicKey(mo,"10001"), test.getBytes());  
+        System.out.println("\n公钥加密："+new String(en_test)); 
     }  
     /**
      * 32132!1321321gfedcba
@@ -244,5 +254,39 @@ public class RSAUtil5 {
 				en_result);
     	//倒叙输出123456789-> 987654321
     	System.out.println("将请求进行解密:"+new String(de_result));
+    }
+    
+    
+    public static String getModulus(RSAPublicKey publickey) throws NoSuchAlgorithmException, InvalidKeySpecException{
+    	String algorithm = publickey.getAlgorithm(); // 获取算法 
+    	String modulus = publickey.getModulus().toString();
+    	System.out.println("modulus:"+modulus);
+    	KeyFactory keyFact = KeyFactory.getInstance(algorithm); 
+    	BigInteger prime = null; 
+    	BigInteger exponent = null;
+    	if ("RSA".equals(algorithm)) { // 如果是RSA加密 
+    	    RSAPublicKeySpec keySpec = (RSAPublicKeySpec)keyFact.getKeySpec(publickey, RSAPublicKeySpec.class); 
+    	    prime = keySpec.getModulus(); 
+    	    exponent = keySpec.getPublicExponent();
+    	} else if ("DSA".equals(algorithm)) { // 如果是DSA加密 
+    	    DSAPublicKeySpec keySpec = (DSAPublicKeySpec)keyFact.getKeySpec(publickey, DSAPublicKeySpec.class); 
+    	    prime = keySpec.getP(); 
+    	} 
+    	int len = prime.toString(2).length(); // 转换为二进制，获取公钥长度
+    	BigInteger bigIntModulus = new BigInteger(prime.toString(),16);
+    	//System.out.println("16进制数据："+bigIntModulus);
+    	System.out.println("16进制数据："+prime);
+    	System.out.println("公钥模量:"+exponent);
+		return prime.toString();
+    }
+    
+    public static PublicKey getPublicKey(String modulus, String publicExponent)
+            throws NoSuchAlgorithmException, InvalidKeySpecException {
+        BigInteger bigIntModulus = new BigInteger(modulus,16);
+        BigInteger bigIntPrivateExponent = new BigInteger(publicExponent,16);
+        RSAPublicKeySpec keySpec = new RSAPublicKeySpec(bigIntModulus, bigIntPrivateExponent);
+        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+        PublicKey publicKey = keyFactory.generatePublic(keySpec);
+        return publicKey;
     }
 }  

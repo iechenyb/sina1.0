@@ -11,6 +11,7 @@ import org.apache.commons.io.IOUtils;
 
 import javax.crypto.Cipher;
 import java.io.ByteArrayOutputStream;
+import java.math.BigInteger;
 import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
@@ -199,6 +200,22 @@ public class RSAUtils3 {
         //私钥解密
         String decodedData = privateDecrypt(encodedData, getPrivateKey(privateKey));
         System.out.println("解密后文字: \r\n" + decodedData);
+        RSAPublicKey key = getPublicKey(publicKey);
+        System.out.println(key);
+        System.out.println("modulus:"+key.getModulus().toString());
+        System.out.println("exponent:"+key.getPublicExponent());
+       // RSAUtil5.generateRSAPrivateKey(key.getModulus().toByteArray(), privateExponent);
+        RSAPublicKey genPubKey = RSAUtil5.generateRSAPublicKey(key.getModulus().toByteArray(), key.getPublicExponent().toByteArray());
+        System.out.println(genPubKey);//生成的和原始的不一样
+    }
+    
+    public static void decRequest(String rsaKeyStore) throws Exception{
+    	String encodeStr = "139f380f832c8efb205df7761c6899facd097a4f4af65f198c8df718478d3c87dbeddd41c23c2b93af5e64bc80b2c6b92c29b5e2f47637baed235ccd6ad51a1d28c2cc9f2650860ccf3d2148fdf8bb83b55b8da87fbe5db1b8985b560a907d470c9de72dd15c35c88db44614e0e438036792e1865855bf1e98c2f81f9343ca74";
+    	byte[] en_result = new BigInteger(encodeStr, 16).toByteArray();
+    	byte[] de_result = RSAUtil5.decrypt(RSAUtil5.getKeyPair(rsaKeyStore).getPrivate(),
+				en_result);
+    	//倒叙输出123456789-> 987654321
+    	System.out.println("将请求进行解密:"+new String(de_result));
     }
 }
 //
