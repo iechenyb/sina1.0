@@ -1,0 +1,5 @@
+../bin/logstash -f logstash-st.conf
+../bin/logstash -f logstash-redis.conf
+../bin/logstash -f logstash-es.conf
+
+https://www.cnblogs.com/yincheng/p/logstash.html

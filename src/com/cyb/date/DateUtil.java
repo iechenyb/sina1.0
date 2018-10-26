@@ -298,6 +298,7 @@ public class DateUtil {
     	 }  
     	return hms;
     }
+    //https://gitee.com/renrenio/renren-security/blob/master/renren-common/src/main/java/io/renren/common/utils/DateUtils.java
 	public static void main(String[] args) throws ParseException {
 		/*
 		 * System.out.println(DateUtil.date2long10("20150603"));

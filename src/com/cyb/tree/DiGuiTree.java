@@ -37,7 +37,7 @@ public class DiGuiTree {
         list.add(t9);
         list.add(root);
         //传递根
-       // showTree(list,root,0);
+        showTree(list,root,0);
         madeTree(list,root);
         System.out.println(JSONArray.fromObject(root));
     }

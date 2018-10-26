@@ -151,5 +151,16 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/spring/spring-core-4.1.6.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/bcprov-jdk14-140.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/lombok.jar"/>
+	<classpathentry kind="lib" path="C:/Users/DHUser/.m2/repository/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="com.google.code.gson"/>
+			<attribute name="maven.artifactId" value="gson"/>
+			<attribute name="maven.version" value="2.8.2"/>
+			<attribute name="maven.scope" value="runtime"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jwt/java-jwt-3.1.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jwt/jjwt-0.8.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
