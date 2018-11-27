@@ -323,6 +323,10 @@ public class DateUtil {
      * @param formatStr 
      * @return 
      */  
+	public static String timeStamp2Date(String seconds) 
+	{
+		return timeStamp2Date(seconds,"HH:mm:ss");
+	}
     public static String timeStamp2Date(String seconds,String format) {  
         if(seconds == null || seconds.isEmpty() || seconds.equals("null")){  
             return "";  
@@ -358,6 +362,7 @@ public class DateUtil {
         String t = String.valueOf(time/1000);  
         return t;  
     }  
+    
 //1543295950
     public static void main(String[] args) {  
         String timeStamp = timeStamp();  

@@ -27,9 +27,12 @@ public class RedisMain {
     }
 	
 	
-	 private static final String LOCK_SUCCESS = "OK";
-     private static final String SET_IF_NOT_EXIST = "NX";
-     private static final String SET_WITH_EXPIRE_TIME = "PX";
+	 @SuppressWarnings("unused")
+	private static final String LOCK_SUCCESS = "OK";
+     @SuppressWarnings("unused")
+	private static final String SET_IF_NOT_EXIST = "NX";
+     @SuppressWarnings("unused")
+	private static final String SET_WITH_EXPIRE_TIME = "PX";
      private static final Long RELEASE_SUCCESS = 1L;
 
 	    /**
