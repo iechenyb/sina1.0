@@ -29,6 +29,16 @@ public class ListStudy {
         for (String string : arr) {  
             System.out.print(string+" ");  
         }  
+        System.out.println();
+      //准备一个String数组
+        String[] strs = {"aa","bb","cc"};
+        //String数组转List
+        List<String> strsToList1= Arrays.asList(strs);
+        System.out.println(strsToList1);
+        
+        System.out.println("aaaa".split("#").length);
+        /*String[] arrString = 
+        		(String[])arr.t*/
 		/*CollectionFactory.build(10);
 		System.out.println(CollectionFactory.list);
 		Object[] a = CollectionFactory.list.toArray();

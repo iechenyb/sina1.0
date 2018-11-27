@@ -9,7 +9,8 @@ import org.springframework.util.AntPathMatcher;
  */
 public class AntMatcher {
 	Log log = LogFactory.getLog(AntMatcher.class);
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
-		AntPathMatcher x;
+		UriMatcherTest x;
 	}
 }

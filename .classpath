@@ -117,7 +117,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/spring/spring-web-4.2.9.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tools.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/db/c3p0-0.9.5.2.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="src/com/cyb/jiqi/weka/weka-3.6.2.jar"/>
 	<classpathentry kind="lib" path="src/com/cyb/mongodb/mongo-java-driver-3.2.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/asm-3.3.jar"/>
@@ -136,31 +135,14 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/h2-1.4.187.jar"/>
 	<classpathentry kind="lib" path="D:/data/tmp/zookeeper-3.4.9.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commnet/commons-net-3.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/DHUser/.m2/repository/commons-codec/commons-codec/1.10/commons-codec-1.10.jar">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="maven.groupId" value="commons-codec"/>
-			<attribute name="maven.artifactId" value="commons-codec"/>
-			<attribute name="maven.version" value="1.10"/>
-			<attribute name="maven.scope" value="compile"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/reflections-0.9.11.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/druid-1.1.10.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/spring/aopalliance-1.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/spring/spring-core-4.1.6.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/bcprov-jdk14-140.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/lombok.jar"/>
-	<classpathentry kind="lib" path="C:/Users/DHUser/.m2/repository/com/google/code/gson/gson/2.8.2/gson-2.8.2.jar">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="maven.groupId" value="com.google.code.gson"/>
-			<attribute name="maven.artifactId" value="gson"/>
-			<attribute name="maven.version" value="2.8.2"/>
-			<attribute name="maven.scope" value="runtime"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jwt/java-jwt-3.1.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jwt/jjwt-0.8.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.7.0_80"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

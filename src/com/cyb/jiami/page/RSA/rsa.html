@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首页</title><!-- th:href="@{/index.css}" -->
+<script src="https://iechenyb.github.io/resume/pub/js/base64/Base64.js"></script>
+<script src="http://passport.cnblogs.com/scripts/jsencrypt.min.js"></script>
+<script src="https://iechenyb.github.io/resume/pub/js/md5/md5.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<!-- 公钥 秘钥对是否正确  http://tool.chacuo.net/cryptrsakeyvalid-->
+<body >
+	<!-- 配合RSAUtil5使用 -->
+	<div id="app-6">
+	<!--公钥：<textarea id="pub" rows="15" cols="65">
+         MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJ8ZeIfGRqSrEBDXfl7ICONn5emcBKdU
+NIhPnct3EtgfulmwhyB5uUJzwpQQ8MsW1mTk9T/GawIVjwJtBZ6iwQUCAwEAAQ==
+     </textarea>
+	 
+	 私钥：<textarea id="pri" rows="15" cols="65">
+           MIIBVAIBADANBgkqhkiG9w0BAQEFAASCAT4wggE6AgEAAkEAnxl4h8ZGpKsQENd+
+XsgI42fl6ZwEp1Q0iE+dy3cS2B+6WbCHIHm5QnPClBDwyxbWZOT1P8ZrAhWPAm0F
+nqLBBQIDAQABAkAF3ri1ubkNhko3dNvyv0qkqUawUdNSISc3CEj4ItKNKr9gDUh2
+JsWk8pQXzwX3VjXRBROucrM6v+/YdStEEabZAiEA8fZlhvrP+UuypWRPLFUEx2Wu
+ydBpB6vvSnJy1FrfLm8CIQCoVGavUf+9c99IjadSt0T3kyB/ViBwheFjOUQe7G2B
+ywIgOmZoNt4OmHMm2TiOy3pxvtbSCy/cSde719Ir2Qld2M0CIBKEHjuA0Jndah1H
+/7TYlgyJsZRwO+dEwtMwVG72YOFbAiEAhj1jQfIqtwat7GkukVV2yLsODC7/H1Lj
+i5jLTYhJlGw=
+     </textarea>-->
+	 <textarea id="pub" rows="15" cols="65">
+         MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJ8ZeIfGRqSrEBDXfl7ICONn5emcBKdU
+NIhPnct3EtgfulmwhyB5uUJzwpQQ8MsW1mTk9T/GawIVjwJtBZ6iwQUCAwEAAQ==
+     </textarea>
+	 
+	 私钥：<textarea id="pri" rows="15" cols="65">
+           MIIBVAIBADANBgkqhkiG9w0BAQEFAASCAT4wggE6AgEAAkEAnxl4h8ZGpKsQENd+
+XsgI42fl6ZwEp1Q0iE+dy3cS2B+6WbCHIHm5QnPClBDwyxbWZOT1P8ZrAhWPAm0F
+nqLBBQIDAQABAkAF3ri1ubkNhko3dNvyv0qkqUawUdNSISc3CEj4ItKNKr9gDUh2
+JsWk8pQXzwX3VjXRBROucrM6v+/YdStEEabZAiEA8fZlhvrP+UuypWRPLFUEx2Wu
+ydBpB6vvSnJy1FrfLm8CIQCoVGavUf+9c99IjadSt0T3kyB/ViBwheFjOUQe7G2B
+ywIgOmZoNt4OmHMm2TiOy3pxvtbSCy/cSde719Ir2Qld2M0CIBKEHjuA0Jndah1H
+/7TYlgyJsZRwO+dEwtMwVG72YOFbAiEAhj1jQfIqtwat7GkukVV2yLsODC7/H1Lj
+i5jLTYhJlGw=
+     </textarea>
+	请输入密码：<input type="text" value="" id="password"></input>
+	<button v-on:click="greet">提交验证(验证失败时，尝试刷新公秘钥信息)</button>
+	</div>
+</body>
+<script type="text/javascript">
+var app6 = new Vue({
+	el : '#app-6',
+	data : {
+		message : '123' ,
+	},
+	methods : {
+		greet : function(event) {
+		    //var base64 = new Base64();  
+			var pubkey = $("#pub").val();
+		    var orignpsd = $('#password').val();
+			console.log("原始密码："+orignpsd);
+ 		    var encrypt = new JSEncrypt();
+            encrypt.setPublicKey(pubkey);
+            var encrypted = encrypt.encrypt(orignpsd);
+			console.log("加密内容："+encrypted);
+			//encrypted = "KCuJr8Kl7gZTJ3Bo/Yo7J3Ci/MUw/sc7coitZ/LU2ohLHYrKq4Uwlrg1uhtZr9cDpJS7f810wNMe+qsjxx8sCg==";//加密内容
+			prikey=$("#pri").val();//"MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJ8ZeIfGRqSrEBDXfl7ICONn5emcBKdUNIhPnct3EtgfulmwhyB5uUJzwpQQ8MsW1mTk9T/GawIVjwJtBZ6iwQUCAwEAAQ==";//私钥
+			var decrypt = new JSEncrypt();
+            decrypt.setPrivateKey(prikey);
+            var uncrypted = decrypt.decrypt(encrypted);
+			console.log("解密内容："+uncrypted);
+		}
+	}
+   });
+
+</script>
+</html>

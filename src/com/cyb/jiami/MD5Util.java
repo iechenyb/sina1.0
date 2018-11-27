@@ -63,9 +63,10 @@ public class MD5Util {
      * 测试主函数
      * @param args
      * @throws Exception
-     */
-    public static void main(String args[]) throws Exception {
-        String str = new String("1");
+     *///bbcec748ec3c06133192e5b17ba38f01  34091174
+    public static void main(String args[]) 
+    		throws Exception {
+        String str = new String("34091174");
         System.out.println("原始：" + str);
         System.out.println("MD5后：" + md5Encode(str));
         System.out.println("MD5后：" + md5Encode(str));
