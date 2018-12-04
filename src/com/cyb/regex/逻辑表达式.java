@@ -15,6 +15,8 @@ import org.apache.commons.logging.LogFactory;
 import com.cyb.collection.utils.RandomUtils;
 import com.cyb.context.TimeContext;
 
+import sun.tools.tree.Expression;
+
 /**
  * 作者 : iechenyb<br>
  * 类描述: 说点啥<br>
@@ -41,9 +43,12 @@ public class 逻辑表达式 {
 	}
     static List<String> expressions = new ArrayList<String>();
     static{
-    	expressions.add("value>1 && value<=5");
-    	expressions.add("value>1 || value<=5");
-    	expressions.add("(value>1 && value<=5)||value > 10");
+    	//expressions.add("1<value<5");//必须拆分 不合法
+    	//expressions.add("value>10% && value<60%");//异常
+    	//expressions.add("value>0.01 && value<0.65");
+    	//expressions.add("value>1 && value<=5");
+    	//expressions.add("value>1 || value<=5");
+    	//expressions.add("(value>1 && value<=5)||value > 10");
     }
     
     static List<String> arithmetics = new ArrayList<String>();
@@ -57,10 +62,10 @@ public class 逻辑表达式 {
 		TimeContext.recordTimeStart();
 		test();
 		int i=0;
-		while(i<10000){
+		while(i<10){
 			i++;
 			for(String ex:expressions){
-				String param = String.valueOf(RandomUtils.getNum(1, 20));
+				String param = String.valueOf(RandomUtils.getNum(1, 100)*1.0/100);
 				boolean res = assertExpressTrue(String.
 						valueOf(param),
 						ex);
