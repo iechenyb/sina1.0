@@ -19,7 +19,7 @@ public class GetAricleTimeTask implements Job{
     		int idx = GetAricle.random(0,GetProxyServer.proxyList.size()-1);
     		if(GetProxyServer.proxyList.get(idx)!=null){
     			log.info("代理："+GetProxyServer.proxyList.get(idx)+" 可用："+
-    					CmdUtils.telnet(GetProxyServer.proxyList.get(idx).split("#")[0],Integer.valueOf(GetProxyServer.proxyList.get(idx).split("#")[1])));
+    			CmdUtils.telnet(GetProxyServer.proxyList.get(idx).split("#")[0],Integer.valueOf(GetProxyServer.proxyList.get(idx).split("#")[1])));
     			ProxyUtils.setServiceProxy(GetProxyServer.proxyList.get(idx).split("#")[0], GetProxyServer.proxyList.get(idx).split("#")[1]);
     		}
     		GetAricle.visitorAricleRandom();

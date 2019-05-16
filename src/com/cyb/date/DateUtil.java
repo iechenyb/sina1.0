@@ -183,6 +183,26 @@ public class DateUtil {
 		cal.add(Calendar.DAY_OF_MONTH, -1);
 		return cal.getTime();
 	}
+	
+	public static Date preDate() {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.add(Calendar.DAY_OF_MONTH, -1);
+		return cal.getTime();
+	}
+	
+	public static Date preDate(Date date,int days) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.add(Calendar.DAY_OF_MONTH, -1);
+		return cal.getTime();
+	}
+	public static Date preDate(int days) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.add(Calendar.DAY_OF_MONTH, -1);
+		return cal.getTime();
+	}
 
 	public static int getWeekOfYear(Date date) {
 		Calendar c = new GregorianCalendar();

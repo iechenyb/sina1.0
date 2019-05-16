@@ -16,7 +16,6 @@ import com.sun.mail.util.MailSSLSocketFactory;
 public class JavaMailTest {
 	public static void main(String[] args) throws MessagingException, GeneralSecurityException {
 		Properties props = new Properties();
-
 		// 开启debug调试
 		props.setProperty("mail.debug", "true");
 		// 发送服务器需要身份验证

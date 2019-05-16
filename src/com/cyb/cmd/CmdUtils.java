@@ -140,7 +140,7 @@ public class CmdUtils {
 				e.printStackTrace();
 			}
 		}*/
-		System.out.println(telnet("192.168.108.224", 8085));
+		System.out.println(telnet("192.168.108.224", 8089));
 		System.out.println(ping("192.168.108.224"));
 	}
 }

@@ -45,7 +45,7 @@ public class HttpsClient {
 	  String html = getPageHtml("https://31f.cn/http-proxy/");  
 	  System.out.println(html);  
 	}
-	@SuppressWarnings({ "deprecation", "deprecation", "deprecation" })
+	@SuppressWarnings({ "deprecation"})
 	public static DefaultHttpClient getNewHttpsClient(HttpClient httpClient){  
 		  
         try {  

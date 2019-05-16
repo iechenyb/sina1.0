@@ -50,6 +50,16 @@ public class List运算 {
 		list1.removeAll(list3);
 
 		System.out.println("1+2-3=" + list1);// 输出结果为：[1,3,5,2,4,5]
-
+		
+		//快速从list中找到比a大的数字所在位置
+		for(String s:list3){
+			if(Integer.valueOf(s)>=2){
+				System.out.println(list3.indexOf(s));
+			}
+		}
+		int  a = list1.indexOf("33");//为负值时 报错
+		if(a>0){
+			System.out.println(a+"list1:"+list1.subList(a, list1.size()));
+		}
 	}
 }

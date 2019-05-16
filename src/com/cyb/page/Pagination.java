@@ -139,12 +139,36 @@ public class Pagination implements Serializable{
     public void setRecordCount(long recordCount) {
         this.recordCount = recordCount;
     }
+    
+    public long getPageEnd(){
+    	long last = getPageSize()*currentPage-1;
+    	if(recordCount < last){
+    		last = recordCount-1;
+    	}
+    	return last;
+    }
+    
+    public int getPageStart(){
+    	return getOffset();
+    }
 
     public static void main(String[] args) throws InvocationTargetException {
-    	Pagination p = new Pagination(1,20,300);
-    	for(int i=1;i<p.getPageCount();i++){
-    		Pagination p_ = new Pagination(i,20,300);
-    		System.out.println(p_.getOffset()+","+(p_.getPageSize()*i-1));
+        int pageSize = 20;
+        int total = 291;
+    	Pagination p = null;
+        p = new Pagination(1,pageSize,total);
+    	//不到一页 pagesize=total 否则等于固定页数
+    	//边界值 如果最后一页一条数据
+    	for(int i=1;i<=p.getPageCount();i++){
+    		Pagination p_ = new Pagination(i,pageSize,total);
+    		System.out.println(p_.getOffset()+","
+    		+p_.getPageEnd());//(p_.getPageSize()*i-1)
+    	}
+    	System.out.println("========================");
+    	Pagination p1 = new Pagination(1,pageSize,total);
+    	for(int i=1;i<=p1.getPageCount();i++){
+    		Pagination p_ = new Pagination(i,pageSize,total);
+    		System.out.println((p_.getOffset()+1)+","+(p_.getPageEnd()+1));//(p_.getPageSize()*i-1)
     	}
 	}
 }

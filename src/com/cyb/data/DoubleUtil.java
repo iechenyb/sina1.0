@@ -105,6 +105,8 @@ public class DoubleUtil extends DataUtils implements Serializable {
 	     return db.toPlainString();  
    }
     public static void main(String[] args) {
+    	
+    	System.out.println(Double.valueOf("0.0"));
 		/*double val1=0.05;
 		double val2=0.01;
 		System.out.println(DoubleUtil.divide(val1, val2));

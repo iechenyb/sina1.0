@@ -54,5 +54,12 @@ public class SetStudy {
 		  User user = (User) us[i];
 		  System.out.println(user.getName());
 	  }
+	  
+	  //求和去重
+	  hs.addAll(ts);
+	  Set<String> sumSet = new TreeSet<>();
+	  sumSet.addAll(ts);
+	  sumSet.addAll(hs);
+	  System.out.println(sumSet);
 }
 }

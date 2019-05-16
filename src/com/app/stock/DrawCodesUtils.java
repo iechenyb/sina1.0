@@ -61,7 +61,7 @@ public class DrawCodesUtils {
 		 RedisClient client = new RedisClient();
 		 jedis = client.getJedis();
 		 shardedJedis  = client.getShardedJedis();
-		 //initSZStockCodes();
+		 initSZStockCodes();
 		 //initSHStockCodes();
 		 //log.info(getQutoes("sh600868"));
 		 initStockCodesBatch();
