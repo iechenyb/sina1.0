@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<templates>
+<template autoinsert="false" context="methodcomment_context" deleted="false" description="Comment for non-overriding methods" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.methodcomment" name="methodcomment">
+/**
+ *@Author iechenyb&lt;br&gt;
+ *@Desc 说点啥&lt;br&gt;
+ *@CreateTime ${date} ${time}
+ *${tags}
+ *@modify  新增方法时不用填写，修改时新增一个modify，需要注明修改人、时间和修改内容
+*/
+</template>
+</templates>

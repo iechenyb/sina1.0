@@ -3,9 +3,9 @@ ${package_declaration}
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 /**
- *作者 : iechenyb&lt;br&gt;
- *类描述: 说点啥&lt;br&gt;
- *创建时间: ${date}
+ *@Author iechenyb&lt;br&gt;
+ *@Desc 类描述&lt;br&gt;
+ *@CreateTime ${date} ${time}
  */
 ${typecomment}
 ${type_declaration}</template>
